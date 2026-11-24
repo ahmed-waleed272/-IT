@@ -513,7 +513,7 @@
       border-radius: 10px;
       border: 2px solid var(--border);
       background: #0d1629;
-      color: #64748b;
+      color: #94a3b8;
       font-family: 'Consolas', monospace;
       font-size: 1.35rem;
       font-weight: 800;
@@ -521,7 +521,8 @@
       transition: all 0.15s ease;
     }
 
-    .bit-btn.on {
+    .bit-btn.on,
+    .bit-btn.active {
       background: linear-gradient(180deg, #10b981, #059669);
       border-color: #34d399;
       color: #fff;
@@ -1771,7 +1772,7 @@
     <!-- Navigation -->
     <nav class="nav-tabs" id="mainNav">
       <button class="nav-btn active" data-view="stages" id="navTabStages">🗺️ مختبر التحويلات الـ 12</button>
-      <button class="nav-btn" data-view="sheet" id="navTabSheet">📝 شيت التحويلات (Tutorial 3)</button>
+      <button class="nav-btn" data-view="sheet" id="navTabSheet">📝 شيت التحويلات (توتوريال 3)</button>
       <button class="nav-btn" data-view="lectures" id="navTabLectures">📚 دليل المحاضرات</button>
       <button class="nav-btn" data-view="calc" id="navTabCalc">🧮 حاسبة التحويلات</button>
       <button class="nav-btn" data-view="mistakes" id="navTabMistakes">🎯 مراجعة الأخطاء <span class="badge-count" id="mistakeCountBadge">0</span></button>
@@ -1785,9 +1786,9 @@
       <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(245, 158, 11, 0.12) 100%); border-color: rgba(56, 189, 248, 0.35);">
         <div style="font-size:2.8rem;margin-bottom:8px;">🏛️</div>
         <h2 style="font-size:1.65rem;margin-bottom:8px;">المنصة الأكاديمية لمقرر تكنولوجيا المعلومات</h2>
-        <h3 style="font-size:1.2rem;color:var(--primary);margin-bottom:10px;">مقرر: أساسيات تكنولوجيا المعلومات (IT Essentials - Level 1)</h3>
+        <h3 style="font-size:1.2rem;color:var(--primary);margin-bottom:10px;">مقرر: أساسيات تكنولوجيا المعلومات (المستوى الأول)</h3>
         <p style="color:var(--text-muted);max-width:820px;margin:0 auto 16px;font-size:0.95rem;line-height:1.6;">
-          أهلاً بك في المنصة الأكاديمية الشاملة لمقرر تكنولوجيا المعلومات. تم تقسيم المنصة إلى <strong>محاضرات دراسية معيارية</strong>، وتُعد <strong>المحاضرة الثالثة (الأنظمة العددية وشيت Tutorial 3)</strong> هي النواة النشطة التفاعلية بالكامل المزودة بجميع التحويلات الـ 12 وحلول الشيت النموذجية والاختبارات التفاعلية.
+          أهلاً بك في المنصة الأكاديمية الشاملة لمقرر تكنولوجيا المعلومات. تم تقسيم المنصة إلى <strong>محاضرات دراسية معيارية</strong>، وتُعد <strong>المحاضرة الثالثة (الأنظمة العددية وشيت توتوريال 3)</strong> هي النواة النشطة التفاعلية بالكامل المزودة بجميع التحويلات الـ 12 وحلول الشيت النموذجية والاختبارات التفاعلية.
         </p>
         <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
           <button class="btn btn-primary" onclick="document.getElementById('lectureGrid').scrollIntoView({behavior:'smooth'})">📚 استعراض محاضرات المقرر (1 إلى 4)</button>
@@ -1799,7 +1800,7 @@
       <!-- Course Lectures Grid -->
       <div style="margin-top:24px;">
         <h3 style="font-size:1.25rem;font-weight:800;margin-bottom:16px;color:var(--text);display:flex;align-items:center;gap:8px;">
-          <span>📚 فهرس المحاضرات الأكاديمية لمقرر IT Essentials:</span>
+          <span>📚 فهرس المحاضرات الأكاديمية لمقرر تكنولوجيا المعلومات:</span>
         </h3>
         <div class="lecture-grid" id="lectureGrid"></div>
       </div>
@@ -1810,19 +1811,19 @@
     <section id="viewLec1" class="hidden">
       <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.16) 0%, rgba(99, 102, 241, 0.14) 100%); border-color: rgba(56, 189, 248, 0.4);">
         <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-          <button class="btn btn-outline btn-sm" onclick="showView('lectures')" style="border-color:var(--primary);color:var(--primary);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
+          <button class="btn btn-outline btn-sm js-back-lectures" onclick="showView('lectures')" style="border-color:var(--primary);color:var(--primary);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
         </div>
         <div class="sheet-uni-tag" id="lec1BadgeTag">💻 المحاضرة 1 • أساسيات تكنولوجيا المعلومات وعمارة الحاسوب</div>
         <h2 style="font-size:1.6rem;color:var(--text);margin-bottom:6px;" id="lec1TitleHead">المحاضرة 1: مدخل تكنولوجيا المعلومات ومكونات الحاسوب</h2>
         <div style="font-size:0.95rem;color:var(--primary);font-weight:700;margin-bottom:10px;" id="lec1SubTitleHead">Introduction to Information Technology & Computer Systems (Tutorial 1)</div>
-        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.93rem;line-height:1.6;" id="lec1BannerDesc">
+        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.93rem;line-height:1.6;" id="lec1BannerDesc" data-i18n-en="The complete interactive guide to IT fundamentals: the four pillars of any computer system (Hardware, Software, Data, User), the IPOS processing cycle, CPU details (Cores &amp; GHz), GPUs and AI, RAM speeds, the SSD vs HDD comparison, and the ideal PC specs for a programming student, with the solved 50-question Tutorial 1 sheet and model written answers.">
           الشرح التفاعلي الشامل لمدخل تكنولوجيا المعلومات، الأركان الأربعة لأي نظام حاسوبي (Hardware, Software, Data, User)، دورة المعالجة (IPOS)، تفاصيل المعالج (CPU Cores & GHz)، كروت الشاشة والذكاء الاصطناعي (GPU)، سرعات الذاكرة (RAM)، المقارنة بين SSD و HDD، ومواصفات الحاسوب المثالية لطالب البرمجة، مع حلول شيت التوتوريال الـ 50 سؤالاً والأسئلة المقالية النموذجية.
         </p>
         <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="setLec1SubTab('guide')">📖 الشرح والدراسة التفاعلية</button>
-          <button class="btn btn-accent" onclick="setLec1SubTab('sheet')">📝 شيت التوتوريال (50 MCQs + مقالي)</button>
-          <button class="btn btn-warn" onclick="setLec1SubTab('builder')">🛠️ محاكي تجميع الحاسوب وتقييم المواصفات</button>
-          <button class="btn btn-outline" onclick="startLecPractice('lec1', 'all')">🚀 بدء اختبار المحاضرة 1 في الآرينا</button>
+          <button class="btn btn-primary" onclick="setLec1SubTab('guide')" data-i18n-en="📖 Interactive Theory &amp; Study">📖 الشرح والدراسة التفاعلية</button>
+          <button class="btn btn-accent" onclick="setLec1SubTab('sheet')" data-i18n-en="📝 Tutorial Sheet (50 MCQs + Written)">📝 شيت التوتوريال (50 MCQs + مقالي)</button>
+          <button class="btn btn-warn" onclick="setLec1SubTab('builder')" data-i18n-en="🛠️ PC Builder &amp; Spec Evaluator">🛠️ محاكي تجميع الحاسوب وتقييم المواصفات</button>
+          <button class="btn btn-outline" onclick="startLecPractice('lec1', 'all')" data-i18n-en="🚀 Start Lecture 1 Practice in the Arena">🚀 بدء اختبار المحاضرة 1 في الآرينا</button>
         </div>
       </div>
 
@@ -1836,7 +1837,7 @@
 
       <!-- Tip Badge for Translation -->
       <div class="glossary-tip-badge" style="margin-bottom:18px;">
-        <span>💡 تلميح تفاعلي: يمكنك النقر على أي كلمة أو جملة كاملة (أو تظليل أي نص بالماوس) للاستماع لنطقها بالإنجليزية 🔊 وعرض ترجمتها الأكاديمية الفورية بالعربية!</span>
+        <span data-i18n-en="💡 Interactive tip: click any word or a full sentence (or select any text with the mouse) to hear its English pronunciation 🔊 and see its instant academic Arabic translation!">💡 تلميح تفاعلي: يمكنك النقر على أي كلمة أو جملة كاملة (أو تظليل أي نص بالماوس) للاستماع لنطقها بالإنجليزية 🔊 وعرض ترجمتها الأكاديمية الفورية بالعربية!</span>
       </div>
 
       <!-- Tab 1: Theory Guide Container -->
@@ -1846,12 +1847,12 @@
       <div id="lec1SheetContent" class="lec-tab-panel hidden">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
           <div>
-            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec1SheetHeader">بنك أسئلة شيت المحاضرة 1 (Tutorial 1: 50 Multiple-Choice Questions)</h3>
-            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec1SheetSub">اختر الإجابة الصحيحة لتحصل على تصحيح فوري، شرح علمي مفصل، ونقاط خبرة XP:</p>
+            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec1SheetHeader" data-i18n-en="Lecture 1 Sheet Question Bank (Tutorial 1: 50 Multiple-Choice Questions)">بنك أسئلة شيت المحاضرة 1 (توتوريال 1: 50 سؤال اختيارات متعددة)</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec1SheetSub" data-i18n-en="Pick the correct answer for instant marking, a detailed scientific explanation, and XP points:">اختر الإجابة الصحيحة لتحصل على تصحيح فوري، شرح علمي مفصل، ونقاط خبرة XP:</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec1', 'all')">🚀 حل في وضع التحدي التفاعلي (Arena)</button>
-            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec1', 'random10')">🎲 10 أسئلة عشوائية</button>
+            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec1', 'all')" data-i18n-en="🚀 Solve in Interactive Challenge Mode (Arena)">🚀 حل في وضع التحدي التفاعلي (Arena)</button>
+            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec1', 'random10')" data-i18n-en="🎲 10 Random Questions">🎲 10 أسئلة عشوائية</button>
           </div>
         </div>
         <div id="lec1QuestionsList" class="questions-container"></div>
@@ -1868,8 +1869,8 @@
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
             <div style="font-size:2rem;">💻</div>
             <div>
-              <h3 style="font-size:1.25rem;font-weight:800;color:var(--primary);" id="builderTitle">أداة تقييم مواصفات الحاسوب التفاعلية لطالب البرمجة (PC Spec Evaluator)</h3>
-              <p style="font-size:0.86rem;color:var(--text-muted);" id="builderSub">اختر مواصفات المكونات بناءً على معايير المحاضرة 1، وشاهد تقييم ملاءمتها للأعمال البرمجية والأنظمة الافتراضية والذكاء الاصطناعي لحظياً:</p>
+              <h3 style="font-size:1.25rem;font-weight:800;color:var(--primary);" id="builderTitle" data-i18n-en="Interactive PC Spec Evaluator for Programming Students (PC Spec Evaluator)">أداة تقييم مواصفات الحاسوب التفاعلية لطالب البرمجة (PC Spec Evaluator)</h3>
+              <p style="font-size:0.86rem;color:var(--text-muted);" id="builderSub" data-i18n-en="Choose component specs based on the Lecture 1 criteria and watch their live suitability score for programming work, virtual machines, and AI:">اختر مواصفات المكونات بناءً على معايير المحاضرة 1، وشاهد تقييم ملاءمتها للأعمال البرمجية والأنظمة الافتراضية والذكاء الاصطناعي لحظياً:</p>
             </div>
           </div>
           
@@ -1877,41 +1878,41 @@
             <!-- Left Controls -->
             <div class="builder-controls">
               <div class="builder-group">
-                <label><strong>1. المعالج المركزي (CPU):</strong></label>
+                <label><strong data-i18n-en="1. Central Processing Unit (CPU):">1. المعالج المركزي (CPU):</strong></label>
                 <select id="builderCpu" class="form-control" onchange="updatePcEvaluator()">
-                  <option value="dual_2ghz">Dual-Core (2 Cores @ 2.0 GHz) - ضعيف جداً</option>
-                  <option value="quad_3ghz">Quad-Core (4 Cores / 8 Threads @ 3.0 GHz) - اقتصادي</option>
-                  <option value="hexa_35ghz" selected>Modern Multi-Core (6 Cores / 12 Threads @ 3.5 GHz) - موصى به بالمحاضرة ⭐</option>
-                  <option value="octa_45ghz">High-End Multi-Core (8 Cores / 16 Threads @ 4.5 GHz) - احترافي</option>
+                  <option value="dual_2ghz" data-i18n-en="Dual-Core (2 Cores @ 2.0 GHz) - Very Weak">Dual-Core (2 Cores @ 2.0 GHz) - ضعيف جداً</option>
+                  <option value="quad_3ghz" data-i18n-en="Quad-Core (4 Cores / 8 Threads @ 3.0 GHz) - Budget">Quad-Core (4 Cores / 8 Threads @ 3.0 GHz) - اقتصادي</option>
+                  <option value="hexa_35ghz" selected data-i18n-en="Modern Multi-Core (6 Cores / 12 Threads @ 3.5 GHz) - Lecture Recommended ⭐">Modern Multi-Core (6 Cores / 12 Threads @ 3.5 GHz) - موصى به بالمحاضرة ⭐</option>
+                  <option value="octa_45ghz" data-i18n-en="High-End Multi-Core (8 Cores / 16 Threads @ 4.5 GHz) - Professional">High-End Multi-Core (8 Cores / 16 Threads @ 4.5 GHz) - احترافي</option>
                 </select>
               </div>
 
               <div class="builder-group">
-                <label><strong>2. ذاكرة الوصول العشوائي (RAM):</strong></label>
+                <label><strong data-i18n-en="2. Random Access Memory (RAM):">2. ذاكرة الوصول العشوائي (RAM):</strong></label>
                 <select id="builderRam" class="form-control" onchange="updatePcEvaluator()">
-                  <option value="4">4 GB RAM (غير مناسب لبيئات التطوير الحديثة)</option>
-                  <option value="8">8 GB RAM (حد أدنى مقبول للتصفح فقط)</option>
-                  <option value="16" selected>16 GB RAM (الموصى به بالمحاضرة لطالب IT ⭐)</option>
-                  <option value="32">32 GB RAM (ممتاز للآلات الافتراضية المتعددة VMs)</option>
+                  <option value="4" data-i18n-en="4 GB RAM (Unsuitable for modern dev environments)">4 GB RAM (غير مناسب لبيئات التطوير الحديثة)</option>
+                  <option value="8" data-i18n-en="8 GB RAM (Acceptable minimum, browsing only)">8 GB RAM (حد أدنى مقبول للتصفح فقط)</option>
+                  <option value="16" selected data-i18n-en="16 GB RAM (Lecture-recommended for IT students ⭐)">16 GB RAM (الموصى به بالمحاضرة لطالب IT ⭐)</option>
+                  <option value="32" data-i18n-en="32 GB RAM (Excellent for multiple VMs)">32 GB RAM (ممتاز للآلات الافتراضية المتعددة VMs)</option>
                 </select>
               </div>
 
               <div class="builder-group">
-                <label><strong>3. وحدة التخزين الدائم (Storage):</strong></label>
+                <label><strong data-i18n-en="3. Permanent Storage (Storage):">3. وحدة التخزين الدائم (Storage):</strong></label>
                 <select id="builderStorage" class="form-control" onchange="updatePcEvaluator()">
-                  <option value="hdd_1tb">1 TB HDD ميكانيكي (بطيء في الإقلاع وفتح البرامج)</option>
-                  <option value="ssd_256">256 GB NVMe SSD (سريع ولكن سعة ضيقة)</option>
-                  <option value="ssd_512" selected>512 GB - 1 TB Fast NVMe SSD (موصى به بالمحاضرة ⭐)</option>
-                  <option value="hybrid">512 GB SSD (للنظام) + 2 TB HDD (أرشيف وتخزين ضخم)</option>
+                  <option value="hdd_1tb" data-i18n-en="1 TB Mechanical HDD (Slow boot &amp; app loading)">1 TB HDD ميكانيكي (بطيء في الإقلاع وفتح البرامج)</option>
+                  <option value="ssd_256" data-i18n-en="256 GB NVMe SSD (Fast but tight capacity)">256 GB NVMe SSD (سريع ولكن سعة ضيقة)</option>
+                  <option value="ssd_512" selected data-i18n-en="512 GB - 1 TB Fast NVMe SSD (Lecture recommended ⭐)">512 GB - 1 TB Fast NVMe SSD (موصى به بالمحاضرة ⭐)</option>
+                  <option value="hybrid" data-i18n-en="512 GB SSD (for OS) + 2 TB HDD (archive &amp; bulk storage)">512 GB SSD (للنظام) + 2 TB HDD (أرشيف وتخزين ضخم)</option>
                 </select>
               </div>
 
               <div class="builder-group">
-                <label><strong>4. معالج الرسوميات (GPU):</strong></label>
+                <label><strong data-i18n-en="4. Graphics Processing Unit (GPU):">4. معالج الرسوميات (GPU):</strong></label>
                 <select id="builderGpu" class="form-control" onchange="updatePcEvaluator()">
-                  <option value="integrated" selected>كارت مدمج (Integrated GPU) - كافٍ جداً لأغلب مهام البرمجة والجامعة</option>
-                  <option value="dedicated_4gb">كارت منفصل اقتصادي (Dedicated 4GB VRAM) - جيد للتصميم الخفيف</option>
-                  <option value="dedicated_8gb">كارت منفصل قوي (Dedicated 8GB+ VRAM RTX) - ضروري للذكاء الاصطناعي و 3D والريندر</option>
+                  <option value="integrated" selected data-i18n-en="Integrated GPU - Sufficient for most programming &amp; university tasks">كارت مدمج (Integrated GPU) - كافٍ جداً لأغلب مهام البرمجة والجامعة</option>
+                  <option value="dedicated_4gb" data-i18n-en="Budget Dedicated (4GB VRAM) - Good for light design">كارت منفصل اقتصادي (Dedicated 4GB VRAM) - جيد للتصميم الخفيف</option>
+                  <option value="dedicated_8gb" data-i18n-en="Powerful Dedicated (8GB+ VRAM RTX) - Essential for AI, 3D &amp; rendering">كارت منفصل قوي (Dedicated 8GB+ VRAM RTX) - ضروري للذكاء الاصطناعي و 3D والريندر</option>
                 </select>
               </div>
             </div>
@@ -1928,19 +1929,19 @@
     <section id="viewLec2" class="hidden">
       <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(56, 189, 248, 0.14) 100%); border-color: rgba(16, 185, 129, 0.4);">
         <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-          <button class="btn btn-outline btn-sm" onclick="showView('lectures')" style="border-color:var(--primary);color:var(--primary);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
+          <button class="btn btn-outline btn-sm js-back-lectures" onclick="showView('lectures')" style="border-color:var(--primary);color:var(--primary);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
         </div>
         <div class="sheet-uni-tag" id="lec2BadgeTag">🖥️ المحاضرة 2 • أنظمة التشغيل وهندسة البرمجيات</div>
         <h2 style="font-size:1.6rem;color:var(--text);margin-bottom:6px;" id="lec2TitleHead">المحاضرة 2: أنظمة التشغيل والبرمجيات</h2>
         <div style="font-size:0.95rem;color:var(--accent);font-weight:700;margin-bottom:10px;" id="lec2SubTitleHead">Operating Systems & Software (Tutorial 2)</div>
-        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.93rem;line-height:1.6;" id="lec2BannerDesc">
+        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.93rem;line-height:1.6;" id="lec2BannerDesc" data-i18n-en="A complete interactive academic guide to software: the hardware-software relationship, system vs application software, the seven OS functions (CPU scheduling, memory &amp; virtual memory, files &amp; file systems, devices &amp; drivers, security, GUI &amp; CLI interfaces, and networking), OS types, the three translators (Compiler, Interpreter, Assembler), and maintenance/backup/compression utilities, with the solved 50-question tutorial sheet and model written answers.">
           دليل أكاديمي تفاعلي شامل لشرح مفهوم البرمجيات، العلاقة بين العتاد والبرمجيات، برمجيات النظام مقابل البرمجيات التطبيقية، الوظائف السبع لنظام التشغيل (جدولة المعالج، إدارة الذاكرة والذاكرة الافتراضية، إدارة الملفات ونظم الملفات، إدارة الأجهزة وبرامج التعريف، الأمان، الواجهات GUI و CLI، والشبكات)، أنواع أنظمة التشغيل، المترجمات الثلاثة (Compiler, Interpreter, Assembler)، وبرمجيات الصيانة والنسخ الاحتياطي والضغط، مع حلول الـ 50 سؤالاً لشيت التوتوريال والأسئلة المقالية النموذجية.
         </p>
         <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="setLec2SubTab('guide')">📖 الشرح والدراسة التفاعلية</button>
-          <button class="btn btn-accent" onclick="setLec2SubTab('sheet')">📝 شيت التوتوريال (50 MCQs + مقالي)</button>
-          <button class="btn btn-warn" onclick="setLec2SubTab('sim')">⚙️ محاكي المترجمات وجدولة المعالج</button>
-          <button class="btn btn-outline" onclick="startLecPractice('lec2', 'all')">🚀 بدء اختبار المحاضرة 2 في الآرينا</button>
+          <button class="btn btn-primary" onclick="setLec2SubTab('guide')" data-i18n-en="📖 Interactive Theory &amp; Study">📖 الشرح والدراسة التفاعلية</button>
+          <button class="btn btn-accent" onclick="setLec2SubTab('sheet')" data-i18n-en="📝 Tutorial Sheet (50 MCQs + Written)">📝 شيت التوتوريال (50 MCQs + مقالي)</button>
+          <button class="btn btn-warn" onclick="setLec2SubTab('sim')" data-i18n-en="⚙️ Translators &amp; CPU Scheduler Simulator">⚙️ محاكي المترجمات وجدولة المعالج</button>
+          <button class="btn btn-outline" onclick="startLecPractice('lec2', 'all')" data-i18n-en="🚀 Start Lecture 2 Practice in the Arena">🚀 بدء اختبار المحاضرة 2 في الآرينا</button>
         </div>
       </div>
 
@@ -1949,12 +1950,12 @@
         <button class="subnav-btn active" id="subnavLec2Guide" onclick="setLec2SubTab('guide')">📖 الشرح والمفاهيم الأساسية</button>
         <button class="subnav-btn" id="subnavLec2Sheet" onclick="setLec2SubTab('sheet')">📝 شيت التوتوريال والأسئلة (50 سؤالاً)</button>
         <button class="subnav-btn" id="subnavLec2Written" onclick="setLec2SubTab('written')">✍️ الأسئلة المقالية النموذجية</button>
-        <button class="subnav-btn" id="subnavLec2Sim" onclick="setLec2SubTab('sim')">⚙️ محاكي المترجمات وجدولة المعالج</button>
+        <button class="subnav-btn" id="subnavLec2Sim" onclick="setLec2SubTab('sim')" data-i18n-en="⚙️ Translators &amp; CPU Scheduler Simulator">⚙️ محاكي المترجمات وجدولة المعالج</button>
       </div>
 
       <!-- Tip Badge for Translation -->
       <div class="glossary-tip-badge" style="margin-bottom:18px;">
-        <span>💡 تلميح تفاعلي: يمكنك النقر على أي كلمة أو جملة كاملة (أو تظليل أي نص بالماوس) للاستماع لنطقها بالإنجليزية 🔊 وعرض ترجمتها الأكاديمية الفورية بالعربية!</span>
+        <span data-i18n-en="💡 Interactive tip: click any word or a full sentence (or select any text with the mouse) to hear its English pronunciation 🔊 and see its instant academic Arabic translation!">💡 تلميح تفاعلي: يمكنك النقر على أي كلمة أو جملة كاملة (أو تظليل أي نص بالماوس) للاستماع لنطقها بالإنجليزية 🔊 وعرض ترجمتها الأكاديمية الفورية بالعربية!</span>
       </div>
 
       <!-- Tab 1: Theory Guide Container -->
@@ -1964,12 +1965,12 @@
       <div id="lec2SheetContent" class="lec-tab-panel hidden">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
           <div>
-            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec2SheetHeader">بنك أسئلة شيت المحاضرة 2 (Tutorial 2: 50 Multiple-Choice Questions)</h3>
-            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec2SheetSub">اختر الإجابة الصحيحة لتحصل على تصحيح فوري، شرح علمي مفصل، ونقاط خبرة XP:</p>
+            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec2SheetHeader" data-i18n-en="Lecture 2 Sheet Question Bank (Tutorial 2: 50 Multiple-Choice Questions)">بنك أسئلة شيت المحاضرة 2 (توتوريال 2: 50 سؤال اختيارات متعددة)</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec2SheetSub" data-i18n-en="Pick the correct answer for instant marking, a detailed scientific explanation, and XP points:">اختر الإجابة الصحيحة لتحصل على تصحيح فوري، شرح علمي مفصل، ونقاط خبرة XP:</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec2', 'all')">🚀 حل في وضع التحدي التفاعلي (Arena)</button>
-            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec2', 'random10')">🎲 10 أسئلة عشوائية</button>
+            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec2', 'all')" data-i18n-en="🚀 Solve in Interactive Challenge Mode (Arena)">🚀 حل في وضع التحدي التفاعلي (Arena)</button>
+            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec2', 'random10')" data-i18n-en="🎲 10 Random Questions">🎲 10 أسئلة عشوائية</button>
           </div>
         </div>
         <div id="lec2QuestionsList" class="questions-container"></div>
@@ -1986,36 +1987,36 @@
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
             <div style="font-size:2rem;">⚙️</div>
             <div>
-              <h3 style="font-size:1.25rem;font-weight:800;color:var(--primary);" id="simTitle">محاكي مترجمات لغات البرمجة وجدولة المهام (Translators & OS Simulator)</h3>
-              <p style="font-size:0.86rem;color:var(--text-muted);" id="simSub">شاهد عملياً الفروق الجوهرية بين المترجم (Compiler) والمفسر (Interpreter) والمجمع (Assembler)، وكيف يدير المعالج العمليات المتعددة في الذاكرة:</p>
+              <h3 style="font-size:1.25rem;font-weight:800;color:var(--primary);" id="simTitle" data-i18n-en="Programming Translators &amp; CPU Scheduling Simulator (Translators &amp; OS Simulator)">محاكي مترجمات لغات البرمجة وجدولة المهام (Translators & OS Simulator)</h3>
+              <p style="font-size:0.86rem;color:var(--text-muted);" id="simSub" data-i18n-en="See in practice the core differences between the Compiler, the Interpreter and the Assembler, and how the CPU manages multiple processes in memory:">شاهد عملياً الفروق الجوهرية بين المترجم (Compiler) والمفسر (Interpreter) والمجمع (Assembler)، وكيف يدير المعالج العمليات المتعددة في الذاكرة:</p>
             </div>
           </div>
 
           <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;">
             <!-- Simulator Box 1: Translators in Action -->
             <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;">
-              <h4 style="color:var(--primary);margin-bottom:10px;font-size:1.05rem;">1. تجربة المترجمات (Translators Pipeline):</h4>
+              <h4 style="color:var(--primary);margin-bottom:10px;font-size:1.05rem;" data-i18n-en="1. Translators Experiment (Translators Pipeline):">1. تجربة المترجمات (Translators Pipeline):</h4>
               <div style="margin-bottom:10px;">
-                <label style="font-size:0.85rem;color:var(--text-muted);display:block;margin-bottom:4px;">اختر نوع المترجم للتجربة:</label>
+                <label style="font-size:0.85rem;color:var(--text-muted);display:block;margin-bottom:4px;" data-i18n-en="Choose a translator type to try:">اختر نوع المترجم للتجربة:</label>
                 <div style="display:flex;gap:6px;flex-wrap:wrap;">
                   <button class="btn btn-outline btn-xs" id="btnSimCompiler" onclick="runSimTranslator('compiler')">Compiler (C++/Java)</button>
                   <button class="btn btn-outline btn-xs" id="btnSimInterpreter" onclick="runSimTranslator('interpreter')">Interpreter (Python)</button>
                   <button class="btn btn-outline btn-xs" id="btnSimAssembler" onclick="runSimTranslator('assembler')">Assembler (Assembly)</button>
                 </div>
               </div>
-              <div id="translatorSimOutput" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:0.85rem;min-height:160px;font-family:monospace;line-height:1.6;">
+              <div id="translatorSimOutput" data-i18n-en="Click any translator to watch its translation cycle, execution speed, and output files..." style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:0.85rem;min-height:160px;font-family:monospace;line-height:1.6;">
                 اضغط على أي مترجم لمشاهدة دورة الترجمة وسرعة التنفيذ والملفات الناتجة...
               </div>
             </div>
 
             <!-- Simulator Box 2: CPU Multitasking & Scheduling -->
             <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;">
-              <h4 style="color:var(--accent);margin-bottom:10px;font-size:1.05rem;">2. جدولة المعالج وتعدد المهام (CPU Scheduling / Time-Slicing):</h4>
-              <p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:10px;">
+              <h4 style="color:var(--accent);margin-bottom:10px;font-size:1.05rem;" data-i18n-en="2. CPU Scheduling &amp; Multitasking (CPU Scheduling / Time-Slicing):">2. جدولة المعالج وتعدد المهام (CPU Scheduling / Time-Slicing):</h4>
+              <p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:10px;" data-i18n-en="How the CPU gives each app (IDE, Web Browser, Media Player) a time slice (Quantum) so they all run concurrently:">
                 كيف يُعطي المعالج شريحة زمنية (Quantum) لكل تطبيق (IDE, Web Browser, Media Player) ليعملوا في وقت متزامن:
               </p>
               <div style="margin-bottom:12px;">
-                <button class="btn btn-primary btn-sm" id="btnStartScheduler" onclick="toggleSchedulerSim()">▶️ تشغيل محاكاة الجدولة الزمنية</button>
+                <button class="btn btn-primary btn-sm" id="btnStartScheduler" onclick="toggleSchedulerSim()" data-i18n-en="▶️ Start CPU Scheduling Simulation">▶️ تشغيل محاكاة الجدولة الزمنية</button>
               </div>
               <div id="schedulerTimeline" style="display:flex;flex-direction:column;gap:8px;">
                 <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;">
@@ -2023,24 +2024,24 @@
                   <div style="flex:1;background:var(--surface);height:14px;border-radius:4px;overflow:hidden;position:relative;">
                     <div id="barProc1" style="height:100%;width:0%;background:#38bdf8;transition:width 0.2s linear;"></div>
                   </div>
-                  <span id="stateProc1" class="tag easy" style="font-size:0.7rem;">جاهز</span>
+                  <span id="stateProc1" class="tag easy" style="font-size:0.7rem;" data-i18n-en="Ready">جاهز</span>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;">
                   <span style="width:90px;font-weight:bold;color:#10b981;">Chrome Browser:</span>
                   <div style="flex:1;background:var(--surface);height:14px;border-radius:4px;overflow:hidden;position:relative;">
                     <div id="barProc2" style="height:100%;width:0%;background:#10b981;transition:width 0.2s linear;"></div>
                   </div>
-                  <span id="stateProc2" class="tag medium" style="font-size:0.7rem;">جاهز</span>
+                  <span id="stateProc2" class="tag medium" style="font-size:0.7rem;" data-i18n-en="Ready">جاهز</span>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;">
                   <span style="width:90px;font-weight:bold;color:#f59e0b;">Media Player:</span>
                   <div style="flex:1;background:var(--surface);height:14px;border-radius:4px;overflow:hidden;position:relative;">
                     <div id="barProc3" style="height:100%;width:0%;background:#f59e0b;transition:width 0.2s linear;"></div>
                   </div>
-                  <span id="stateProc3" class="tag hard" style="font-size:0.7rem;">جاهز</span>
+                  <span id="stateProc3" class="tag hard" style="font-size:0.7rem;" data-i18n-en="Ready">جاهز</span>
                 </div>
               </div>
-              <div id="schedulerLog" style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;padding:6px;background:rgba(56,189,248,0.06);border-radius:6px;">
+              <div id="schedulerLog" data-i18n-en="Status: scheduler stopped. Press start to watch." style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;padding:6px;background:rgba(56,189,248,0.06);border-radius:6px;">
                 الحالة: الجدولة متوقفة. اضغط زر التشغيل للمشاهدة.
               </div>
             </div>
@@ -2054,19 +2055,19 @@
     <section id="viewLec4" class="hidden">
       <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.16) 0%, rgba(236, 72, 153, 0.14) 100%); border-color: rgba(245, 158, 11, 0.4);">
         <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-          <button class="btn btn-outline btn-sm" onclick="showView('lectures')" style="border-color:var(--primary);color:var(--primary);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
+          <button class="btn btn-outline btn-sm js-back-lectures" onclick="showView('lectures')" style="border-color:var(--primary);color:var(--primary);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
         </div>
         <div class="sheet-uni-tag" id="lec4BadgeTag">⚙️ المحاضرة 4 • أساسيات البرمجة والمترجمات وخرائط التدفق</div>
         <h2 style="font-size:1.6rem;color:var(--text);margin-bottom:6px;" id="lec4TitleHead">المحاضرة 4: البرمجة والمترجمات والتدفق المنطقي</h2>
         <div style="font-size:0.95rem;color:var(--warn);font-weight:700;margin-bottom:10px;" id="lec4SubTitleHead">Programming Fundamentals, Translators & Flowcharts (Tutorial 5)</div>
-        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.93rem;line-height:1.6;" id="lec4BannerDesc">
+        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.93rem;line-height:1.6;" id="lec4BannerDesc" data-i18n-en="A complete practical guide to programming basics: how the computer follows logical instructions precisely without guessing (rejecting 10/0), high-level vs low-level languages, the three translators (Compiler, Interpreter, Assembler), algorithms, and the standard flowchart symbols (start/end, input/output, process, decision), with full solutions for the 10 Completion and 10 True/False questions and the 5 flowchart tracing problems with diagrams and trace tables.">
           دليل تعليمي تطبيقي شامل لأساسيات البرمجة، كيف يفهم الحاسوب الأوامر المنطقية بدقة دون تخمين (عدم قبول 10/0)، اللغات عالية ومنخفضة المستوى (High-Level vs Low-Level)، المترجمات الثلاثة (Compiler, Interpreter, Assembler)، الخوارزميات (Algorithms)، الرموز القياسية لخرائط التدفق (Flowcharts: البداية/النهاية، الإدخال/الإخراج، العمليات، وشروط اتخاذ القرار)، مع حلول الشيت الشاملة لأسئلة Complete (10) و True/False (10) وتتبع خرائط التدفق الـ 5 (Flowchart Tracing) بالرسوم والجداول التوضيحية.
         </p>
         <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="setLec4SubTab('guide')">📖 الشرح والدراسة التفاعلية</button>
-          <button class="btn btn-accent" onclick="setLec4SubTab('sheet')">📝 شيت التوتوريال (Complete + True/False)</button>
-          <button class="btn btn-warn" onclick="setLec4SubTab('flow')">📊 تتبع ومحاكاة خرائط التدفق (5 مسارات)</button>
-          <button class="btn btn-outline" onclick="startLecPractice('lec4', 'all')">🚀 بدء اختبار المحاضرة 4 في الآرينا</button>
+          <button class="btn btn-primary" onclick="setLec4SubTab('guide')" data-i18n-en="📖 Interactive Theory &amp; Study">📖 الشرح والدراسة التفاعلية</button>
+          <button class="btn btn-accent" onclick="setLec4SubTab('sheet')" data-i18n-en="📝 Tutorial Sheet (Complete + True/False)">📝 شيت التوتوريال (Complete + True/False)</button>
+          <button class="btn btn-warn" onclick="setLec4SubTab('flow')" data-i18n-en="📊 Flowchart Tracing &amp; Simulation (5 Paths)">📊 تتبع ومحاكاة خرائط التدفق (5 مسارات)</button>
+          <button class="btn btn-outline" onclick="startLecPractice('lec4', 'all')" data-i18n-en="🚀 Start Lecture 4 Practice in the Arena">🚀 بدء اختبار المحاضرة 4 في الآرينا</button>
         </div>
       </div>
 
@@ -2079,7 +2080,7 @@
 
       <!-- Tip Badge for Translation -->
       <div class="glossary-tip-badge" style="margin-bottom:18px;">
-        <span>💡 تلميح تفاعلي: يمكنك النقر على أي كلمة أو جملة كاملة (أو تظليل أي نص بالماوس) للاستماع لنطقها بالإنجليزية 🔊 وعرض ترجمتها الأكاديمية الفورية بالعربية!</span>
+        <span data-i18n-en="💡 Interactive tip: click any word or a full sentence (or select any text with the mouse) to hear its English pronunciation 🔊 and see its instant academic Arabic translation!">💡 تلميح تفاعلي: يمكنك النقر على أي كلمة أو جملة كاملة (أو تظليل أي نص بالماوس) للاستماع لنطقها بالإنجليزية 🔊 وعرض ترجمتها الأكاديمية الفورية بالعربية!</span>
       </div>
 
       <!-- Tab 1: Theory Guide Container -->
@@ -2089,13 +2090,13 @@
       <div id="lec4SheetContent" class="lec-tab-panel hidden">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
           <div>
-            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec4SheetHeader">بنك تدريبات شيت المحاضرة 4 (Tutorial 5: Complete & True/False)</h3>
-            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec4SheetSub">تدرّب على تثبيت المفاهيم العلمية للبرمجة والمترجمات مع التصحيح الفوري والنقاط:</p>
+            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec4SheetHeader" data-i18n-en="Lecture 4 Sheet Practice Bank (Tutorial 5: Completion &amp; True/False)">بنك تدريبات شيت المحاضرة 4 (توتوريال 5: أكمل وصواب/خطأ)</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec4SheetSub" data-i18n-en="Practice the core programming and translators concepts with instant marking and points:">تدرّب على تثبيت المفاهيم العلمية للبرمجة والمترجمات مع التصحيح الفوري والنقاط:</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec4', 'all')">🚀 حل في وضع التحدي التفاعلي (Arena)</button>
-            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec4', 'complete')">✏️ أسئلة الإكمال فقط (10)</button>
-            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec4', 'tf')">⚖️ أسئلة صح / خطأ فقط (10)</button>
+            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec4', 'all')" data-i18n-en="🚀 Solve in Interactive Challenge Mode (Arena)">🚀 حل في وضع التحدي التفاعلي (Arena)</button>
+            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec4', 'complete')" data-i18n-en="✏️ Completion Questions Only (10)">✏️ أسئلة الإكمال فقط (10)</button>
+            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec4', 'tf')" data-i18n-en="⚖️ True/False Questions Only (10)">⚖️ أسئلة صح / خطأ فقط (10)</button>
           </div>
         </div>
         <div id="lec4QuestionsList" class="questions-container"></div>
@@ -2105,11 +2106,11 @@
       <div id="lec4FlowContent" class="lec-tab-panel hidden">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
           <div>
-            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec4FlowHeader">مسائل تتبع خرائط التدفق وحساب مخرجات البرامج (Flowchart Tracing Challenges)</h3>
-            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec4FlowSub">شاهد الرسم البياني لكل مسألة من شيت التوتوريال، جدول تتبع المتغيرات خطوة بخطوة، ونفّذ التتبع بنفسك:</p>
+            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec4FlowHeader" data-i18n-en="Flowchart Tracing &amp; Program Output Problems (Flowchart Tracing Challenges)">مسائل تتبع خرائط التدفق وحساب مخرجات البرامج (Flowchart Tracing Challenges)</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec4FlowSub" data-i18n-en="See the diagram of each tutorial problem and the step-by-step variable trace table, then run the trace yourself:">شاهد الرسم البياني لكل مسألة من شيت التوتوريال، جدول تتبع المتغيرات خطوة بخطوة، ونفّذ التتبع بنفسك:</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec4', 'flowcharts')">🚀 حل مسائل التدفق في الآرينا</button>
+            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec4', 'flowcharts')" data-i18n-en="🚀 Solve Flow Problems in the Arena">🚀 حل مسائل التدفق في الآرينا</button>
           </div>
         </div>
         <div id="lec4FlowchartsList" class="flowcharts-container"></div>
@@ -2165,7 +2166,7 @@
 
         <div style="margin-bottom:16px;">
           <label style="font-size:0.84rem;color:var(--text-muted);display:block;margin-bottom:6px;font-weight:700;" id="calcInputLabelText">Enter Number to Convert:</label>
-          <input type="text" id="calcInputVal" class="answer-input" placeholder="اكتب العدد هنا (مثال: 150 أو 12.25 أو 2AB)..." style="font-size:1.25rem;text-align:center;direction:ltr;font-family:Consolas,monospace;" />
+          <input type="text" id="calcInputVal" class="answer-input" placeholder="اكتب العدد هنا (مثال: 150 أو 12.25 أو 2AB)..." style="font-size:1.25rem;text-align:center;direction:ltr;unicode-bidi:plaintext;font-family:Consolas,monospace;" />
           
           <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px;">
             <span style="font-size:0.8rem;color:var(--text-muted);align-self:center;" id="calcKeypadLabel">Quick Keypad:</span>
@@ -2239,10 +2240,10 @@
     <section id="viewSheet" class="hidden">
       <div class="sheet-banner">
         <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-          <button class="btn btn-outline btn-sm" onclick="showView('lectures')" style="border-color:var(--primary);color:var(--primary);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
+          <button class="btn btn-outline btn-sm js-back-lectures" onclick="showView('lectures')" style="border-color:var(--primary);color:var(--primary);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
         </div>
         <div class="sheet-uni-tag">🏛️ المنصة الأكاديمية التكنولوجية • شيت التحويلات الشامل</div>
-        <h2 style="font-size:1.45rem;color:var(--text);margin-bottom:6px;">شيت الكلية: Tutorial 3 (IT Essentials)</h2>
+        <h2 style="font-size:1.45rem;color:var(--text);margin-bottom:6px;">شيت الكلية: توتوريال 3</h2>
         <p style="color:var(--text-muted);max-width:680px;margin:0 auto 16px;font-size:0.92rem;">
           بنك أسئلة شيت الكلية الكامل (39 مسألة تحويل رقمي + مسائل المفاهيم ومجالات القيم). تدرّب على حل كل مسألة بنفسك، وإذا لم تعرف الحل أو استسلمت، اضغط على زر كشف الحل لمشاهدة خطوات الحل خطوة بخطوة (التنوير، الضرب المتتالي، والجسر الثنائي).
         </p>
@@ -2330,7 +2331,7 @@
           <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
             <div>
               <span class="exam-card-badge" style="background:rgba(167,139,250,0.25);color:#a78bfa;">🎓 الاختبار الشامل للمقرر كاملاً</span>
-              <h3 style="font-size:1.35rem;margin-bottom:6px;">الامتحان الجامعي النهائي الموحد (IT Essentials Grand Exam)</h3>
+              <h3 style="font-size:1.35rem;margin-bottom:6px;">الامتحان الجامعي النهائي الموحد</h3>
               <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:12px;line-height:1.6;max-width:760px;">
                 اختبار محاكاة نهائي شامل مكوّن من <strong>50 سؤالاً</strong> يجمع بين كافة موضوعات المنهج: عتاد الحاسوب (المحاضرة 1)، أنظمة التشغيل (المحاضرة 2)، الأنظمة العددية والتحويلات الـ 12 (المحاضرة 3)، والبرمجة وخرائط التدفق (المحاضرة 4) مع شهادة تقدير نهائية وتقدير جامعي رسمي (A+ إلى F).
               </p>
@@ -2343,7 +2344,7 @@
         <div class="exam-card featured">
           <div>
             <span class="exam-card-badge" style="background:rgba(56,189,248,0.2);color:#38bdf8;">🏛️ معتمد من شيت الكلية</span>
-            <h3 style="font-size:1.2rem;margin-bottom:8px;">امتحان شيت الكلية الشامل (Tutorial 3)</h3>
+            <h3 style="font-size:1.2rem;margin-bottom:8px;">امتحان شيت الكلية الشامل (توتوريال 3)</h3>
             <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">
               امتحان شامل يتكون من <strong>25 سؤالاً</strong> مختارة بعناية تغطي الـ 12 قسماً من شيت الكلية (الأعداد الصحيحة، الكسور، القسمة المتتالية، والجسر الثنائي، والمفاهيم).
             </p>
@@ -4563,7 +4564,7 @@
     "secNum": 13,
     "stageId": "concepts",
     "fromSheet": true,
-    "sheetSectionTitle": "مفاهيم IT Essentials (صفحة 1 و 3)",
+    "sheetSectionTitle": "مفاهيم أساسيات تكنولوجيا المعلومات (صفحة 1 و 3)",
     "difficulty": "sheet",
     "type": "choice",
     "prompt": "<strong>Complete (سؤال 2 في الشيت):</strong> CPU stands for :",
@@ -4595,7 +4596,7 @@
     "secNum": 13,
     "stageId": "concepts",
     "fromSheet": true,
-    "sheetSectionTitle": "مفاهيم IT Essentials (صفحة 1 و 3)",
+    "sheetSectionTitle": "مفاهيم أساسيات تكنولوجيا المعلومات (صفحة 1 و 3)",
     "difficulty": "sheet",
     "type": "choice",
     "prompt": "<strong>Complete (سؤال 3 في الشيت):</strong> Processor speed is measured by :",
@@ -4627,7 +4628,7 @@
     "secNum": 13,
     "stageId": "concepts",
     "fromSheet": true,
-    "sheetSectionTitle": "مفاهيم IT Essentials (صفحة 1 و 3)",
+    "sheetSectionTitle": "مفاهيم أساسيات تكنولوجيا المعلومات (صفحة 1 و 3)",
     "difficulty": "sheet",
     "type": "choice",
     "prompt": "<strong>Complete (سؤال 1 في الشيت):</strong> The computer system consists of :",
@@ -4659,7 +4660,7 @@
     "secNum": 13,
     "stageId": "concepts",
     "fromSheet": true,
-    "sheetSectionTitle": "مفاهيم IT Essentials (صفحة 3)",
+    "sheetSectionTitle": "مفاهيم أساسيات تكنولوجيا المعلومات (صفحة 3)",
     "difficulty": "sheet",
     "type": "choice",
     "prompt": "<strong>Complete (سؤال 6 في الشيت):</strong> Last number in Decimal when n = 2 is :",
@@ -4691,7 +4692,7 @@
     "secNum": 13,
     "stageId": "concepts",
     "fromSheet": true,
-    "sheetSectionTitle": "مفاهيم IT Essentials (صفحة 3)",
+    "sheetSectionTitle": "مفاهيم أساسيات تكنولوجيا المعلومات (صفحة 3)",
     "difficulty": "sheet",
     "type": "choice",
     "prompt": "<strong>Complete (سؤال 5 في الشيت):</strong> Number of values in Decimal when No. of Bits = 3 is :",
@@ -4723,7 +4724,7 @@
     "secNum": 13,
     "stageId": "concepts",
     "fromSheet": true,
-    "sheetSectionTitle": "مفاهيم IT Essentials (صفحة 1 و 3)",
+    "sheetSectionTitle": "مفاهيم أساسيات تكنولوجيا المعلومات (صفحة 1 و 3)",
     "difficulty": "sheet",
     "type": "choice",
     "prompt": "<strong>Complete (سؤال 13 في الشيت):</strong> SKU Number: A higher number here generally means :",
@@ -4755,7 +4756,7 @@
     "secNum": 13,
     "stageId": "concepts",
     "fromSheet": true,
-    "sheetSectionTitle": "مفاهيم IT Essentials (صفحة 4)",
+    "sheetSectionTitle": "مفاهيم أساسيات تكنولوجيا المعلومات (صفحة 4)",
     "difficulty": "sheet",
     "type": "choice",
     "prompt": "<strong>Complete (سؤال 18 و 19 في الشيت):</strong> _____ is the most widely used alphanumeric code for computer input and output :",
@@ -4787,7 +4788,7 @@
     "secNum": 13,
     "stageId": "concepts",
     "fromSheet": true,
-    "sheetSectionTitle": "مفاهيم IT Essentials (صفحة 2 و 3)",
+    "sheetSectionTitle": "مفاهيم أساسيات تكنولوجيا المعلومات (صفحة 2 و 3)",
     "difficulty": "sheet",
     "type": "choice",
     "prompt": "<strong>Complete (سؤال 16 في الشيت):</strong> Bit (0 OR 1) can be represented by a switch as :",
@@ -5144,7 +5145,7 @@
     "id": "sheet_champ",
     "label": "🎓 بطل شيت الكلية",
     "labelEn": "🎓 Sheet Champion",
-    "desc": "حل شيت الكلية (Tutorial 3) بنجاح",
+    "desc": "حل شيت الكلية (توتوريال 3) بنجاح",
     "descEn": "Solve all tutorial sheet questions"
   },
   {
@@ -6581,7 +6582,7 @@
         color: '#f59e0b',
         status: 'مكتملة بالكامل ومتاحة للتدريب',
         isCurrent: true,
-        summary: 'المحاضرة المركزية لمقرر IT Essentials وتتضمن الشرح التفاعلي الكامل للأنظمة العددية الأربعة (الثنائي، الثماني، العشري، والسادس عشر)، والتحويلات الـ 12 كاملةً مقسمة في خانات، وحل شيت المقرر (Tutorial 3) كاملاً بالخطوات النموذجية، والاختبارات التجريبية.',
+        summary: 'المحاضرة المركزية لمقرر تكنولوجيا المعلومات وتتضمن الشرح التفاعلي الكامل للأنظمة العددية الأربعة (الثنائي، الثماني، العشري، والسادس عشر)، والتحويلات الـ 12 كاملةً مقسمة في خانات، وحل شيت المقرر (توتوريال 3) كاملاً بالخطوات النموذجية، والاختبارات التجريبية.',
         topics: [
           'النظام العشري (Decimal Base 10) والنظام الثنائي (Binary Base 2)',
           'النظام الثماني (Octal Base 8) والنظام السادس عشر (Hexadecimal Base 16)',
@@ -6592,7 +6593,7 @@
           'مركز اختبارات الميدتيرم وامتحان الشيت الشامل والتقييم بالتقدير الجامعي'
         ],
         sheetQuestions: [
-          'جميع مسائل شيت المقرر الرسمية (Tutorial 3) بأقسامها الـ 12 بالكامل',
+          'جميع مسائل شيت المقرر الرسمية (توتوريال 3) بأقسامها الـ 12 بالكامل',
           'حساب عدد البتات اللازمة لتمثيل المدى من 0 إلى 9999 (14 بت لأن 2¹⁴ = 16384)',
           'إكمال الفراغات: C₁₆ = 1100₂ ، CC₁₆ = 204₁₀ ، 15₁₀ = F₁₆'
         ],
@@ -7042,7 +7043,7 @@
         fracVal = +(mult - intBit).toFixed(3);
         count++;
       }
-      steps += `${isEn ? 'Reading top-to-bottom gives' : 'القراءة من أعلى لأسفل'} ← <span class="mono">.0${binFrac}</span></div>`;
+      steps += `${isEn ? 'Reading top-to-bottom gives' : 'القراءة من أعلى لأسفل'} ← <span class="mono">.${binFrac}</span></div>`;
     }
 
     const finalRes = binFrac ? `(${binInt}.${binFrac})₂` : `(${binInt})₂`;
@@ -7501,6 +7502,41 @@
     }
     window.runCalculator = runCalculator;
 
+    // Quick example buttons & keypad helpers
+    function loadCalcSample(value, fromBase, toBase) {
+      const inputEl = document.getElementById('calcInputVal');
+      const fromEl = document.getElementById('calcFromBase');
+      const toEl = document.getElementById('calcToBase');
+      if (!inputEl || !fromEl || !toEl) return;
+      fromEl.value = String(fromBase);
+      toEl.value = String(toBase);
+      inputEl.value = value;
+      runCalculator();
+      const resContainer = document.getElementById('calcResultContainer');
+      if (resContainer && !resContainer.classList.contains('hidden')) {
+        resContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    window.loadCalcSample = loadCalcSample;
+
+    function appendCalcKey(key) {
+      const inputEl = document.getElementById('calcInputVal');
+      if (!inputEl) return;
+      inputEl.value = (inputEl.value + key).toUpperCase();
+      inputEl.focus();
+    }
+    window.appendCalcKey = appendCalcKey;
+
+    function clearCalcInput() {
+      const inputEl = document.getElementById('calcInputVal');
+      if (!inputEl) return;
+      inputEl.value = '';
+      const resContainer = document.getElementById('calcResultContainer');
+      if (resContainer) resContainer.classList.add('hidden');
+      inputEl.focus();
+    }
+    window.clearCalcInput = clearCalcInput;
+
 
     // =========================================================================
     // 5. GAME SESSION CONTROLLER (Adaptive Engine + Mistake Tracking)
@@ -7619,7 +7655,7 @@
         sheetSecNum: null,
         stageId: 'sheet',
         difficulty: 'sheet',
-        title: '📝 شيت الكلية الشامل (Tutorial 3 - 39 مسألة تحويل)',
+        title: '📝 شيت الكلية الشامل (توتوريال 3 - 39 مسألة تحويل)',
         titleEn: '📝 Comprehensive Sheet Practice (Tutorial 3 - 39 Problems)',
         queue,
         index: 0,
@@ -7792,7 +7828,7 @@
         }));
         queue = [...cQ, ...tfQ, ...flowQ];
       } else if (type === 'grand_final') {
-        examTitle = 'الامتحان النهائي الشامل لمقرر IT Essentials (50 سؤالاً)';
+        examTitle = 'الامتحان النهائي الشامل لمقرر تكنولوجيا المعلومات (50 سؤالاً)';
         examTitleEn = 'Grand Final Exam for IT Essentials (50 Comprehensive Questions)';
         const q1 = LEC1_DATA.LEC1_MCQS.map(q => ({
           stageId: 'lec1',
@@ -7843,7 +7879,7 @@
 
         queue = [...q1, ...q2, ...q3, ...q4].sort(() => Math.random() - 0.5);
       } else if (type === 'sheet_full') {
-        examTitle = '🏛️ امتحان شيت الكلية الشامل (Tutorial 3)';
+        examTitle = '🏛️ امتحان شيت الكلية الشامل (توتوريال 3)';
         examTitleEn = '🏛️ Comprehensive Sheet Exam (Tutorial 3)';
         // Pick 2 from each section 1 to 12, plus 1 from concepts
         for (let s = 1; s <= 12; s++) {
@@ -7949,7 +7985,8 @@
     }
 
     function recordMistake(q) {
-      const key = `${q.stageId}_${q.difficulty}_${q.skillLabel}`;
+      const skillLabel = q.skillLabel || 'general';
+      const key = `${q.stageId}_${q.difficulty}_${skillLabel}`;
       const existing = state.mistakes.find(m => m.id === key);
       if (existing) {
         existing.count++;
@@ -7958,7 +7995,7 @@
           id: key,
           stageId: q.stageId,
           difficulty: q.difficulty,
-          skillLabel: q.skillLabel,
+          skillLabel: q.skillLabel || '',
           count: 1
         });
       }
@@ -8483,6 +8520,9 @@
         `;
       }).join('');
     }
+
+    // Sound feedback placeholder (silent per user request): keeps answer handlers working without audio
+    function playSound(kind) { /* intentionally silent */ }
 
     // Interactive In-Page Answer Handler
     function handleInPageAnswer(lec, qKey, selectedOptIdx, explicitCorrectIdx) {
@@ -9081,12 +9121,14 @@
 
       const itemsHtml = state.mistakes.map(m => {
         const st = STAGES.find(s => s.id === m.stageId);
-        const stageName = st ? (isEn ? st.en : st.title) : m.stageId;
+        const lec = (typeof COURSE_LECTURES !== 'undefined') ? COURSE_LECTURES.find(l => l.id === m.stageId) : null;
+        const stageName = st ? (isEn ? st.en : st.title) : (lec ? (isEn ? lec.en : lec.title) : m.stageId);
+        const skillLabel = m.skillLabel || (isEn ? 'General practice' : 'تدريب عام');
         return `
           <div class="diag-item">
             <div>
               <strong>${stageName}</strong>
-              <div style="font-size:0.84rem;color:var(--text-muted);">${m.skillLabel}</div>
+              <div style="font-size:0.84rem;color:var(--text-muted);">${skillLabel}</div>
             </div>
             <span class="tag hard">${isEn ? 'Mistake Count: ' + m.count : 'تكرر الخطأ: ' + m.count}</span>
           </div>
@@ -9132,7 +9174,7 @@
       const st = STAGES.find(s => s.id === q.stageId);
       const stageTitle = st ? (isEn ? st.en : st.title) : (q.sheetSectionTitle || (isEn ? "Concepts & Systems" : "مفاهيم وأنظمة"));
       let metaHtml = `<span class="tag">${stageTitle}</span>`;
-      if (q.fromSheet) metaHtml += `<span class="tag" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);">${isEn ? '🏫 Tutorial Sheet 3' : '🏫 شيت الكلية (Tutorial 3)'}</span>`;
+      if (q.fromSheet) metaHtml += `<span class="tag" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);">${isEn ? '🏫 Tutorial Sheet 3' : '🏫 شيت الكلية (توتوريال 3)'}</span>`;
       metaHtml += `<span class="tag ${q.difficulty}">${diffMap[q.difficulty] || (isEn ? 'Mixed' : 'مختلط')}</span>`;
       if (q.isVideoExample) metaHtml += `<span class="tag video-ex">${isEn ? '📌 Standard Example' : '📌 مثال نموذجي'}</span>`;
       if (q.isAdaptive) metaHtml += `<span class="tag adaptive">${isEn ? '🧠 Adaptive Practice' : '🧠 تدريب تكيّفي لتثبيت الفكرة'}</span>`;
@@ -9475,6 +9517,20 @@
       const isEn = (currentLang === 'en');
       const chars = q.binStr.split('');
       const selected = new Array(chars.length).fill(false);
+      // Fallback: derive positional weights from the binary string when the
+      // question does not provide them (fixes bin2dec easy + sheet section 2).
+      const weights = (Array.isArray(q.weights) && q.weights.length === chars.length)
+        ? q.weights
+        : (() => {
+            const dot = q.binStr.indexOf('.');
+            const intLen = (dot === -1) ? chars.length : dot;
+            return chars.map((c, idx) => {
+              if (c === '.') return '.';
+              const exp = (idx < intLen) ? (intLen - 1 - idx) : -(idx - intLen);
+              const v = Math.pow(2, exp);
+              return exp >= 0 ? String(v) : String(parseFloat(v.toFixed(6)));
+            });
+          })();
 
       const wrap = document.createElement('div');
       wrap.innerHTML = `
@@ -9484,7 +9540,7 @@
             <div class="bit-row" id="highlightBitRow">
               ${chars.map((ch, idx) => `
                 <div class="bit-cell">
-                  <span class="bit-weight">${q.weights[idx]}</span>
+                  <span class="bit-weight">${weights[idx]}</span>
                   <button type="button" class="bit-btn hl-btn ${ch === '0' ? 'bit-zero' : ''}" data-idx="${idx}">${ch}</button>
                 </div>
               `).join('')}
@@ -11409,7 +11465,7 @@
         // Lectures View
         lecBannerTitle: 'المنصة الأكاديمية لمقرر تكنولوجيا المعلومات',
         lecBannerSubtitle: 'مقرر: أساسيات تكنولوجيا المعلومات (المستوى الأول)',
-        lecBannerDesc: 'أهلاً بك في المنصة الأكاديمية الشاملة لمقرر تكنولوجيا المعلومات. تم تقسيم المنصة إلى محاضرات دراسية معيارية، وتُعد المحاضرة الثالثة (الأنظمة العددية وشيت Tutorial 3) هي النواة النشطة التفاعلية بالكامل المزودة بجميع التحويلات الـ 12 وحلول الشيت النموذجية والاختبارات التفاعلية.',
+        lecBannerDesc: 'أهلاً بك في المنصة الأكاديمية الشاملة لمقرر تكنولوجيا المعلومات. تم تقسيم المنصة إلى محاضرات دراسية معيارية، وتُعد المحاضرة الثالثة (الأنظمة العددية وشيت توتوريال 3) هي النواة النشطة التفاعلية بالكامل المزودة بجميع التحويلات الـ 12 وحلول الشيت النموذجية والاختبارات التفاعلية.',
         lecBtnLec3: '🚀 الانتقال لمختبر المحاضرة 3 (الأنظمة العددية)',
         lecBtnSheet: '📝 شيت المحاضرة 3',
         lecBtnCalc: '🧮 حاسبة التحويلات وخطوات الحل',
@@ -11475,7 +11531,7 @@
     };
 
     // Global Language & Theme State
-    let currentLang = 'en'; // Default English as requested by user
+    let currentLang = 'ar'; // Arabic is the default UI language
     try {
       const savedLang = localStorage.getItem('app_lang');
       if (savedLang === 'ar' || savedLang === 'en') currentLang = savedLang;
@@ -11520,6 +11576,12 @@
       const isEn = (currentLang === 'en');
       const t = I18N[currentLang];
 
+      // Generic bilingual swap for tagged static strings (lecture pages etc.)
+      document.querySelectorAll('[data-i18n-en]').forEach(el => {
+        if (!el.hasAttribute('data-i18n-ar')) el.setAttribute('data-i18n-ar', el.innerHTML.trim());
+        el.innerHTML = isEn ? el.getAttribute('data-i18n-en') : el.getAttribute('data-i18n-ar');
+      });
+
       // Document Title
       document.title = isEn ? 'Number Systems Lab — Interactive Academic Platform' : 'مختبر الأنظمة العددية — المنصة التعليمية التفاعلية';
 
@@ -11527,7 +11589,7 @@
       const brandTitle = document.getElementById('brandTitle');
       if (brandTitle) brandTitle.textContent = isEn ? 'Number Systems Lab' : 'المنصة الأكاديمية لمقرر تكنولوجيا المعلومات';
       const brandSub = document.getElementById('brandSubtitle');
-      if (brandSub) brandSub.textContent = isEn ? 'IT Essentials • Digital Logic & Architecture (Level 1)' : 'مقرر: أساسيات تكنولوجيا المعلومات (Level 1)';
+      if (brandSub) brandSub.textContent = isEn ? 'IT Essentials • Digital Logic & Architecture (Level 1)' : 'مقرر: أساسيات تكنولوجيا المعلومات (المستوى الأول)';
       const xpUnit = document.getElementById('hudXpUnit');
       if (xpUnit) xpUnit.textContent = isEn ? 'XP' : 'نقطة';
       const streakLabel = document.getElementById('hudStreakLabel');
@@ -11536,7 +11598,7 @@
       const navStages = document.getElementById('navTabStages');
       if (navStages) navStages.textContent = isEn ? '🗺️ Conversions Lab' : '🗺️ مختبر التحويلات الـ 12';
       const navSheet = document.getElementById('navTabSheet');
-      if (navSheet) navSheet.textContent = isEn ? '📝 Conversions Sheet' : '📝 شيت التحويلات (Tutorial 3)';
+      if (navSheet) navSheet.textContent = isEn ? '📝 Conversions Sheet' : '📝 شيت التحويلات (توتوريال 3)';
       const navLec = document.getElementById('navTabLectures');
       if (navLec) navLec.textContent = isEn ? '📚 Lectures Hub' : '📚 دليل المحاضرات';
       const navCalc = document.getElementById('navTabCalc');
@@ -11559,7 +11621,7 @@
       const l1Title = document.getElementById('lec1TitleHead');
       if (l1Title) l1Title.textContent = isEn ? 'Lecture 1: Introduction to IT & Computer Systems' : 'المحاضرة 1: مدخل تكنولوجيا المعلومات ومكونات الحاسوب';
       const l1Sub = document.getElementById('lec1SubTitleHead');
-      if (l1Sub) l1Sub.textContent = isEn ? 'Hardware Components, CPU Clock Math, GPU & Memory Sizing (Tutorial 1)' : 'مكونات العتاد، حسابات تردد المعالج، كروت الشاشة والذاكرة (Tutorial 1)';
+      if (l1Sub) l1Sub.textContent = isEn ? 'Hardware Components, CPU Clock Math, GPU & Memory Sizing (Tutorial 1)' : 'مكونات العتاد، حسابات تردد المعالج، كروت الشاشة والذاكرة (توتوريال 1)';
       const s1G = document.getElementById('subnavLec1Guide');
       if (s1G) s1G.textContent = isEn ? '📖 Theory Guide & Concepts' : '📖 الشرح والمفاهيم الأساسية';
       const s1S = document.getElementById('subnavLec1Sheet');
@@ -11575,7 +11637,7 @@
       const l2Title = document.getElementById('lec2TitleHead');
       if (l2Title) l2Title.textContent = isEn ? 'Lecture 2: Operating Systems & Software' : 'المحاضرة 2: أنظمة التشغيل والبرمجيات';
       const l2Sub = document.getElementById('lec2SubTitleHead');
-      if (l2Sub) l2Sub.textContent = isEn ? 'The 7 Major OS Functions, Multitasking & Translators (Tutorial 2)' : 'الوظائف السبع الكبرى لنظام التشغيل، وتعدد المهام، والمترجمات (Tutorial 2)';
+      if (l2Sub) l2Sub.textContent = isEn ? 'The 7 Major OS Functions, Multitasking & Translators (Tutorial 2)' : 'الوظائف السبع الكبرى لنظام التشغيل، وتعدد المهام، والمترجمات (توتوريال 2)';
       const s2G = document.getElementById('subnavLec2Guide');
       if (s2G) s2G.textContent = isEn ? '📖 Theory Guide & Concepts' : '📖 الشرح والمفاهيم الأساسية';
       const s2S = document.getElementById('subnavLec2Sheet');
@@ -11591,7 +11653,7 @@
       const l4Title = document.getElementById('lec4TitleHead');
       if (l4Title) l4Title.textContent = isEn ? 'Lecture 4: Programming & Flowchart Logic' : 'المحاضرة 4: البرمجة والمترجمات والتدفق المنطقي';
       const l4Sub = document.getElementById('lec4SubTitleHead');
-      if (l4Sub) l4Sub.textContent = isEn ? 'Algorithms, Flowchart Symbols & Variable Tracing (Tutorial 5)' : 'الخوارزميات، الرموز القياسية، وتتبع جداول المتغيرات (Tutorial 5)';
+      if (l4Sub) l4Sub.textContent = isEn ? 'Algorithms, Flowchart Symbols & Variable Tracing (Tutorial 5)' : 'الخوارزميات، الرموز القياسية، وتتبع جداول المتغيرات (توتوريال 5)';
       const s4G = document.getElementById('subnavLec4Guide');
       if (s4G) s4G.textContent = isEn ? '📖 Theory Guide & Concepts' : '📖 الشرح والمفاهيم الأساسية';
       const s4S = document.getElementById('subnavLec4Sheet');
@@ -11617,24 +11679,24 @@
       const lecBanner = document.querySelector('#viewLectures .sheet-banner');
       if (lecBanner) {
         const uniTag = lecBanner.querySelector('.sheet-uni-tag');
-        if (uniTag) uniTag.textContent = isEn ? 'IT Essentials Course (Level 1)' : 'مقرر: أساسيات تكنولوجيا المعلومات (Level 1)';
+        if (uniTag) uniTag.textContent = isEn ? 'IT Essentials Course (Level 1)' : 'مقرر: أساسيات تكنولوجيا المعلومات (المستوى الأول)';
         const h2 = lecBanner.querySelector('h2');
         if (h2) h2.textContent = isEn ? 'Academic Platform for Information Technology' : 'المنصة الأكاديمية لمقرر تكنولوجيا المعلومات';
         const h3 = lecBanner.querySelector('h3');
-        if (h3) h3.textContent = isEn ? 'IT Essentials - Level 1 (Computer Fundamentals)' : 'مقرر: أساسيات تكنولوجيا المعلومات (IT Essentials - Level 1)';
+        if (h3) h3.textContent = isEn ? 'IT Essentials - Level 1 (Computer Fundamentals)' : 'مقرر: أساسيات تكنولوجيا المعلومات (المستوى الأول)';
         const p = lecBanner.querySelector('p');
         if (p) p.textContent = isEn
           ? 'Welcome to the comprehensive academic platform for IT Essentials. The course is structured into standardized lecture modules. Lecture 3 (Number Systems & Tutorial 3) is the fully interactive core containing all 12 conversions, solved sheet exercises, and exams.'
-          : 'أهلاً بك في المنصة الأكاديمية الشاملة لمقرر تكنولوجيا المعلومات. تم تقسيم المنصة إلى محاضرات دراسية معيارية، وتُعد المحاضرة الثالثة (الأنظمة العددية وشيت Tutorial 3) هي النواة النشطة التفاعلية بالكامل المزودة بجميع التحويلات الـ 12 وحلول الشيت النموذجية والاختبارات التفاعلية.';
+          : 'أهلاً بك في المنصة الأكاديمية الشاملة لمقرر تكنولوجيا المعلومات. تم تقسيم المنصة إلى محاضرات دراسية معيارية، وتُعد المحاضرة الثالثة (الأنظمة العددية وشيت توتوريال 3) هي النواة النشطة التفاعلية بالكامل المزودة بجميع التحويلات الـ 12 وحلول الشيت النموذجية والاختبارات التفاعلية.';
         const lecBtns = lecBanner.querySelectorAll('button');
         if (lecBtns.length >= 3) {
           lecBtns[0].textContent = isEn ? '🚀 Launch Lecture 3 Lab (Number Systems)' : '🚀 الانتقال لمختبر المحاضرة 3 (الأنظمة العددية)';
-          lecBtns[1].textContent = isEn ? '📝 Lecture 3 Sheet (Tutorial 3)' : '📝 شيت المحاضرة 3 (Tutorial 3)';
+          lecBtns[1].textContent = isEn ? '📝 Lecture 3 Sheet (Tutorial 3)' : '📝 شيت المحاضرة 3 (توتوريال 3)';
           lecBtns[2].textContent = isEn ? '🧮 Conversion Solver & Step-by-Step Steps' : '🧮 حاسبة التحويلات وخطوات الحل';
         }
       }
       const lecHeader = document.querySelector('#viewLectures h3 span');
-      if (lecHeader) lecHeader.textContent = isEn ? '📚 Academic Lectures Directory for IT Essentials:' : '📚 فهرس المحاضرات الأكاديمية لمقرر IT Essentials:';
+      if (lecHeader) lecHeader.textContent = isEn ? '📚 Academic Lectures Directory for IT Essentials:' : '📚 فهرس المحاضرات الأكاديمية لمقرر تكنولوجيا المعلومات:';
 
       // View: Stages Filter Bar & Quick Guide
       const masteryTopTitle = document.querySelector('.mastery-top strong');
@@ -11663,7 +11725,7 @@
         const uniTag = sheetBanner.querySelector('.sheet-uni-tag');
         if (uniTag) uniTag.textContent = isEn ? '🏛️ Official Academic Platform • Comprehensive Sheet' : '🏛️ المنصة الأكاديمية التكنولوجية • شيت التحويلات الشامل';
         const h2 = sheetBanner.querySelector('h2');
-        if (h2) h2.textContent = isEn ? 'Tutorial 3 Sheet (IT Essentials - Number Systems)' : 'شيت الكلية: Tutorial 3 (IT Essentials)';
+        if (h2) h2.textContent = isEn ? 'Tutorial 3 Sheet (IT Essentials - Number Systems)' : 'شيت الكلية: توتوريال 3';
         const p = sheetBanner.querySelector('p');
         if (p) p.textContent = isEn
           ? 'Official tutorial sheet covering all 12 conversion cases, fractional numbers, range problems, SKU concepts, and exam questions. Practice every problem with instant step-by-step model steps.'
@@ -11761,7 +11823,7 @@
       if (examCards.length >= 4) {
         // Card 0: Sheet Full
         examCards[0].querySelector('.exam-card-badge').textContent = isEn ? '🏛️ College Sheet Standard' : '🏛️ معتمد من شيت الكلية';
-        examCards[0].querySelector('h3').textContent = isEn ? 'Comprehensive Sheet Exam (Tutorial 3)' : 'امتحان شيت الكلية الشامل (Tutorial 3)';
+        examCards[0].querySelector('h3').textContent = isEn ? 'Comprehensive Sheet Exam (Tutorial 3)' : 'امتحان شيت الكلية الشامل (توتوريال 3)';
         examCards[0].querySelector('p').textContent = isEn
           ? 'Comprehensive examination with 25 questions covering all 12 sheet sections (integers, fractions, binary bridge, and concepts).'
           : 'امتحان شامل يتكون من 25 سؤالاً مختارة بعناية تغطي الـ 12 قسماً من شيت الكلية (الأعداد الصحيحة، الكسور، القسمة المتتالية، والجسر الثنائي، والمفاهيم).';
@@ -11837,6 +11899,10 @@
       // Popover Search Input
       const popoverSearch = document.getElementById('glossarySearchInput');
       if (popoverSearch) popoverSearch.placeholder = isEn ? 'Search another technical term...' : 'ابحث عن مصطلح آخر...';
+
+      // Stage Quick Search Input
+      const stageSearch = document.getElementById('stageSearchInput');
+      if (stageSearch) stageSearch.placeholder = isEn ? '🔍 Quick search conversion names & methods...' : '🔍 بحث سريع في أسماء وطرق التحويل...';
     }
 
 
@@ -11863,6 +11929,13 @@
       document.getElementById('navTabCalc').textContent = t.navCalc;
       document.getElementById('navTabMistakes').innerHTML = t.navMistakes + ' <span class="badge-count" id="mistakeCountBadge">' + (state.mistakes ? state.mistakes.length : 0) + '</span>';
       document.getElementById('navTabExam').textContent = t.navExam;
+
+      // Language-aware static lecture-hub back buttons + logo title
+      document.querySelectorAll('.js-back-lectures').forEach(b => {
+        b.textContent = (lang === 'en') ? '⬅️ Back to Lectures Hub' : '⬅️ العودة لفهرس المحاضرات (Lectures Hub)';
+      });
+      const brandLogoEl = document.getElementById('btnHomeLogo');
+      if (brandLogoEl) brandLogoEl.title = (lang === 'en') ? 'Back to Lectures Hub' : 'العودة لفهرس المحاضرات';
 
       updateThemeButton();
       updateAllViewBilingualTexts();
@@ -11919,6 +11992,13 @@
       if (clean.endsWith('ing') && TECH_GLOSSARY[clean.slice(0, -3)]) {
         const k = clean.slice(0, -3);
         return { term: rawWord, key: k, ...TECH_GLOSSARY[k] };
+      }
+
+      // Full-vocabulary lookup (with morphology fallback) before substring matching,
+      // so inflected words like "databases" are not stolen by the substring "base".
+      if (typeof lookupVocabStem === 'function') {
+        const vocabHit = lookupVocabStem(clean);
+        if (vocabHit) return { term: rawWord, key: clean, ar: vocabHit };
       }
 
       // Check substring matches in keys
@@ -12077,8 +12157,1802 @@
       "with": "باستخدام / مع", "without": "بدون", "at": "عند", "under": "تحت", "above": "فوق", "between": "بين",
       "the": "الـ", "is": "هو", "are": "هي / هما", "for": "لـ", "of": "من", "as": "مثل / كما",
       "so": "لذلك", "then": "ثم", "after": "بعد", "before": "قبل", "using": "باستخدام",
-      "shows": "يعرض", "represents": "يمثل", "only": "فقط"
+      "shows": "يعرض", "represents": "يمثل", "only": "فقط",
+    
+      // Extended dictionary: full coverage of every English word in the site content (added per user request).
+      "a-b": "من A إلى B",
+      "demand": "الطلب",
+      "a-f": "من A إلى F",
+      "ability": "قدرة",
+      "about": "حول / عن",
+      "abs": "القيمة المطلقة",
+      "abstract": "مجرد / تجريدي",
+      "academic": "أكاديمي",
+      "accelerating": "تسريع",
+      "accepts": "يقبل",
+      "access": "وصول",
+      "accessed": "تم الوصول إليه",
+      "accessible": "متاح الوصول",
+      "accidental": "عرضي / غير مقصود",
+      "accomplish": "ينجز",
+      "according": "وفقًا",
+      "account": "حساب",
+      "accounts": "حسابات",
+      "accumulates": "يراكم",
+      "accumulator": "المراكم (Accumulator)",
+      "accuracy": "دقة",
+      "accurate": "دقيق",
+      "ace": "يتفوق",
+      "achieve": "يحقق",
+      "across": "عبر",
+      "actionable": "قابل للتنفيذ",
+      "actions": "إجراءات",
+      "actively": "بنشاط",
+      "activities": "أنشطة",
+      "activity": "نشاط",
+      "acts": "يعمل / يتصرف",
+      "actual": "فعلي",
+      "actuator": "مشغّل ميكانيكي",
+      "addition": "جمع / إضافة",
+      "additional": "إضافي",
+      "address": "عنوان",
+      "addresses": "عناوين",
+      "addressing": "العنونة",
+      "adds": "يضيف",
+      "adjective": "صفة",
+      "adobe": "أدوبي",
+      "advantage": "ميزة",
+      "advantages": "مزايا",
+      "again": "مرة أخرى",
+      "against": "ضد",
+      "agent": "وكيل",
+      "algebra": "الجبر",
+      "algorithms": "الخوارزميات",
+      "aligned": "محاذى",
+      "allocated": "مخصص",
+      "allocates": "يخصص",
+      "allocating": "تخصيص",
+      "allocation": "التخصيص",
+      "allow": "يسمح",
+      "allowing": "السماح",
+      "allows": "يسمح",
+      "alone": "وحده",
+      "alphanumeric": "أبجدي رقمي",
+      "also": "أيضًا",
+      "alter": "يغيّر",
+      "alternative": "بديل",
+      "alu": "وحدة الحساب والمنطق (ALU)",
+      "always": "دائمًا",
+      "american": "أمريكي",
+      "amount": "كمية",
+      "analog": "تناظري",
+      "analysis": "تحليل",
+      "analyze": "يحلل",
+      "anatomy": "بنية / تشريح",
+      "android": "أندرويد",
+      "another": "آخر",
+      "answer": "إجابة",
+      "answers": "إجابات",
+      "anti-malware": "مضاد البرمجيات الخبيثة",
+      "antivirus": "مضاد الفيروسات",
+      "any": "أي",
+      "apfs": "نظام ملفات آبل (APFS)",
+      "api": "واجهة برمجة التطبيقات (API)",
+      "app": "تطبيق",
+      "appear": "يظهر",
+      "appears": "يظهر",
+      "appliances": "أجهزة منزلية",
+      "application": "تطبيق",
+      "applications": "تطبيقات",
+      "applies": "يطبق",
+      "appropriate": "مناسب",
+      "approximately": "تقريبًا",
+      "approximation": "تقريب",
+      "apps": "تطبيقات",
+      "arbitrating": "التحكيم",
+      "archetypes": "نماذج أولية",
+      "architecture": "معمارية",
+      "architectures": "معماريات",
+      "archives": "أرشيف",
+      "archiving": "أرشفة",
+      "area": "منطقة",
+      "areas": "مناطق",
+      "arithmetic": "حسابي",
+      "arms": "أذرع",
+      "arrowed": "مُسهم",
+      "arrows": "أسهم",
+      "artificial": "اصطناعي",
+      "ascii": "أسكي (ASCII)",
+      "assemblers": "المجمّعات (Assemblers)",
+      "assembly": "الأسمبلي / لغة التجميع",
+      "assesses": "يقيّم",
+      "assessing": "تقييم",
+      "assessment": "تقييم",
+      "asset": "أصل / مورد",
+      "assigned": "معيّن",
+      "assignment": "تكليف / إسناد",
+      "assisting": "مساعدة",
+      "associations": "ارتباطات",
+      "assumptions": "افتراضات",
+      "atm": "صراف آلي (ATM)",
+      "attention": "انتباه",
+      "attributes": "خصائص / سمات",
+      "authentication": "المصادقة",
+      "author": "مؤلف",
+      "authorization": "تخويل / صلاحية",
+      "authorizes": "يخوّل",
+      "automated": "مؤتمت",
+      "automatically": "تلقائيًا",
+      "automation": "الأتمتة",
+      "automotive": "السيارات",
+      "autonomous": "ذاتي القيادة",
+      "average": "متوسط",
+      "avg": "متوسط",
+      "aviation": "الطيران",
+      "background": "الخلفية",
+      "backup": "نسخة احتياطية",
+      "backups": "نسخ احتياطية",
+      "balance": "توازن",
+      "bandwidth": "عرض النطاق",
+      "bank": "بنك",
+      "banking": "المعاملات البنكية",
+      "banks": "بنوك",
+      "based": "مبني على",
+      "baseline": "خط أساس",
+      "bash": "باش (Bash)",
+      "battery": "البطارية",
+      "bcd": "الترميز العشري الثنائي (BCD)",
+      "bdf": "BDF (عدد ست عشري)",
+      "because": "لأن",
+      "becomes": "يصبح",
+      "begins": "يبدأ",
+      "behind": "خلف",
+      "being": "كونه",
+      "benefit": "فائدة",
+      "benefits": "فوائد",
+      "bespoke": "مفصل خصيصًا",
+      "best": "أفضل",
+      "beyond": "ما وراء",
+      "bifurcates": "يتشعب",
+      "billion": "مليار",
+      "billions": "مليارات",
+      "bin": "ثنائي",
+      "binaries": "الملفات الثنائية",
+      "biometrics": "القياسات الحيوية",
+      "bios": "البيوس (BIOS)",
+      "bitstream": "تدفق البتات",
+      "blanks": "فراغات",
+      "blazing": "سريع جدًا",
+      "blindly": "بشكل أعمى",
+      "blocks": "كتل",
+      "boolean": "منطقي (بولياني)",
+      "boot": "الإقلاع",
+      "booting": "الإقلاع",
+      "bootstrap": "محمّل الإقلاع",
+      "bootstrapping": "تحميل الإقلاع",
+      "borrow": "استلاف",
+      "both": "كلاهما",
+      "bottom-to-top": "من الأسفل إلى الأعلى",
+      "bottom-up": "من الأسفل للأعلى",
+      "bounded": "محدود",
+      "bounds": "حدود",
+      "brain": "العقل",
+      "braking": "الكبح",
+      "branch": "فرع",
+      "branching": "التفريع",
+      "bridges": "الجسور",
+      "broad": "واسع",
+      "browse": "يتصفح",
+      "browser": "المتصفح",
+      "browsers": "المتصفحات",
+      "browsing": "التصفح",
+      "budget": "الميزانية",
+      "buffer": "المخزن المؤقت",
+      "built": "مبني",
+      "bulk": "بالجملة",
+      "bus": "الناقل (Bus)",
+      "buses": "النواقل",
+      "business": "الأعمال",
+      "but": "لكن",
+      "button": "زر",
+      "buttons": "أزرار",
+      "buy": "يشتري",
+      "bypassing": "تجاوز",
+      "cables": "الكابلات",
+      "cache": "الذاكرة المخبئية (Cache)",
+      "calculate": "يحسب",
+      "calculated": "محسوب",
+      "calculates": "يحسب",
+      "calculating": "حساب",
+      "calculation": "عملية حسابية",
+      "calculations": "عمليات حسابية",
+      "calculator": "آلة حاسبة",
+      "called": "يسمى",
+      "calls": "يستدعي / مكالمات",
+      "can": "يستطيع",
+      "cannot": "لا يستطيع",
+      "capabilities": "قدرات",
+      "capability": "قدرة",
+      "capable": "قادر",
+      "capacities": "سعات",
+      "capacity": "سعة",
+      "capsule": "كبسولة",
+      "card": "بطاقة",
+      "cards": "بطاقات",
+      "carry": "الحمل (Carry)",
+      "cars": "سيارات",
+      "case": "حالة",
+      "cases": "حالات",
+      "cash": "نقد",
+      "categories": "فئات",
+      "cater": "يلبي",
+      "caution": "تحذير / احترس",
+      "cef": "CEF (عدد ست عشري)",
+      "cellular": "خلوي",
+      "central": "مركزي",
+      "champ": "بطل",
+      "champion": "البطل",
+      "character": "حرف",
+      "characteristics": "خصائص",
+      "characters": "حروف",
+      "cheaper": "أرخص",
+      "chip": "شريحة",
+      "chips": "شرائح",
+      "chipset": "طقم الشرائح",
+      "choice": "اختيار",
+      "choose": "اختر",
+      "choosing": "اختيار",
+      "chrome": "كروم",
+      "cidr": "التوجيه بين النطاقات (CIDR)",
+      "circuit": "دائرة كهربية",
+      "circuitry": "دوائر كهربية",
+      "circuits": "دوائر",
+      "civil": "مدني",
+      "clarity": "وضوح",
+      "cleanly": "بنظافة",
+      "cleans": "ينظف",
+      "cleanup": "تنظيف",
+      "clear": "مسح / واضح",
+      "cli": "واجهة سطر الأوامر (CLI)",
+      "click": "اضغط",
+      "client": "العميل",
+      "clock": "الساعة / التردد",
+      "close": "إغلاق / قريب",
+      "closely": "عن قرب",
+      "closer": "أقرب",
+      "cloud": "السحابة",
+      "cloud-hosted": "مستضاف سحابيًا",
+      "code": "شفرة / كود",
+      "coded": "مرمّز",
+      "codes": "رموز",
+      "coding": "البرمجة / الترميز",
+      "cold": "بارد",
+      "collection": "مجموعة",
+      "college": "كلية",
+      "color": "اللون",
+      "column": "عمود",
+      "combinational": "توافقي",
+      "combined": "مدمج",
+      "command": "أمر",
+      "command-line": "سطر الأوامر",
+      "commands": "أوامر",
+      "commerce": "التجارة",
+      "common": "شائع",
+      "commonly": "شائعًا",
+      "communicate": "يتواصل",
+      "communicates": "يتواصل",
+      "communication": "التواصل",
+      "communications": "الاتصالات",
+      "comp": "حاسوب",
+      "compact": "مضغوط",
+      "comparative": "مقارن",
+      "compare": "يقارن",
+      "compared": "مقارنة",
+      "comparison": "مقارنة",
+      "compatibility": "التوافق",
+      "competing": "متنافس",
+      "compilers": "المترجمات (Compilers)",
+      "compiling": "الترجمة البرمجية",
+      "complement": "المتمم",
+      "complete": "أكمل / كامل",
+      "completely": "تمامًا",
+      "complex": "معقد",
+      "compliance": "الامتثال",
+      "component": "مكوّن",
+      "components": "مكوّنات",
+      "comprehend": "يفهم",
+      "comprehensive": "شامل",
+      "compress": "يضغط",
+      "compressing": "ضغط",
+      "compression": "الضغط",
+      "comprises": "يضم",
+      "computation": "عملية حسابية",
+      "computational": "حسابي",
+      "computations": "حسابات",
+      "compute": "يحسب",
+      "computer": "الحاسوب",
+      "computers": "الحواسيب",
+      "computes": "يحسب",
+      "computing": "الحوسبة",
+      "concatenated": "مدمج / مربوط",
+      "concept": "مفهوم",
+      "concepts": "مفاهيم",
+      "concurrent": "متزامن",
+      "concurrently": "بالتزامن",
+      "condition": "شرط",
+      "conditional": "شرطي",
+      "confidential": "سري",
+      "configuration": "التهيئة / الإعدادات",
+      "configure": "يضبط",
+      "confirming": "تأكيد",
+      "connect": "يتصل",
+      "connected": "متصل",
+      "connecting": "توصيل",
+      "connection": "اتصال",
+      "connections": "اتصالات",
+      "connectivity": "الاتصالية",
+      "connectors": "الموصلات",
+      "connects": "يتصل",
+      "consecutive": "متتالي",
+      "conserve": "يحافظ على",
+      "consider": "ضع في اعتبارك",
+      "considered": "يعتبر",
+      "consistency": "الاتساق",
+      "consisting": "مكون من",
+      "consists": "يتكون",
+      "constant": "ثابت",
+      "construction": "بناء",
+      "consumes": "يستهلك",
+      "contain": "يحتوي",
+      "content": "محتوى",
+      "contents": "محتويات",
+      "continuous": "مستمر",
+      "control": "التحكم",
+      "controlling": "التحكم",
+      "controls": "يتحكم",
+      "conventions": "اصطلاحات",
+      "converts": "يحوّل",
+      "cooking": "الطبخ",
+      "coordinates": "إحداثيات",
+      "copies": "نسخ",
+      "core": "النواة",
+      "cores": "أنوية",
+      "correctly": "بشكل صحيح",
+      "corrects": "يصحح",
+      "corresponding": "المقابل",
+      "cost": "التكلفة",
+      "cost-effective": "فعال من حيث التكلفة",
+      "could": "يمكن",
+      "count": "عدد / يعد",
+      "countdown": "العد التنازلي",
+      "counts": "عدّ / يحصي",
+      "course": "المقرر",
+      "coursework": "المقرر الدراسي",
+      "covering": "تغطية",
+      "covers": "يغطي",
+      "cpus": "المعالجات (CPUs)",
+      "create": "ينشئ",
+      "creates": "ينشئ",
+      "creating": "إنشاء",
+      "creative": "إبداعي",
+      "criteria": "معايير",
+      "critical": "حرج",
+      "cross": "عبر / تقاطع",
+      "crucial": "حاسم",
+      "cuda": "كودا (CUDA)",
+      "current": "الحالي / التيار",
+      "currently": "حاليًا",
+      "curriculum": "المنهج",
+      "curve": "منحنى",
+      "custom": "مخصص",
+      "customer": "العميل",
+      "cut": "قص",
+      "cyber": "سيبراني",
+      "cybersecurity": "الأمن السيبراني",
+      "cycle": "دورة",
+      "cycles": "دورات",
+      "data": "البيانات",
+      "database": "قاعدة البيانات",
+      "databases": "قواعد البيانات",
+      "datasets": "مجموعات البيانات",
+      "debug": "تصحيح الأخطاء",
+      "debugging": "تصحيح الأخطاء",
+      "dec": "عشري",
+      "decides": "يقرر",
+      "deciding": "اتخاذ قرار",
+      "decision": "قرار",
+      "decisions": "قرارات",
+      "decodes": "يفك الترميز",
+      "decompose": "تفكيك",
+      "decomposition": "التفكيك",
+      "decreasing": "تناقصي",
+      "decrementing": "الإنقاص",
+      "dedicated": "مخصص",
+      "deduce": "يستنتج",
+      "deep": "عميق",
+      "defined": "مُعرّف",
+      "defines": "يعرّف",
+      "definition": "تعريف",
+      "defrag": "إلغاء التجزئة",
+      "defragmenters": "أدوات إلغاء التجزئة",
+      "deletes": "يحذف",
+      "deliver": "يسلّم",
+      "delivered": "تم تسليمه",
+      "delivers": "يسلّم",
+      "delivery": "التسليم / التوصيل",
+      "demonstrates": "يوضح",
+      "depth": "العمق",
+      "derived": "مشتق",
+      "described": "موصوف",
+      "describes": "يصف",
+      "design": "تصميم",
+      "designed": "مصمم",
+      "desired": "مطلوب",
+      "desk": "مكتب",
+      "desktop": "سطح المكتب",
+      "detect": "يكتشف",
+      "determine": "يحدد",
+      "determined": "محدد",
+      "determines": "يحدد",
+      "deterministic": "حتمي",
+      "deterministically": "بشكل حتمي",
+      "develop": "يطوّر",
+      "developed": "طُوّر",
+      "developers": "المطورون",
+      "development": "التطوير",
+      "device": "جهاز",
+      "devices": "أجهزة",
+      "diagnosis": "تشخيص",
+      "diagram": "مخطط",
+      "diamond": "معيّن (شكل)",
+      "dictate": "يملي",
+      "dictates": "يملي",
+      "die": "القالب (Die)",
+      "different": "مختلف",
+      "differentiate": "يميّز",
+      "digital": "رقمي",
+      "digitized": "رقميّ الشكل",
+      "diligence": "الاجتهاد",
+      "direction": "الاتجاه",
+      "directional": "اتجاهي",
+      "directions": "الاتجاهات",
+      "directories": "الأدلة / المجلدات",
+      "directory": "دليل / مجلد",
+      "directs": "يوجه",
+      "disaster": "كارثة",
+      "discernment": "التمييز",
+      "discharge": "التفريغ",
+      "discrete": "متقطع / منفصل",
+      "disk": "القرص",
+      "disks": "الأقراص",
+      "dispenser": "موزّع",
+      "display": "العرض / الشاشة",
+      "displaying": "عرض",
+      "distinct": "مميز / منفصل",
+      "distinction": "تمييز",
+      "diverse": "متنوع",
+      "divided": "مقسوم",
+      "division-by-zero": "القسمة على صفر",
+      "dlls": "مكتبات الربط الديناميكي (DLLs)",
+      "docker": "دوكر",
+      "docs": "مستندات",
+      "document": "مستند",
+      "documentation": "التوثيق",
+      "documents": "مستندات",
+      "does": "يفعل",
+      "dollar": "دولار",
+      "domain": "النطاق",
+      "domains": "النطاقات",
+      "dotted": "منقّط",
+      "downward": "لأسفل",
+      "dra": "DRAM",
+      "dramatic": "كبير / درامي",
+      "drawbacks": "عيوب",
+      "dreams": "أحلام",
+      "drive": "محرك الأقراص / يقود",
+      "drivers": "برامج التشغيل (Drivers)",
+      "drives": "محركات الأقراص",
+      "drop": "يسقط / يحذف",
+      "drops": "إسقاطات",
+      "due": "بسبب",
+      "duplicates": "تكرارات",
+      "durable": "متين",
+      "duration": "المدة",
+      "during": "أثناء",
+      "dynamic": "ديناميكي",
+      "easier": "أسهل",
+      "ebcdic": "إبسيديك (EBCDIC)",
+      "economical": "اقتصادي",
+      "ecosystem": "النظام البيئي التقني",
+      "edge": "الحافة",
+      "edit": "تحرير",
+      "editing": "تحرير",
+      "editors": "المحررات",
+      "edju": "جزء من كلمة",
+      "education": "التعليم",
+      "educational": "تعليمي",
+      "efficiency": "الكفاءة",
+      "efficiently": "بكفاءة",
+      "eights": "الثمانيات",
+      "electrical": "كهربي",
+      "electricity": "الكهرباء",
+      "electronic": "إلكتروني",
+      "electrostatic": "الشحنات الساكنة",
+      "else": "وإلا",
+      "elsewhere": "في مكان آخر",
+      "embedded": "مدمج",
+      "emojis": "رموز تعبيرية",
+      "emotions": "مشاعر",
+      "emphasizes": "يؤكد",
+      "employs": "يوظف",
+      "empower": "يمكّن",
+      "enables": "يمكّن",
+      "encode": "يرمّز",
+      "encoded": "مرمّز",
+      "encoding": "الترميز",
+      "encompasses": "يشمل",
+      "encryption": "التشفير",
+      "end": "النهاية",
+      "end-user": "المستخدم النهائي",
+      "end-users": "المستخدمون النهائيون",
+      "enforcing": "فرض",
+      "engine": "المحرك",
+      "engineer": "مهندس",
+      "engineered": "مهندَس",
+      "engineering": "الهندسة",
+      "english": "الإنجليزية",
+      "enrollment": "التسجيل",
+      "ensures": "يضمن",
+      "ensuring": "ضمان",
+      "enter": "أدخل",
+      "entered": "مُدخل",
+      "entering": "إدخال",
+      "enters": "يدخل",
+      "entertainment": "الترفيه",
+      "entire": "كامل",
+      "entirely": "كليًا",
+      "envelopes": "أظرف",
+      "equal": "يساوي",
+      "equals": "يساوي",
+      "equipment": "المعدات",
+      "equivalent": "المكافئ",
+      "erases": "يمسح",
+      "ergonomics": "بيئة العمل",
+      "erroneous": "خاطئ",
+      "errors": "أخطاء",
+      "esd": "التفريغ الكهروستاتيكي (ESD)",
+      "especially": "خاصة",
+      "essential": "أساسي",
+      "essentials": "الأساسيات",
+      "evaluates": "يقيّم",
+      "evaluation": "التقييم",
+      "even": "حتى",
+      "everyday": "يومي",
+      "everything": "كل شيء",
+      "excel": "يتفوق / إكسل",
+      "excellent": "ممتاز",
+      "excels": "يتفوق",
+      "exceptionally": "بشكل استثنائي",
+      "exchange": "تبادل",
+      "exclusive-or": "أو الحصرية (XOR)",
+      "exe": "ملف تنفيذي (EXE)",
+      "executable": "تنفيذي",
+      "execute": "ينفذ",
+      "executed": "منفذ",
+      "executes": "ينفذ",
+      "executing": "تنفيذ",
+      "execution": "التنفيذ",
+      "exhausted": "مستنفد",
+      "exists": "موجود",
+      "exit": "خروج",
+      "expand": "توسيع / فك",
+      "expanding": "توسيع",
+      "expands": "يفك / يوسع",
+      "expansion": "التوسعة",
+      "explain": "اشرح",
+      "explicit": "صريح",
+      "exploration": "استكشاف",
+      "explorer": "المستكشف",
+      "explores": "يستكشف",
+      "exponent": "الأس",
+      "exponents": "الأسس",
+      "expressive": "معبّر",
+      "ext": "امتداد",
+      "extended": "ممتد",
+      "extension": "امتداد",
+      "extensions": "امتدادات",
+      "external": "خارجي",
+      "extracted": "مستخرج",
+      "extracting": "استخراج",
+      "extremely": "للغاية",
+      "face": "وجه",
+      "facilitating": "تسهيل",
+      "factors": "عوامل",
+      "facts": "حقائق",
+      "faithfully": "بأمانة",
+      "false": "خطأ (False)",
+      "far": "بعيد",
+      "fast": "سريع",
+      "faster": "أسرع",
+      "fat": "نظام الملفات (FAT)",
+      "fatal": "قاتل / فادح",
+      "feature": "ميزة",
+      "features": "ميزات",
+      "feelings": "مشاعر",
+      "fetches": "يجلب",
+      "fewer": "أقل عددًا",
+      "field": "مجال / حقل",
+      "figures": "أرقام / أشكال",
+      "file": "ملف",
+      "files": "ملفات",
+      "filter": "مرشح / يصفّي",
+      "financial": "مالي",
+      "find": "ابحث / تجد",
+      "finite": "محدود",
+      "fire": "حريق",
+      "firefox": "فايرفوكس",
+      "firmware": "البرمجيات الثابتة (Firmware)",
+      "first-year": "السنة الأولى",
+      "fit": "يناسب",
+      "flash": "فلاش",
+      "flawed": "معيب",
+      "flight": "الطيران",
+      "flowlines": "خطوط التدفق",
+      "focused": "مركّز",
+      "focuses": "يركز",
+      "folder": "مجلد",
+      "folders": "مجلدات",
+      "follow": "اتبع",
+      "following": "التالي",
+      "follows": "يتبع",
+      "footprints": "بصمات",
+      "form": "نموذج / شكل",
+      "format": "تنسيق / صيغة",
+      "forms": "نماذج",
+      "foundational": "تأسيسي",
+      "foundations": "الأساسيات",
+      "four": "أربعة",
+      "frac": "الكسر",
+      "frames": "إطارات",
+      "framework": "إطار العمل",
+      "frequency": "التردد",
+      "front-end": "الواجهة الأمامية",
+      "fulfills": "يحقق",
+      "full": "كامل",
+      "function": "دالة / وظيفة",
+      "functional": "وظيفي",
+      "functions": "دوال / وظائف",
+      "fundamental": "أساسي",
+      "game": "لعبة",
+      "games": "ألعاب",
+      "gaming": "الألعاب",
+      "garbage": "البيانات المهملة",
+      "gate": "البوابة",
+      "gates": "البوابات",
+      "general": "عام",
+      "general-purpose": "عام الأغراض",
+      "generally": "عمومًا",
+      "generated": "مُولّد",
+      "generates": "يولّد",
+      "generation": "الجيل / التوليد",
+      "generic": "عام",
+      "geometric": "هندسي",
+      "geometry": "الهندسة",
+      "gestures": "الإيماءات",
+      "get": "يحصل على",
+      "gets": "يحصل على",
+      "ghz": "جيجاهرتز (GHz)",
+      "giga": "جيجا",
+      "gigabyte": "جيجابايت",
+      "gigabytes": "جيجابايت",
+      "gigahertz": "جيجاهرتز",
+      "gigo": "مدخلات فاسدة تعني مخرجات فاسدة (GIGO)",
+      "give": "يعطي",
+      "given": "معطى",
+      "gives": "يعطي",
+      "giving": "إعطاء",
+      "global": "عالمي",
+      "globe": "الكرة الأرضية",
+      "goal": "الهدف",
+      "golden": "ذهبي",
+      "google": "جوجل",
+      "gpus": "كروت الشاشة (GPUs)",
+      "grade": "الدرجة",
+      "graphic": "رسومي",
+      "graphical": "رسومي",
+      "graphics": "الرسوميات",
+      "gray": "جراي (Gray Code)",
+      "greater": "أكبر",
+      "grouped": "مجمّع",
+      "groupings": "تجميعات",
+      "guarantee": "ضمان",
+      "guess": "تخمين",
+      "guesses": "تخمينات",
+      "gui": "الواجهة الرسومية (GUI)",
+      "guide": "الدليل",
+      "guidelines": "إرشادات",
+      "half": "نصف",
+      "halts": "يتوقف",
+      "hand": "يد",
+      "handheld": "محمول باليد",
+      "handle": "يعالج",
+      "handles": "يعالج",
+      "handling": "معالجة",
+      "hard": "صعب / صلب",
+      "hardware-software": "العتاد والبرمجيات",
+      "hardware-specific": "خاص بالعتاد",
+      "harmful": "ضار",
+      "has": "لديه",
+      "have": "لديك / يملك",
+      "hdds": "الأقراص الصلبة (HDDs)",
+      "heads": "رؤوس القراءة",
+      "health": "الصحة",
+      "heavily": "بكثافة",
+      "heavy": "ثقيل",
+      "help": "مساعدة",
+      "helpful": "مفيد",
+      "helps": "يساعد",
+      "here": "هنا",
+      "hertz": "هرتز (Hz)",
+      "hexe": "HEXE (عدد ست عشري)",
+      "hierarchical": "هرمي",
+      "hierarchies": "تسلسلات هرمية",
+      "high": "عالٍ",
+      "high-bandwidth": "عالي النطاق",
+      "high-capacity": "عالي السعة",
+      "high-level": "عالي المستوى",
+      "high-speed": "عالي السرعة",
+      "higher": "أعلى",
+      "highlight": "تظليل",
+      "hint": "تلميح",
+      "holding": "يحمل",
+      "holds": "يحمل",
+      "home": "الرئيسية",
+      "homes": "منازل",
+      "host": "المضيف",
+      "houses": "يضم",
+      "how": "كيف",
+      "hub": "الموزّع / المركز",
+      "human": "بشري",
+      "human-readable": "مقروء للبشر",
+      "humans": "البشر",
+      "hunter": "صياد",
+      "hybrid": "هجين",
+      "icons": "أيقونات",
+      "idea": "فكرة",
+      "ideal": "مثالي",
+      "ideas": "أفكار",
+      "identical": "متطابق",
+      "identify": "حدد / يتعرف على",
+      "ides": "بيئات التطوير (IDEs)",
+      "ignore": "تجاهل",
+      "ignores": "يتجاهل",
+      "ignoring": "تجاهل",
+      "illusion": "وهم",
+      "image": "صورة",
+      "images": "صور",
+      "immediate": "فوري",
+      "immediately": "فورًا",
+      "in-place": "في المكان نفسه",
+      "include": "تشمل",
+      "included": "مضمّن",
+      "incomplete": "غير مكتمل",
+      "incorrect": "غير صحيح",
+      "increase": "زيادة",
+      "increasing": "تزايدي",
+      "independent": "مستقل",
+      "independently": "بشكل مستقل",
+      "indexed": "مفهرس",
+      "indicating": "يشير",
+      "individual": "فردي",
+      "industry": "الصناعة",
+      "inevitably": "حتمًا",
+      "inexpensive": "غير مكلف",
+      "information": "المعلومات",
+      "infrastructure": "البنية التحتية",
+      "init": "التهيئة",
+      "initial": "أولي",
+      "initialization": "التهيئة",
+      "initialized": "مهيأ",
+      "initializes": "يهيئ",
+      "inner": "داخلي",
+      "input": "الإدخال",
+      "inputs": "المدخلات",
+      "inside": "داخل",
+      "insights": "رؤى",
+      "installation": "التثبيت",
+      "installed": "مثبت",
+      "installing": "تثبيت",
+      "instance": "نسخة / مثيل",
+      "instruct": "يوجه",
+      "instruction": "تعليمة",
+      "instructions": "تعليمات",
+      "insufficient": "غير كافٍ",
+      "intangible": "غير ملموس",
+      "integrated": "مدمج",
+      "intelligence": "الذكاء",
+      "intent": "القصد",
+      "interact": "يتفاعل",
+      "interacting": "تفاعل",
+      "interaction": "التفاعل",
+      "interactions": "التفاعلات",
+      "interactive": "تفاعلي",
+      "interacts": "يتفاعل",
+      "interchange": "التبادل",
+      "interdependence": "الاعتماد المتبادل",
+      "interface": "الواجهة",
+      "interfaces": "الواجهات",
+      "interleave": "يتشابك",
+      "intermediate": "وسيط",
+      "internal": "داخلي",
+      "internet": "الإنترنت",
+      "interoperability": "قابلية التشغيل البيني",
+      "intervention": "تدخل",
+      "into": "إلى",
+      "intricate": "معقد",
+      "intuition": "الحدس",
+      "intuitive": "بديهي",
+      "invalid": "غير صالح",
+      "invert": "يعكس",
+      "inverter": "العاكس (NOT)",
+      "iops": "عمليات الإدخال/الإخراج في الثانية (IOPS)",
+      "ios": "آي أو إس (iOS)",
+      "iot": "إنترنت الأشياء (IoT)",
+      "ipc": "التواصل بين العمليات (IPC)",
+      "ipos": "الطروحات العامة (IPOs)",
+      "ipv": "بروتوكول الإنترنت (IP)",
+      "isolation": "العزل",
+      "item": "عنصر",
+      "iter": "تكرار",
+      "iteration": "التكرار",
+      "its": "خاصته",
+      "itself": "نفسه",
+      "java": "جافا",
+      "javascript": "جافاسكريبت",
+      "keep": "احتفظ",
+      "keeping": "الاحتفاظ",
+      "keeps": "يحتفظ",
+      "kernel": "النواة (Kernel)",
+      "key": "مفتاح",
+      "keyboard": "لوحة المفاتيح",
+      "keyboards": "لوحات المفاتيح",
+      "keypad": "لوحة الأرقام",
+      "kilobytes": "كيلوبايت",
+      "knowledge": "المعرفة",
+      "lab": "معمل",
+      "lack": "نقص",
+      "lan": "الشبكة المحلية (LAN)",
+      "lanes": "مسارات",
+      "language": "اللغة",
+      "languages": "اللغات",
+      "laptop": "لابتوب",
+      "large": "كبير",
+      "large-capacity": "كبير السعة",
+      "largest": "الأكبر",
+      "last": "الأخير",
+      "latency": "زمن الاستجابة",
+      "layer": "الطبقة",
+      "lead": "يقود",
+      "leading": "البادئة / الرائدة",
+      "leads": "يؤدي",
+      "learning": "التعلم",
+      "least": "الأقل",
+      "lec": "محاضرة",
+      "lecture": "المحاضرة",
+      "lectures": "المحاضرات",
+      "leftmost": "الأيسر",
+      "less": "أقل",
+      "lets": "يتيح",
+      "letter": "الحرف",
+      "letters": "الحروف",
+      "level": "المستوى",
+      "libraries": "المكتبات",
+      "license": "الترخيص",
+      "licensing": "الترخيص",
+      "lies": "يكمن",
+      "life": "الحياة",
+      "lifecycle": "دورة الحياة",
+      "like": "مثل",
+      "limited": "محدود",
+      "limits": "حدود",
+      "line": "سطر",
+      "line-by-line": "سطرًا بسطر",
+      "lines": "سطور",
+      "link": "رابط",
+      "linux": "لينكس",
+      "listed": "مدرج",
+      "literally": "حرفيًا",
+      "loaded": "محمّل",
+      "loading": "تحميل",
+      "loads": "يحمّل",
+      "local": "محلي",
+      "location": "الموقع",
+      "locations": "المواقع",
+      "logic": "المنطق",
+      "logical": "منطقي",
+      "long": "طويل",
+      "long-term": "طويل المدى",
+      "loop": "حلقة تكرار",
+      "loops": "حلقات",
+      "lord": "الرب",
+      "losing": "فقدان",
+      "lossless": "بدون فقدان",
+      "lost": "مفقود",
+      "low": "منخفض",
+      "low-level": "منخفض المستوى",
+      "lower": "أدنى / أقل",
+      "lower-level": "أدنى مستوى",
+      "lsb": "البت الأدنى (LSB)",
+      "lti": "جزء من كلمة",
+      "luck": "حظ",
+      "machine": "الآلة",
+      "machinery": "الآلات",
+      "machines": "آلات",
+      "macos": "ماك أو إس (macOS)",
+      "magic": "سحر",
+      "magnetic": "مغناطيسي",
+      "magnitude": "القيمة / المقدار",
+      "main": "رئيسي",
+      "mainly": "أساسًا",
+      "maintain": "يصون",
+      "maintenance": "الصيانة",
+      "major": "رئيسي / كبير",
+      "make": "يصنع",
+      "makes": "يصنع",
+      "making": "صنع",
+      "malicious": "خبيث",
+      "man": "الشبكة الإقليمية (MAN)",
+      "manage": "يدير",
+      "managed": "مُدار",
+      "management": "الإدارة",
+      "manages": "يدير",
+      "managing": "إدارة",
+      "manipulated": "مُعالَج",
+      "manually": "يدويًا",
+      "manufacture": "تصنيع",
+      "manufacturing": "التصنيع",
+      "many": "كثير",
+      "map": "ربط / خريطة",
+      "mapping": "الربط",
+      "maps": "يربط",
+      "mask": "القناع",
+      "masks": "الأقنعة",
+      "mass": "ضخم / كتلة",
+      "mass-market": "واسع الانتشار",
+      "massive": "ضخم",
+      "massively": "بشكل ضخم",
+      "master": "إتقان / خبير",
+      "mastery": "الإتقان",
+      "math": "الرياضيات",
+      "mathematical": "رياضي",
+      "matrix": "مصفوفة",
+      "matter": "مسألة",
+      "maximize": "زيادة إلى أقصى حد",
+      "maximizing": "تعظيم",
+      "maximum": "الأقصى",
+      "may": "قد",
+      "mean": "يعني",
+      "meaning": "المعنى",
+      "meaningful": "ذو معنى",
+      "means": "وسيلة / يعني",
+      "measured": "مقاس",
+      "measures": "مقاييس",
+      "mechanical": "ميكانيكي",
+      "mechanics": "الميكانيكا",
+      "mechanism": "آلية",
+      "media": "الوسائط",
+      "mediates": "يتوسط",
+      "mediator": "الوسيط",
+      "medical": "طبي",
+      "medicine": "الطب",
+      "medium": "متوسط",
+      "meets": "يلبي",
+      "megabytes": "ميجابايت",
+      "memory": "الذاكرة",
+      "menus": "القوائم",
+      "metadata": "البيانات الوصفية",
+      "metal": "معدن",
+      "methodologies": "المنهجيات",
+      "mhz": "ميجاهرتز (MHz)",
+      "mib": "ميبي بايت (MiB)",
+      "microarchitecture": "المعمارية الدقيقة",
+      "microprocessor": "المعالج الدقيق",
+      "microprocessors": "المعالجات الدقيقة",
+      "microsoft": "مايكروسوفت",
+      "midterm": "منتصف الفصل",
+      "might": "قد",
+      "million": "مليون",
+      "millions": "ملايين",
+      "mind": "العقل",
+      "minimizing": "تصغير",
+      "minimum": "الحد الأدنى",
+      "mistakes": "الأخطاء",
+      "mnemonic": "مساعد تذكّر",
+      "mnemonics": "مساعدات التذكر",
+      "mobile": "الهاتف المحمول",
+      "mock": "تجريبي",
+      "mode": "الوضع",
+      "model": "النموذج",
+      "models": "نماذج",
+      "modern": "حديث",
+      "modes": "أوضاع",
+      "modified": "معدّل",
+      "module": "الوحدة",
+      "modules": "وحدات",
+      "monitor": "الشاشة / يراقب",
+      "more": "المزيد",
+      "most": "معظم / الأكثر",
+      "motherboards": "اللوحات الأم",
+      "motion": "الحركة",
+      "mounted": "مركّب",
+      "mov": "نقل (MOV)",
+      "moving": "متحرك",
+      "msb": "البت الأعلى (MSB)",
+      "multi-core": "متعدد الأنوية",
+      "multimedia": "الوسائط المتعددة",
+      "multiple": "متعدد",
+      "must": "يجب",
+      "names": "أسماء",
+      "naming": "التسمية",
+      "nand": "ناند (NAND)",
+      "native": "أصلي",
+      "natural": "طبيعي",
+      "near-instant": "شبه فوري",
+      "necessary": "ضروري",
+      "needed": "مطلوب",
+      "needs": "يحتاج",
+      "neg": "سالب",
+      "negative": "سالب",
+      "neither": "ولا",
+      "nesting": "التداخل",
+      "network": "الشبكة",
+      "networking": "الشبكات",
+      "networks": "الشبكات",
+      "neumann": "فون نويمان",
+      "never": "أبدًا",
+      "new": "جديد",
+      "next": "التالي",
+      "nic": "بطاقة الشبكة (NIC)",
+      "nlp": "معالجة اللغة الطبيعية (NLP)",
+      "noise": "الضوضاء",
+      "nor": "نور (NOR)",
+      "normally": "عادة",
+      "not": "ليس / لا",
+      "notation": "الترميز / الصيغة",
+      "noun": "اسم",
+      "ntfs": "نظام ملفات ويندوز (NTFS)",
+      "numeric": "رقمي",
+      "nvme": "إن في إم إي (NVMe)",
+      "obj": "كائن",
+      "object": "الكائن",
+      "objectives": "الأهداف",
+      "obtain": "يحصل على",
+      "occur": "يحدث",
+      "occurs": "يحدث",
+      "oct": "ثماني",
+      "octets": "البايتات الثمانية",
+      "off": "مغلق / إيقاف",
+      "offer": "يعرض",
+      "offering": "تقديم",
+      "offers": "يقدم",
+      "office": "أوفيس / المكتب",
+      "official": "رسمي",
+      "often": "غالبًا",
+      "older": "أقدم",
+      "on-demand": "عند الطلب",
+      "once": "مرة واحدة",
+      "one": "واحد",
+      "one's": "المتمم الأحادي",
+      "ones": "الواحدات",
+      "online": "عبر الإنترنت",
+      "onto": "على",
+      "open": "مفتوح / افتح",
+      "operate": "يشغّل",
+      "operates": "يعمل",
+      "operating": "التشغيل",
+      "operation": "العملية",
+      "operational": "تشغيلي",
+      "operations": "العمليات",
+      "operator": "المعامل / المشغّل",
+      "opposite": "العكس",
+      "optimal": "أمثل",
+      "optimize": "يحسّن",
+      "optimized": "محسّن",
+      "option": "الخيار",
+      "optional": "اختياري",
+      "orchestrating": "تنسيق",
+      "orchestration": "التنسيق",
+      "order": "الترتيب",
+      "ordered": "مرتب",
+      "orders": "أوامر / طلبات",
+      "organization": "المؤسسة",
+      "organization's": "الخاص بالمؤسسة",
+      "organizations": "المؤسسات",
+      "organized": "منظم",
+      "organizes": "ينظم",
+      "organizing": "تنظيم",
+      "other": "آخر",
+      "our": "لنا",
+      "out": "خارج",
+      "outcome": "النتيجة",
+      "output": "الإخراج",
+      "outputs": "المخرجات",
+      "outputting": "إخراج",
+      "oval": "بيضاوي",
+      "over": "فوق / خلال / عبر",
+      "overflow": "الطفح (Overflow)",
+      "own": "خاص / يملك",
+      "ownership": "الملكية",
+      "packages": "الحزم",
+      "pad": "الحشو",
+      "padded": "محشو",
+      "padding": "الحشو",
+      "paging": "الترقيم",
+      "pair": "زوج",
+      "paired": "مزدوج",
+      "paper": "ورقة",
+      "parallel": "متوازٍ",
+      "parallelism": "التوازي",
+      "parallelogram": "متوازي الأضلاع",
+      "parses": "يحلل",
+      "particularly": "خاصةً",
+      "partition": "تقسيم",
+      "pass": "اجتياز / تمرير",
+      "passwords": "كلمات المرور",
+      "patches": "التحديثات",
+      "path": "المسار",
+      "paths": "المسارات",
+      "pathways": "المسارات",
+      "patterns": "الأنماط",
+      "pay": "انتبه / يدفع",
+      "pcie": "بي سي آي إكسبريس (PCIe)",
+      "per": "لكل",
+      "perform": "يؤدي",
+      "performance": "الأداء",
+      "performing": "أداء",
+      "performs": "يؤدي",
+      "peripheral": "طرفي",
+      "peripherals": "الأجهزة الطرفية",
+      "permanent": "دائم",
+      "permanently": "بشكل دائم",
+      "permissions": "الأذونات",
+      "perpetual": "دائم",
+      "persistence": "الاستمرارية",
+      "person": "شخص",
+      "phone": "الهاتف",
+      "phones": "الهواتف",
+      "photo": "صورة",
+      "photos": "صور",
+      "photoshop": "فوتوشوب",
+      "physical": "مادي / فيزيائي",
+      "physically": "فيزيائيًا",
+      "physics": "الفيزياء",
+      "pin": "الطرف (Pin)",
+      "pipeline": "خط المعالجة",
+      "pixel": "البكسل",
+      "pixels": "البكسلات",
+      "placed": "موضوع",
+      "planning": "التخطيط",
+      "platform": "المنصة",
+      "platforms": "المنصات",
+      "platters": "الأطباق المغناطيسية",
+      "player": "المشغّل",
+      "players": "المشغّلات",
+      "pointer": "المؤشر",
+      "points": "النقاط",
+      "portal": "البوابة",
+      "pos": "موجب",
+      "position": "الموضع",
+      "positional": "موضعي",
+      "positions": "المواضع",
+      "positive": "موجب",
+      "possess": "يمتلك",
+      "possessing": "امتلاك",
+      "posture": "الوضعية",
+      "powerful": "قوي",
+      "powershell": "باورشيل",
+      "practical": "عملي",
+      "pre-compiled": "مترجم مسبقًا",
+      "precautions": "الاحتياطات",
+      "precise": "دقيق",
+      "precisely": "بدقة",
+      "predictable": "متوقع",
+      "prefixes": "البادئات",
+      "presentation": "العرض التقديمي",
+      "presentations": "العروض التقديمية",
+      "presenting": "عرض",
+      "preventive": "وقائي",
+      "prevents": "يمنع",
+      "price": "السعر",
+      "primarily": "أساسًا",
+      "primary": "أساسي / أولي",
+      "principle": "المبدأ",
+      "print": "طباعة",
+      "printed": "مطبوع",
+      "printer": "الطابعة",
+      "printers": "الطابعات",
+      "printing": "الطباعة",
+      "prints": "يطبع",
+      "priority": "الأولوية",
+      "privacy": "الخصوصية",
+      "problem": "المشكلة",
+      "problem-solving": "حل المشكلات",
+      "problems": "المشكلات",
+      "procedures": "الإجراءات",
+      "processed": "معالَج",
+      "processes": "العمليات",
+      "processing": "المعالجة",
+      "processor's": "الخاص بالمعالج",
+      "processors": "المعالجات",
+      "produce": "ينتج",
+      "produced": "مُنتج",
+      "produces": "ينتج",
+      "producing": "إنتاج",
+      "productive": "منتج",
+      "productivity": "الإنتاجية",
+      "professional": "احترافي",
+      "program": "البرنامج",
+      "programmatic": "برمجي",
+      "programmers": "المبرمجون",
+      "programming": "البرمجة",
+      "programs": "البرامج",
+      "protect": "يحمي",
+      "protecting": "حماية",
+      "protection": "الحماية",
+      "protects": "يحمي",
+      "protocols": "البروتوكولات",
+      "provide": "يوفر",
+      "provided": "متوفر",
+      "provides": "يوفر",
+      "providing": "توفير",
+      "purpose": "الغرض",
+      "python": "بايثون",
+      "quad": "رباعي",
+      "quads": "رباعيات",
+      "quarantines": "يحجر",
+      "quick": "سريع",
+      "quotients": "نواتج القسمة",
+      "random": "عشوائي",
+      "ranges": "نطاقات",
+      "rank": "الرتبة",
+      "rapid": "سريع",
+      "rapidly": "بسرعة",
+      "rar": "رار (RAR)",
+      "rasterized": "مُحوّل لبكسلات",
+      "rates": "معدلات",
+      "raw": "خام",
+      "read-only": "للقراءة فقط",
+      "reader": "القارئ",
+      "reading": "القراءة",
+      "reads": "يقرأ",
+      "real-time": "الزمن الحقيقي",
+      "real-world": "العالم الحقيقي",
+      "receives": "يستقبل",
+      "recipe": "وصفة",
+      "reclaims": "يسترد",
+      "reclamation": "الاسترداد",
+      "recommended": "موصى به",
+      "recorded": "مسجل",
+      "recording": "تسجيل",
+      "records": "سجلات",
+      "recovery": "الاستعادة",
+      "rectangle": "مستطيل",
+      "reduce": "يقلل",
+      "reduces": "يقلل",
+      "reducing": "تقليل",
+      "reference": "المرجع",
+      "refers": "يشير",
+      "register": "المسجل (Register)",
+      "registers": "المسجلات",
+      "registration": "التسجيل",
+      "regroup": "إعادة التجميع",
+      "regulate": "ينظم",
+      "related": "مرتبط",
+      "relationship": "العلاقة",
+      "releases": "إصدارات / يطلق",
+      "releasing": "إطلاق",
+      "reliable": "موثوق",
+      "rely": "يعتمد",
+      "rem": "الباقي",
+      "remain": "تبقى",
+      "remember": "تذكر",
+      "remote": "عن بُعد",
+      "rendering": "العرض / التصيير",
+      "renders": "يعرض",
+      "repeat": "كرر",
+      "repetitive": "متكرر",
+      "replace": "استبدال",
+      "replaced": "مستبدل",
+      "replacement": "الاستبدال",
+      "replaces": "يستبدل",
+      "replacing": "استبدال",
+      "repository": "المستودع",
+      "represent": "يمثل",
+      "representation": "التمثيل",
+      "represented": "ممثَّل",
+      "requesting": "طلب",
+      "requirements": "المتطلبات",
+      "requires": "يتطلب",
+      "requiring": "يتطلب",
+      "research": "البحث",
+      "reside": "تقيم",
+      "resistance": "المقاومة",
+      "resistant": "مقاوم",
+      "resolution": "الدقة",
+      "resource": "المورد",
+      "resource-intensive": "كثيف الموارد",
+      "resources": "الموارد",
+      "respond": "يستجيب",
+      "response": "الاستجابة",
+      "responsible": "مسؤول",
+      "responsive": "متجاوب",
+      "responsiveness": "الاستجابة",
+      "resulting": "الناتج",
+      "retaining": "الاحتفاظ",
+      "retains": "يحتفظ",
+      "retention": "الاحتفاظ",
+      "retrieved": "مسترجع",
+      "rev": "مراجعة",
+      "reverse": "عكسي",
+      "rightmost": "الأيمن",
+      "robotic": "روبوتي",
+      "robotics": "الروبوتات",
+      "robots": "الروبوتات",
+      "robust": "قوي / متين",
+      "role": "الدور",
+      "roles": "الأدوار",
+      "rom": "ذاكرة القراءة فقط (ROM)",
+      "rookie": "مبتدئ",
+      "rotating": "دوّار",
+      "routers": "الموجهات",
+      "routes": "المسارات",
+      "row": "الصف",
+      "rpm": "لفة في الدقيقة (RPM)",
+      "rtos": "نظام التشغيل الفوري (RTOS)",
+      "run": "تشغيل",
+      "running": "تشغيل",
+      "runs": "يشغّل",
+      "runtime": "وقت التشغيل",
+      "safari": "سفاري",
+      "safeguard": "حماية",
+      "safeguarding": "حماية",
+      "safety": "السلامة",
+      "same": "نفس",
+      "sample": "نموذج",
+      "samples": "نماذج",
+      "saves": "يحفظ",
+      "saving": "حفظ",
+      "say": "قل",
+      "scans": "يفحص",
+      "scene": "المشهد",
+      "science": "العلوم",
+      "scope": "النطاق",
+      "score": "النتيجة",
+      "screen": "الشاشة",
+      "scripts": "النصوص البرمجية",
+      "seamless": "سلس",
+      "sec": "القسم / ثانية",
+      "secondary": "ثانوي",
+      "sections": "الأقسام",
+      "secure": "آمن",
+      "securing": "تأمين",
+      "security": "الأمان",
+      "seek": "البحث",
+      "select": "اختر",
+      "selection": "الاختيار",
+      "sembl": "جزء من كلمة",
+      "send": "إرسال",
+      "sense": "حاسة / منطق",
+      "sensitive": "حساس",
+      "sensors": "المستشعرات",
+      "separate": "افصل",
+      "sequence": "التسلسل",
+      "sequences": "تسلسلات",
+      "sequential": "تسلسلي",
+      "series": "سلسلة",
+      "serve": "يخدم",
+      "server": "الخادم",
+      "servers": "الخوادم",
+      "services": "الخدمات",
+      "ses": "جزء من كلمة",
+      "set": "مجموعة / ضبط",
+      "sets": "مجموعات",
+      "settings": "الإعدادات",
+      "setup": "الإعداد",
+      "several": "عدة",
+      "shaders": "المُظلِّلات",
+      "shapes": "الأشكال",
+      "shared": "مشترك",
+      "shares": "مشاركات",
+      "sharing": "المشاركة",
+      "sheet": "الشيت",
+      "sheets": "الشيتات",
+      "shell": "الصدفة (Shell)",
+      "shock": "صدمة",
+      "should": "ينبغي",
+      "show": "عرض",
+      "showing": "عرض",
+      "shrink": "تقلص",
+      "shut": "إغلاق",
+      "shutting": "إغلاق",
+      "side": "الجانب",
+      "sign-magnitude": "الإشارة والقيمة",
+      "signal": "الإشارة",
+      "signals": "الإشارات",
+      "signed": "بإشارة",
+      "significant": "ذو دلالة",
+      "significantly": "بشكل كبير",
+      "signifies": "يدل على",
+      "silent": "صامت",
+      "silicone": "السيليكون",
+      "simd": "تعليمة واحدة لبيانات متعددة (SIMD)",
+      "similar": "مشابه",
+      "simple": "بسيط",
+      "simply": "ببساطة",
+      "simulate": "يحاكي",
+      "simulated": "محاكى",
+      "simulator": "المحاكي",
+      "simultaneous": "متزامن",
+      "simultaneously": "بالتزامن",
+      "single": "واحد / مفرد",
+      "sixty-fours": "الأربعة والستينات",
+      "size": "الحجم",
+      "sizes": "الأحجام",
+      "sku": "رمز المخزون (SKU)",
+      "slice": "شريحة",
+      "slices": "شرائح",
+      "slicing": "تقطيع",
+      "slots": "الفتحات",
+      "slow": "بطيء",
+      "slower": "أبطأ",
+      "smaller": "أصغر",
+      "smart": "ذكي",
+      "smartphones": "الهواتف الذكية",
+      "smooth": "سلس",
+      "smoothly": "بسلاسة",
+      "social": "اجتماعي",
+      "socket": "المقبس",
+      "solid": "صلب",
+      "solve": "حل",
+      "solves": "يحل",
+      "solving": "حل",
+      "source": "المصدر",
+      "space": "المساحة",
+      "special": "خاص",
+      "specialist": "متخصص",
+      "specializations": "التخصصات",
+      "specialized": "متخصص",
+      "specializes": "يتخصص",
+      "specific": "محدد",
+      "specifically": "تحديدًا",
+      "specification": "المواصفة",
+      "specifications": "المواصفات",
+      "specs": "المواصفات",
+      "speech": "الكلام",
+      "speed": "السرعة",
+      "speeds": "السرعات",
+      "speedups": "تسريعات",
+      "spinning": "دوران",
+      "split": "تقسيم",
+      "splits": "تقسيمات",
+      "spreadsheets": "جداول البيانات",
+      "ssds": "أقراص الحالة الصلبة (SSDs)",
+      "stability": "الاستقرار",
+      "stages": "المراحل",
+      "stand": "يقف",
+      "standalone": "مستقل",
+      "standardized": "موحّد",
+      "standards": "المعايير",
+      "stands": "يرمز",
+      "start": "البدء",
+      "starting": "البدء",
+      "starts": "يبدأ",
+      "startup": "بدء التشغيل",
+      "state": "الحالة",
+      "statement": "العبارة",
+      "states": "الحالات",
+      "station": "المحطة",
+      "steeper": "أكثر انحدارًا",
+      "stem": "الجذع",
+      "step-by-step": "خطوة بخطوة",
+      "step-decrement": "إنقاص تدريجي",
+      "still": "لا يزال",
+      "stock": "المخزون",
+      "stop": "إيقاف",
+      "stops": "يتوقف",
+      "store": "تخزين / متجر",
+      "stored": "مخزّن",
+      "stores": "مخازن / يخزن",
+      "storing": "تخزين",
+      "strata": "طبقات",
+      "strategies": "الاستراتيجيات",
+      "streak": "السلسلة",
+      "stream": "التدفق",
+      "streams": "التدفقات",
+      "strict": "صارم",
+      "strictly": "بصرامة",
+      "string": "السلسلة النصية",
+      "structural": "هيكلي",
+      "structured": "منظم",
+      "structures": "الهياكل",
+      "student": "الطالب",
+      "students": "الطلاب",
+      "study": "الدراسة",
+      "stutter": "تقطع",
+      "stuttering": "التقطع",
+      "submitted": "مُرسل",
+      "subnet": "الشبكة الفرعية",
+      "subnetting": "تقسيم الشبكات",
+      "subscript": "المنخفض (أسفل الرقم)",
+      "subscription": "الاشتراك",
+      "substitute": "التعويض",
+      "substituting": "التعويض",
+      "substitutions": "التعويضات",
+      "subsystems": "الأنظمة الفرعية",
+      "subtract": "اطرح",
+      "subtraction": "الطرح",
+      "successive": "المتتالية",
+      "such": "مثل",
+      "suffice": "يكفي",
+      "suitable": "مناسب",
+      "suites": "الحزم",
+      "summary": "الملخص",
+      "summation": "المجموع",
+      "sums": "المجاميع",
+      "support": "الدعم",
+      "swap": "التبديل",
+      "swapping": "التبديل",
+      "switch": "المبدّل / التبديل",
+      "switchboard": "لوحة التبديل",
+      "switches": "المبدلات",
+      "symbiotic": "تكافلي",
+      "symbolic": "رمزي",
+      "syntax": "الصياغة النحوية",
+      "syntaxes": "الصياغات",
+      "system's": "الخاص بالنظام",
+      "table": "الجدول",
+      "tables": "الجداول",
+      "tablets": "الأجهزة اللوحية",
+      "tabs": "التبويبات",
+      "tailor-made": "مصمم خصيصًا",
+      "tailored": "مصمم",
+      "takes": "يأخذ",
+      "talking": "يتحدث",
+      "tangible": "ملموس",
+      "target": "الهدف",
+      "targets": "الأهداف",
+      "task": "المهمة",
+      "tasks": "المهام",
+      "taxonomy": "التصنيف",
+      "taylor": "تايلور",
+      "technician": "الفني",
+      "technologies": "التقنيات",
+      "technology": "التكنولوجيا",
+      "tell": "يخبر",
+      "teller": "الصراف",
+      "tells": "يخبر",
+      "temporarily": "مؤقتًا",
+      "temporary": "مؤقت",
+      "tensor": "الموتر",
+      "terabyte": "تيرابايت",
+      "terminal": "الطرفية",
+      "terminates": "ينتهي",
+      "terminating": "إنهاء",
+      "termination": "الإنهاء",
+      "terminator": "المنهي",
+      "terms": "المصطلحات",
+      "tests": "الاختبارات",
+      "text": "النص",
+      "text-driven": "موجه بالنص",
+      "textual": "نصي",
+      "textures": "القوام",
+      "than": "من",
+      "that": "ذلك / أن",
+      "their": "الخاص بهم",
+      "them": "إياهم",
+      "theoretical": "نظري",
+      "theoretically": "نظريًا",
+      "there": "هناك",
+      "thermal": "حراري",
+      "they": "هم",
+      "thing": "شيء",
+      "think": "يفكر",
+      "this": "هذا",
+      "thorough": "شامل",
+      "thousand": "ألف",
+      "thousands": "آلاف",
+      "thread": "خيط التنفيذ",
+      "threads": "خيوط التنفيذ",
+      "threats": "التهديدات",
+      "three": "ثلاثة",
+      "threshold": "العتبة",
+      "through": "من خلال",
+      "throughput": "الإنتاجية",
+      "time": "الوقت",
+      "timely": "في الوقت المناسب",
+      "times": "مرات",
+      "timing": "التوقيت",
+      "together": "معًا",
+      "too": "أيضًا / جدًا",
+      "tools": "الأدوات",
+      "top-down": "من الأعلى للأسفل",
+      "top-to-bottom": "من الأعلى إلى الأسفل",
+      "topologies": "الطوبولوجيات",
+      "total": "الإجمالي",
+      "touch": "اللمس",
+      "touchscreens": "شاشات اللمس",
+      "trace": "تتبع",
+      "tracing": "التتبع",
+      "tracking": "التتبع",
+      "tracks": "المسارات",
+      "transaction": "المعاملة",
+      "transactions": "المعاملات",
+      "transfer": "النقل",
+      "translated": "مترجم",
+      "translates": "يترجم",
+      "translation": "الترجمة",
+      "translator": "المترجم",
+      "translators": "المترجمون",
+      "transmitting": "نقل / إرسال",
+      "transport": "النقل",
+      "trees": "الأشجار",
+      "tricky": "صعب",
+      "triggers": "المحفزات",
+      "trillion": "تريليون",
+      "triplet": "ثلاثي",
+      "triplets": "الثلاثيات",
+      "troubleshooting": "استكشاف الأخطاء",
+      "true": "صحيح (True)",
+      "truth": "الصدق / الحقيقة",
+      "try": "جرب",
+      "tune": "ضبط",
+      "turn": "دور / يحوّل",
+      "turned": "تحوّل",
+      "tutorial": "توتوريال",
+      "tutorials": "التوتوريالات",
+      "tvs": "أجهزة التلفاز",
+      "two": "اثنان",
+      "two's": "المتمم الثنائي",
+      "type": "النوع / اكتب",
+      "types": "الأنواع",
+      "typing": "الكتابة",
+      "uefi": "يو إي إف آي (UEFI)",
+      "ultra-fast": "فائق السرعة",
+      "unambiguous": "غير غامض",
+      "unauthorized": "غير مصرح",
+      "unchanged": "دون تغيير",
+      "unconditionally": "بدون شروط",
+      "underline": "تسطير",
+      "underpins": "يدعم",
+      "understand": "يفهم",
+      "understanding": "الفهم",
+      "understands": "يفهم",
+      "unicode": "اليونيكود",
+      "unique": "فريد",
+      "unit": "الوحدة",
+      "units": "الوحدات",
+      "universal": "عالمي",
+      "universally": "عالميًا",
+      "university": "الجامعة",
+      "unnecessary": "غير ضروري",
+      "unorganized": "غير منظم",
+      "unprocessed": "غير معالج",
+      "unspoken": "غير منطوق",
+      "usability": "قابلية الاستخدام",
+      "usage": "الاستخدام",
+      "usb": "يو إس بي (USB)",
+      "use": "استخدام",
+      "used": "مستخدم",
+      "useful": "مفيد",
+      "user": "المستخدم",
+      "users": "المستخدمون",
+      "uses": "يستخدم",
+      "usually": "عادة",
+      "utf": "الترميز الموحد (UTF)",
+      "utilities": "الأدوات المساعدة",
+      "utility": "الأداة المساعدة",
+      "utilization": "الاستغلال",
+      "utilize": "يستغل",
+      "utilized": "مستغل",
+      "utilizes": "يستغل",
+      "vals": "القيم",
+      "variable": "المتغير",
+      "variables": "المتغيرات",
+      "vehicle": "المركبة",
+      "vendor": "المورّد",
+      "verified": "موثق",
+      "verifying": "التحقق",
+      "versatility": "تعدد الاستخدامات",
+      "version": "الإصدار",
+      "very": "جدًا",
+      "via": "عبر",
+      "vibration": "الاهتزاز",
+      "video": "الفيديو",
+      "videos": "فيديوهات",
+      "virtual": "افتراضي",
+      "virtualized": "افتراضي",
+      "viruses": "الفيروسات",
+      "visual": "بصري",
+      "visualizes": "يصوّر",
+      "visually": "بصريًا",
+      "voice": "الصوت",
+      "volatility": "التطايرية",
+      "voltage": "الجهد الكهربي",
+      "von": "فون",
+      "vram": "ذاكرة الفيديو (VRAM)",
+      "waiting": "انتظار",
+      "wan": "الشبكة الواسعة (WAN)",
+      "want": "يريد",
+      "watt": "الواط",
+      "web": "الويب",
+      "weekly": "أسبوعي",
+      "weighted": "موزون",
+      "what": "ماذا",
+      "when": "عندما",
+      "where": "أين",
+      "whereas": "بينما",
+      "which": "التي / أي",
+      "while": "بينما",
+      "whispers": "همسات",
+      "who": "من",
+      "whole": "كامل",
+      "why": "لماذا",
+      "widely": "على نطاق واسع",
+      "wildly": "بشكل جامح",
+      "will": "سوف",
+      "wimp": "نموذج النوافذ والأيقونات (WIMP)",
+      "win": "فوز",
+      "windows": "ويندوز",
+      "wiped": "مُمسح",
+      "wishes": "أمنيات",
+      "withdrawal": "السحب",
+      "within": "داخل",
+      "wlan": "الشبكة اللاسلكية المحلية (WLAN)",
+      "word": "الكلمة",
+      "work": "العمل",
+      "workflow": "سير العمل",
+      "workflows": "سير العمل",
+      "working": "العمل",
+      "workload": "عبء العمل",
+      "workloads": "أعباء العمل",
+      "works": "يعمل",
+      "workstation": "محطة العمل",
+      "world": "العالم",
+      "worldwide": "عالمي",
+      "would": "كان سي",
+      "written": "مكتوب",
+      "xor": "إكس أور (XOR)",
+      "yes": "نعم",
+      "yielding": "إنتاج",
+      "yields": "ينتج",
+      "you": "أنت",
+      "your": "الخاص بك",
+      "zero": "صفر",
+      "zero-tolerance": "عدم التسامح",
+      "zeros": "الأصفار",
+      "zip": "زيب (ZIP)"
     };
+
+    // Morphology fallback: resolve inflected English forms (plurals, verb
+    // endings) to their base form before giving up on a vocab lookup.
+    function lookupVocabStem(lower) {
+      if (!lower) return null;
+      if (TRANSLATION_VOCAB[lower]) return TRANSLATION_VOCAB[lower];
+      const tries = [];
+      if (lower.endsWith("'s")) tries.push(lower.slice(0, -2));
+      if (lower.endsWith('s') && !lower.endsWith('ss') && !lower.endsWith('us') && !lower.endsWith('is')) tries.push(lower.slice(0, -1));
+      if (lower.endsWith('es')) tries.push(lower.slice(0, -2));
+      if (lower.endsWith('ies')) tries.push(lower.slice(0, -3) + 'y');
+      if (lower.endsWith('ied')) tries.push(lower.slice(0, -3) + 'y');
+      if (lower.endsWith('ed')) { tries.push(lower.slice(0, -2)); tries.push(lower.slice(0, -1)); }
+      if (lower.endsWith('ing')) {
+        const b = lower.slice(0, -3);
+        tries.push(b); tries.push(b + 'e');
+        if (b.length >= 2 && b[b.length - 1] === b[b.length - 2]) tries.push(b.slice(0, -1));
+      }
+      for (const t of tries) { if (t && TRANSLATION_VOCAB[t]) return TRANSLATION_VOCAB[t]; }
+      return null;
+    }
 
     function translateTextToAr(text) {
       if (!text || typeof text !== 'string') return '';
@@ -12110,7 +13984,8 @@
       const tokens = clean.split(/(\s+|[.,;!?()[\]{}":_+\-*\/=<>])/);
       const translated = tokens.map(t => {
         const lower = t.toLowerCase();
-        if (TRANSLATION_VOCAB[lower]) return TRANSLATION_VOCAB[lower];
+        const stemmed = lookupVocabStem(lower);
+        if (stemmed) return stemmed;
         if (typeof TECH_GLOSSARY !== 'undefined' && TECH_GLOSSARY[lower]) return TECH_GLOSSARY[lower].ar;
         return t;
       });
@@ -12180,9 +14055,11 @@
         const termName = data ? (data.term || raw) : raw;
         termEl.textContent = termName;
         termEl.title = termName;
-        arEl.textContent = data ? data.ar : translateTextToAr(raw);
-        typeEl.textContent = (data && data.type) ? data.type : 'مصطلح / كلمة';
-        defEl.textContent = (data && data.def) ? data.def : (translateTextToAr(raw) || 'انقر على الجملة أو حدد النص بالكامل لترجمته فوراً.');
+        const wordTr = data ? data.ar : translateTextToAr(raw);
+        const isMiss = !data && (!wordTr || wordTr.trim().toLowerCase() === raw.trim().toLowerCase());
+        arEl.textContent = isMiss ? 'لا توجد ترجمة محفوظة لهذه الكلمة' : wordTr;
+        typeEl.textContent = (data && data.type) ? data.type : (isMiss ? '❌ كلمة غير موجودة في القاموس' : 'مصطلح / كلمة');
+        defEl.textContent = (data && data.def) ? data.def : (isMiss ? 'جرّب تحديد جملة كاملة لترجمتها، أو اضغط على كلمة أخرى.' : (translateTextToAr(raw) || 'انقر على الجملة أو حدد النص بالكامل لترجمته فوراً.'));
         
         if (exEl) {
           if (data && data.example) {
@@ -12353,7 +14230,7 @@
 
       // Check if clicked in any readable text element
       const isReadableArea = e.target.closest(
-        '#guideModalBody, .guide-section, .feedback-steps, #calcResultContainer, .solution-steps, .lecture-card, .stage-card, .sheet-card, #qPrompt, .q-prompt, .feedback-box, #arenaContainer, #feedbackArea, .arena, p, li, h3, h4, .diag-item'
+        '#guideModalBody, .guide-section, .guide-card, .feedback-steps, #calcResultContainer, .solution-steps, .lecture-card, .stage-card, .sheet-card, #qPrompt, .q-prompt, .feedback-box, #arenaContainer, #feedbackArea, .arena, p, li, h3, h4, .diag-item'
       );
 
       if (isReadableArea && (wordToUse || sentenceToUse)) {
