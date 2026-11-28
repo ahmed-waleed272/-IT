@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مختبر الأنظمة العددية — لعبة تعليمية تفاعلية</title>
+  <link rel="stylesheet" href="IT.css" />
+</head>
+<body>
+  <!-- Top HUD -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" id="btnHomeLogo" title="العودة لفهرس المحاضرات" style="cursor:pointer;" onclick="showView('lectures')">
+        <div class="brand-icon" style="background:linear-gradient(135deg, #0d9488, #f59e0b);">IT</div>
+        <div>
+          <h1 id="brandTitle" style="font-size:1.1rem;font-weight:800;">IT Essentials Course Platform (Number Systems & Architecture)</h1>
+          <small id="brandSubtitle" style="color:var(--text-muted);">Academic Computing & Digital Fundamentals (2026/2027)</small>
+        </div>
+      </div>
+      <div class="hud">
+        <button class="stat-pill" id="btnThemeToggle" onclick="toggleTheme()" title="Toggle Light / Dark Mode" style="cursor:pointer;border-color:var(--primary);">
+          🌓 <span id="themeToggleText">Light Mode</span>
+        </button>
+        <button class="stat-pill" id="btnLangToggle" onclick="toggleLanguage()" title="Switch Language / تبديل اللغة" style="cursor:pointer;border-color:rgba(16,185,129,0.4);">
+          🌐 <span id="langToggleText">عربي</span>
+        </button>
+        <div class="stat-pill xp">⚡ <span id="hudXp">0</span> <span id="hudXpUnit">pts</span></div>
+        <div class="stat-pill streak">🔥 <span id="hudStreakLabel">Streak:</span> <span id="hudStreak">0</span></div>
+        <div class="stat-pill rank">🏅 <span id="hudRank">Number Rookie</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Navigation -->
+    <nav class="nav-tabs" id="mainNav">
+      <button class="nav-btn active" data-view="stages" id="navTabStages">🗺️ مختبر التحويلات الـ 12</button>
+      <button class="nav-btn" data-view="sheet" id="navTabSheet">📝 شيت التحويلات (توتوريال 3)</button>
+      <button class="nav-btn" data-view="lectures" id="navTabLectures">📚 دليل المحاضرات</button>
+      <button class="nav-btn" data-view="calc" id="navTabCalc">🧮 حاسبة التحويلات</button>
+      <button class="nav-btn" data-view="mistakes" id="navTabMistakes">🎯 مراجعة الأخطاء <span class="badge-count" id="mistakeCountBadge">0</span></button>
+      <button class="nav-btn" data-view="exam" id="navTabExam">🏆 مركز الامتحانات</button>
+    </nav>
+
+    <!-- View 1: Stages Dashboard -->
+    
+    <!-- View 0: Lectures & Course Syllabus Dashboard -->
+    <section id="viewLectures" class="hidden">
+      <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.16) 0%, rgba(245, 158, 11, 0.12) 100%); border-color: rgba(20, 184, 166, 0.38);">
+        <div class="banner-emblem" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="64" height="64">
+            <rect x="6" y="10" width="52" height="44" rx="12" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="2.5"/>
+            <rect x="16" y="18" width="32" height="20" rx="4" fill="var(--svg-node)" stroke="var(--primary)" stroke-width="1.8"/>
+            <path d="M22 25 L27 28 L22 31 M30 31 L38 31" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M18 46 H46 M26 42 V50 M38 42 V50" stroke="var(--warn)" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h2 style="font-size:1.65rem;margin-bottom:8px;">المنصة الأكاديمية لمقرر تكنولوجيا المعلومات</h2>
+        <h3 style="font-size:1.2rem;color:var(--primary-fg);margin-bottom:10px;">مقرر: أساسيات تكنولوجيا المعلومات (المستوى الأول)</h3>
+        <p style="color:var(--text-muted);max-width:820px;margin:0 auto 16px;font-size:0.95rem;line-height:1.6;">
+          أهلاً بك في المنصة الأكاديمية الشاملة لمقرر تكنولوجيا المعلومات. تم تقسيم المنصة إلى <strong>محاضرات دراسية معيارية</strong>، وتُعد <strong>المحاضرة الثالثة (الأنظمة العددية وشيت توتوريال 3)</strong> هي النواة النشطة التفاعلية بالكامل المزودة بجميع التحويلات الـ 12 وحلول الشيت النموذجية والاختبارات التفاعلية.
+        </p>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="document.getElementById('lectureGrid').scrollIntoView({behavior:'smooth'})">📚 استعراض محاضرات المقرر (1 إلى 4)</button>
+          <button class="btn btn-warn" onclick="showView('calc')">🧮 حاسبة التحويلات الذكية</button>
+          <button class="btn btn-outline" onclick="showView('exam')">🏆 مركز الامتحانات الأكاديمي</button>
+        </div>
+      </div>
+
+      <div class="section-divider" data-tone="purple">
+        <span class="divider-line divider-line-start"></span>
+        <span class="divider-pill">
+          <span class="divider-dot"></span>
+          <span class="divider-label" data-i18n-en="📚 Academic Course Modules (Lectures 1–6)">📚 محاضرات المقرر الأكاديمي (من 1 إلى 6)</span>
+          <span class="divider-dot"></span>
+        </span>
+        <span class="divider-line divider-line-end"></span>
+      </div>
+
+      <!-- Course Lectures Grid -->
+      <div style="margin-top:8px;">
+        <h3 style="font-size:1.25rem;font-weight:800;margin-bottom:16px;color:var(--text);display:flex;align-items:center;gap:8px;">
+          <span>📚 فهرس المحاضرات الأكاديمية لمقرر تكنولوجيا المعلومات:</span>
+        </h3>
+        <div class="lecture-grid" id="lectureGrid"></div>
+      </div>
+    </section>
+
+    
+    <!-- View: Lecture 1 (Intro to IT & Computer Systems) -->
+    <section id="viewLec1" class="hidden" data-view-accent="orange">
+      <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(251, 146, 60, 0.16) 0%, rgba(245, 158, 11, 0.13) 100%); border-color: rgba(251, 146, 60, 0.42);">
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <button class="btn btn-outline btn-sm js-back-lectures" onclick="showView('lectures')" style="border-color:var(--orange);color:var(--orange-fg);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
+        </div>
+        <div class="banner-emblem" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="60" height="60">
+            <rect x="18" y="18" width="28" height="28" rx="6" fill="var(--orange-soft)" stroke="var(--orange)" stroke-width="2.4"/>
+            <rect x="25" y="25" width="14" height="14" rx="2.5" fill="var(--svg-node)" stroke="var(--warn)" stroke-width="2"/>
+            <path d="M24 10 V18 M32 10 V18 M40 10 V18 M24 46 V54 M32 46 V54 M40 46 V54 M10 24 H18 M10 32 H18 M10 40 H18 M46 24 H54 M46 32 H54 M46 40 H54" stroke="var(--orange)" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="sheet-uni-tag" id="lec1BadgeTag" style="color:var(--orange-fg);background:var(--orange-soft);border-color:rgba(251,146,60,0.4);">💻 المحاضرة 1 • أساسيات تكنولوجيا المعلومات وعمارة الحاسوب</div>
+        <h2 style="font-size:1.6rem;color:var(--text);margin-bottom:6px;" id="lec1TitleHead">المحاضرة 1: مدخل تكنولوجيا المعلومات ومكونات الحاسوب</h2>
+        <div style="font-size:0.95rem;color:var(--orange-fg);font-weight:700;margin-bottom:10px;" id="lec1SubTitleHead">Introduction to Information Technology & Computer Systems (Tutorial 1)</div>
+        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.93rem;line-height:1.6;" id="lec1BannerDesc" data-i18n-en="The complete interactive guide to IT fundamentals: the four pillars of any computer system (Hardware, Software, Data, User), the IPOS processing cycle, CPU details (Cores &amp; GHz), GPUs and AI, RAM speeds, the SSD vs HDD comparison, and the ideal PC specs for a programming student, with the solved 50-question Tutorial 1 sheet and model written answers.">
+          الشرح التفاعلي الشامل لمدخل تكنولوجيا المعلومات، الأركان الأربعة لأي نظام حاسوبي (Hardware, Software, Data, User)، دورة المعالجة (IPOS)، تفاصيل المعالج (CPU Cores & GHz)، كروت الشاشة والذكاء الاصطناعي (GPU)، سرعات الذاكرة (RAM)، المقارنة بين SSD و HDD، ومواصفات الحاسوب المثالية لطالب البرمجة، مع حلول شيت التوتوريال الـ 50 سؤالاً والأسئلة المقالية النموذجية.
+        </p>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="setLec1SubTab('guide')" data-i18n-en="📖 Interactive Theory &amp; Study">📖 الشرح والدراسة التفاعلية</button>
+          <button class="btn btn-accent" onclick="setLec1SubTab('sheet')" data-i18n-en="📝 Tutorial Sheet (50 MCQs + Written)">📝 شيت التوتوريال (50 MCQs + مقالي)</button>
+          <button class="btn btn-warn" onclick="setLec1SubTab('builder')" data-i18n-en="🛠️ PC Builder &amp; Spec Evaluator">🛠️ محاكي تجميع الحاسوب وتقييم المواصفات</button>
+          <button class="btn btn-outline" onclick="startLecPractice('lec1', 'all')" data-i18n-en="🚀 Start Lecture 1 Practice in the Arena">🚀 بدء اختبار المحاضرة 1 في الآرينا</button>
+        </div>
+      </div>
+
+      <div class="section-divider" data-tone="orange">
+        <span class="divider-line divider-line-start"></span>
+        <span class="divider-pill">
+          <span class="divider-dot"></span>
+          <span class="divider-label" data-i18n-en="💻 Lecture 1 Study Sections &amp; Hardware Lab">💻 أقسام دراسة المحاضرة 1 ومعمل العتاد</span>
+          <span class="divider-dot"></span>
+        </span>
+        <span class="divider-line divider-line-end"></span>
+      </div>
+
+      <!-- Sub Navigation Tabs for Lecture 1 -->
+      <div class="lecture-subnav">
+        <button class="subnav-btn active" id="subnavLec1Guide" onclick="setLec1SubTab('guide')">📖 الشرح والمفاهيم الأساسية</button>
+        <button class="subnav-btn" id="subnavLec1Sheet" onclick="setLec1SubTab('sheet')">📝 شيت التوتوريال والأسئلة (50 سؤالاً)</button>
+        <button class="subnav-btn" id="subnavLec1Written" onclick="setLec1SubTab('written')">✍️ الأسئلة المقالية ومهمة الذكاء الاصطناعي</button>
+        <button class="subnav-btn" id="subnavLec1Builder" onclick="setLec1SubTab('builder')">🛠️ محاكي مواصفات الحاسوب الذكي</button>
+      </div>
+
+      <!-- Tip Badge for Translation -->
+      <div class="glossary-tip-badge" style="margin-bottom:18px;">
+        <span data-i18n-en="💡 Interactive tip: click any word or a full sentence (or select any text with the mouse) to hear its English pronunciation 🔊 and see its instant academic Arabic translation!">💡 تلميح تفاعلي: يمكنك النقر على أي كلمة أو جملة كاملة (أو تظليل أي نص بالماوس) للاستماع لنطقها بالإنجليزية 🔊 وعرض ترجمتها الأكاديمية الفورية بالعربية!</span>
+      </div>
+
+      <!-- Tab 1: Theory Guide Container -->
+      <div id="lec1GuideContent" class="lec-tab-panel"></div>
+
+      <!-- Tab 2: Interactive Sheet Questions -->
+      <div id="lec1SheetContent" class="lec-tab-panel hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec1SheetHeader" data-i18n-en="Lecture 1 Sheet Question Bank (Tutorial 1: 50 Multiple-Choice Questions)">بنك أسئلة شيت المحاضرة 1 (توتوريال 1: 50 سؤال اختيارات متعددة)</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec1SheetSub" data-i18n-en="Pick the correct answer for instant marking, a detailed scientific explanation, and XP points:">اختر الإجابة الصحيحة لتحصل على تصحيح فوري، شرح علمي مفصل، ونقاط خبرة XP:</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec1', 'all')" data-i18n-en="🚀 Solve in Interactive Challenge Mode (Arena)">🚀 حل في وضع التحدي التفاعلي (Arena)</button>
+            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec1', 'random10')" data-i18n-en="🎲 10 Random Questions">🎲 10 أسئلة عشوائية</button>
+          </div>
+        </div>
+        <div id="lec1QuestionsList" class="questions-container"></div>
+      </div>
+
+      <!-- Tab 3: Written Questions & AI Student Task -->
+      <div id="lec1WrittenContent" class="lec-tab-panel hidden">
+        <div id="lec1WrittenList" class="written-container"></div>
+      </div>
+
+      <!-- Tab 4: Interactive PC Spec Evaluator Tool -->
+      <div id="lec1BuilderContent" class="lec-tab-panel hidden">
+        <div class="builder-card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="font-size:2rem;">💻</div>
+            <div>
+              <h3 style="font-size:1.25rem;font-weight:800;color:var(--primary);" id="builderTitle" data-i18n-en="Interactive PC Spec Evaluator for Programming Students (PC Spec Evaluator)">أداة تقييم مواصفات الحاسوب التفاعلية لطالب البرمجة (PC Spec Evaluator)</h3>
+              <p style="font-size:0.86rem;color:var(--text-muted);" id="builderSub" data-i18n-en="Choose component specs based on the Lecture 1 criteria and watch their live suitability score for programming work, virtual machines, and AI:">اختر مواصفات المكونات بناءً على معايير المحاضرة 1، وشاهد تقييم ملاءمتها للأعمال البرمجية والأنظمة الافتراضية والذكاء الاصطناعي لحظياً:</p>
+            </div>
+          </div>
+          
+          <div class="builder-grid">
+            <!-- Left Controls -->
+            <div class="builder-controls">
+              <div class="builder-group">
+                <label><strong data-i18n-en="1. Central Processing Unit (CPU):">1. المعالج المركزي (CPU):</strong></label>
+                <select id="builderCpu" class="form-control" onchange="updatePcEvaluator()">
+                  <option value="dual_2ghz" data-i18n-en="Dual-Core (2 Cores @ 2.0 GHz) - Very Weak">Dual-Core (2 Cores @ 2.0 GHz) - ضعيف جداً</option>
+                  <option value="quad_3ghz" data-i18n-en="Quad-Core (4 Cores / 8 Threads @ 3.0 GHz) - Budget">Quad-Core (4 Cores / 8 Threads @ 3.0 GHz) - اقتصادي</option>
+                  <option value="hexa_35ghz" selected data-i18n-en="Modern Multi-Core (6 Cores / 12 Threads @ 3.5 GHz) - Lecture Recommended ⭐">Modern Multi-Core (6 Cores / 12 Threads @ 3.5 GHz) - موصى به بالمحاضرة ⭐</option>
+                  <option value="octa_45ghz" data-i18n-en="High-End Multi-Core (8 Cores / 16 Threads @ 4.5 GHz) - Professional">High-End Multi-Core (8 Cores / 16 Threads @ 4.5 GHz) - احترافي</option>
+                </select>
+              </div>
+
+              <div class="builder-group">
+                <label><strong data-i18n-en="2. Random Access Memory (RAM):">2. ذاكرة الوصول العشوائي (RAM):</strong></label>
+                <select id="builderRam" class="form-control" onchange="updatePcEvaluator()">
+                  <option value="4" data-i18n-en="4 GB RAM (Unsuitable for modern dev environments)">4 GB RAM (غير مناسب لبيئات التطوير الحديثة)</option>
+                  <option value="8" data-i18n-en="8 GB RAM (Acceptable minimum, browsing only)">8 GB RAM (حد أدنى مقبول للتصفح فقط)</option>
+                  <option value="16" selected data-i18n-en="16 GB RAM (Lecture-recommended for IT students ⭐)">16 GB RAM (الموصى به بالمحاضرة لطالب IT ⭐)</option>
+                  <option value="32" data-i18n-en="32 GB RAM (Excellent for multiple VMs)">32 GB RAM (ممتاز للآلات الافتراضية المتعددة VMs)</option>
+                </select>
+              </div>
+
+              <div class="builder-group">
+                <label><strong data-i18n-en="3. Permanent Storage (Storage):">3. وحدة التخزين الدائم (Storage):</strong></label>
+                <select id="builderStorage" class="form-control" onchange="updatePcEvaluator()">
+                  <option value="hdd_1tb" data-i18n-en="1 TB Mechanical HDD (Slow boot &amp; app loading)">1 TB HDD ميكانيكي (بطيء في الإقلاع وفتح البرامج)</option>
+                  <option value="ssd_256" data-i18n-en="256 GB NVMe SSD (Fast but tight capacity)">256 GB NVMe SSD (سريع ولكن سعة ضيقة)</option>
+                  <option value="ssd_512" selected data-i18n-en="512 GB - 1 TB Fast NVMe SSD (Lecture recommended ⭐)">512 GB - 1 TB Fast NVMe SSD (موصى به بالمحاضرة ⭐)</option>
+                  <option value="hybrid" data-i18n-en="512 GB SSD (for OS) + 2 TB HDD (archive &amp; bulk storage)">512 GB SSD (للنظام) + 2 TB HDD (أرشيف وتخزين ضخم)</option>
+                </select>
+              </div>
+
+              <div class="builder-group">
+                <label><strong data-i18n-en="4. Graphics Processing Unit (GPU):">4. معالج الرسوميات (GPU):</strong></label>
+                <select id="builderGpu" class="form-control" onchange="updatePcEvaluator()">
+                  <option value="integrated" selected data-i18n-en="Integrated GPU - Sufficient for most programming &amp; university tasks">كارت مدمج (Integrated GPU) - كافٍ جداً لأغلب مهام البرمجة والجامعة</option>
+                  <option value="dedicated_4gb" data-i18n-en="Budget Dedicated (4GB VRAM) - Good for light design">كارت منفصل اقتصادي (Dedicated 4GB VRAM) - جيد للتصميم الخفيف</option>
+                  <option value="dedicated_8gb" data-i18n-en="Powerful Dedicated (8GB+ VRAM RTX) - Essential for AI, 3D &amp; rendering">كارت منفصل قوي (Dedicated 8GB+ VRAM RTX) - ضروري للذكاء الاصطناعي و 3D والريندر</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Right Evaluation Scorecard -->
+            <div class="builder-results" id="builderResultsBox"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+
+    <!-- View: Lecture 2 (Operating Systems & Software) -->
+    <section id="viewLec2" class="hidden" data-view-accent="emerald">
+      <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(20, 184, 166, 0.14) 100%); border-color: rgba(16, 185, 129, 0.42);">
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <button class="btn btn-outline btn-sm js-back-lectures" onclick="showView('lectures')" style="border-color:var(--accent);color:var(--accent-fg);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
+        </div>
+        <div class="banner-emblem" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="60" height="60">
+            <rect x="8" y="10" width="48" height="12" rx="4" fill="var(--orange-soft)" stroke="var(--orange)" stroke-width="2"/>
+            <rect x="8" y="26" width="48" height="12" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="8" y="42" width="48" height="12" rx="4" fill="var(--purple-soft)" stroke="var(--purple)" stroke-width="2"/>
+            <circle cx="16" cy="16" r="2.2" fill="var(--orange)"/>
+            <circle cx="16" cy="32" r="2.2" fill="var(--accent)"/>
+            <circle cx="16" cy="48" r="2.2" fill="var(--purple)"/>
+          </svg>
+        </div>
+        <div class="sheet-uni-tag" id="lec2BadgeTag" style="color:var(--accent-fg);background:var(--accent-soft);border-color:rgba(16,185,129,0.4);">🖥️ المحاضرة 2 • أنظمة التشغيل وهندسة البرمجيات</div>
+        <h2 style="font-size:1.6rem;color:var(--text);margin-bottom:6px;" id="lec2TitleHead">المحاضرة 2: أنظمة التشغيل والبرمجيات</h2>
+        <div style="font-size:0.95rem;color:var(--accent-fg);font-weight:700;margin-bottom:10px;" id="lec2SubTitleHead">Operating Systems & Software (Tutorial 2)</div>
+        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.93rem;line-height:1.6;" id="lec2BannerDesc" data-i18n-en="A complete interactive academic guide to software: the hardware-software relationship, system vs application software, the seven OS functions (CPU scheduling, memory &amp; virtual memory, files &amp; file systems, devices &amp; drivers, security, GUI &amp; CLI interfaces, and networking), OS types, the three translators (Compiler, Interpreter, Assembler), and maintenance/backup/compression utilities, with the solved 50-question tutorial sheet and model written answers.">
+          دليل أكاديمي تفاعلي شامل لشرح مفهوم البرمجيات، العلاقة بين العتاد والبرمجيات، برمجيات النظام مقابل البرمجيات التطبيقية، الوظائف السبع لنظام التشغيل (جدولة المعالج، إدارة الذاكرة والذاكرة الافتراضية، إدارة الملفات ونظم الملفات، إدارة الأجهزة وبرامج التعريف، الأمان، الواجهات GUI و CLI، والشبكات)، أنواع أنظمة التشغيل، المترجمات الثلاثة (Compiler, Interpreter, Assembler)، وبرمجيات الصيانة والنسخ الاحتياطي والضغط، مع حلول الـ 50 سؤالاً لشيت التوتوريال والأسئلة المقالية النموذجية.
+        </p>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="setLec2SubTab('guide')" data-i18n-en="📖 Interactive Theory &amp; Study">📖 الشرح والدراسة التفاعلية</button>
+          <button class="btn btn-accent" onclick="setLec2SubTab('sheet')" data-i18n-en="📝 Tutorial Sheet (50 MCQs + Written)">📝 شيت التوتوريال (50 MCQs + مقالي)</button>
+          <button class="btn btn-warn" onclick="setLec2SubTab('sim')" data-i18n-en="⚙️ Translators &amp; CPU Scheduler Simulator">⚙️ محاكي المترجمات وجدولة المعالج</button>
+          <button class="btn btn-outline" onclick="startLecPractice('lec2', 'all')" data-i18n-en="🚀 Start Lecture 2 Practice in the Arena">🚀 بدء اختبار المحاضرة 2 في الآرينا</button>
+        </div>
+      </div>
+
+      <div class="section-divider" data-tone="emerald">
+        <span class="divider-line divider-line-start"></span>
+        <span class="divider-pill">
+          <span class="divider-dot"></span>
+          <span class="divider-label" data-i18n-en="🖥️ Lecture 2 Study Modules &amp; OS Simulator">🖥️ أقسام دراسة المحاضرة 2 ومحاكي نظام التشغيل</span>
+          <span class="divider-dot"></span>
+        </span>
+        <span class="divider-line divider-line-end"></span>
+      </div>
+
+      <!-- Sub Navigation Tabs for Lecture 2 -->
+      <div class="lecture-subnav">
+        <button class="subnav-btn active" id="subnavLec2Guide" onclick="setLec2SubTab('guide')">📖 الشرح والمفاهيم الأساسية</button>
+        <button class="subnav-btn" id="subnavLec2Sheet" onclick="setLec2SubTab('sheet')">📝 شيت التوتوريال والأسئلة (50 سؤالاً)</button>
+        <button class="subnav-btn" id="subnavLec2Written" onclick="setLec2SubTab('written')">✍️ الأسئلة المقالية النموذجية</button>
+        <button class="subnav-btn" id="subnavLec2Sim" onclick="setLec2SubTab('sim')" data-i18n-en="⚙️ Translators &amp; CPU Scheduler Simulator">⚙️ محاكي المترجمات وجدولة المعالج</button>
+      </div>
+
+      <!-- Tip Badge for Translation -->
+      <div class="glossary-tip-badge" style="margin-bottom:18px;">
+        <span data-i18n-en="💡 Interactive tip: click any word or a full sentence (or select any text with the mouse) to hear its English pronunciation 🔊 and see its instant academic Arabic translation!">💡 تلميح تفاعلي: يمكنك النقر على أي كلمة أو جملة كاملة (أو تظليل أي نص بالماوس) للاستماع لنطقها بالإنجليزية 🔊 وعرض ترجمتها الأكاديمية الفورية بالعربية!</span>
+      </div>
+
+      <!-- Tab 1: Theory Guide Container -->
+      <div id="lec2GuideContent" class="lec-tab-panel"></div>
+
+      <!-- Tab 2: Interactive Sheet Questions -->
+      <div id="lec2SheetContent" class="lec-tab-panel hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec2SheetHeader" data-i18n-en="Lecture 2 Sheet Question Bank (Tutorial 2: 50 Multiple-Choice Questions)">بنك أسئلة شيت المحاضرة 2 (توتوريال 2: 50 سؤال اختيارات متعددة)</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec2SheetSub" data-i18n-en="Pick the correct answer for instant marking, a detailed scientific explanation, and XP points:">اختر الإجابة الصحيحة لتحصل على تصحيح فوري، شرح علمي مفصل، ونقاط خبرة XP:</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec2', 'all')" data-i18n-en="🚀 Solve in Interactive Challenge Mode (Arena)">🚀 حل في وضع التحدي التفاعلي (Arena)</button>
+            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec2', 'random10')" data-i18n-en="🎲 10 Random Questions">🎲 10 أسئلة عشوائية</button>
+          </div>
+        </div>
+        <div id="lec2QuestionsList" class="questions-container"></div>
+      </div>
+
+      <!-- Tab 3: Written Questions -->
+      <div id="lec2WrittenContent" class="lec-tab-panel hidden">
+        <div id="lec2WrittenList" class="written-container"></div>
+      </div>
+
+      <!-- Tab 4: Interactive OS & Translators Simulator -->
+      <div id="lec2SimContent" class="lec-tab-panel hidden">
+        <div class="builder-card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="font-size:2rem;">⚙️</div>
+            <div>
+              <h3 style="font-size:1.25rem;font-weight:800;color:var(--primary);" id="simTitle" data-i18n-en="Programming Translators &amp; CPU Scheduling Simulator (Translators &amp; OS Simulator)">محاكي مترجمات لغات البرمجة وجدولة المهام (Translators & OS Simulator)</h3>
+              <p style="font-size:0.86rem;color:var(--text-muted);" id="simSub" data-i18n-en="See in practice the core differences between the Compiler, the Interpreter and the Assembler, and how the CPU manages multiple processes in memory:">شاهد عملياً الفروق الجوهرية بين المترجم (Compiler) والمفسر (Interpreter) والمجمع (Assembler)، وكيف يدير المعالج العمليات المتعددة في الذاكرة:</p>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;">
+            <!-- Simulator Box 1: Translators in Action -->
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;">
+              <h4 style="color:var(--primary);margin-bottom:10px;font-size:1.05rem;" data-i18n-en="1. Translators Experiment (Translators Pipeline):">1. تجربة المترجمات (Translators Pipeline):</h4>
+              <div style="margin-bottom:10px;">
+                <label style="font-size:0.85rem;color:var(--text-muted);display:block;margin-bottom:4px;" data-i18n-en="Choose a translator type to try:">اختر نوع المترجم للتجربة:</label>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                  <button class="btn btn-outline btn-xs" id="btnSimCompiler" onclick="runSimTranslator('compiler')">Compiler (C++/Java)</button>
+                  <button class="btn btn-outline btn-xs" id="btnSimInterpreter" onclick="runSimTranslator('interpreter')">Interpreter (Python)</button>
+                  <button class="btn btn-outline btn-xs" id="btnSimAssembler" onclick="runSimTranslator('assembler')">Assembler (Assembly)</button>
+                </div>
+              </div>
+              <div id="translatorSimOutput" data-i18n-en="Click any translator to watch its translation cycle, execution speed, and output files..." style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:0.85rem;min-height:160px;font-family:monospace;line-height:1.6;">
+                اضغط على أي مترجم لمشاهدة دورة الترجمة وسرعة التنفيذ والملفات الناتجة...
+              </div>
+            </div>
+
+            <!-- Simulator Box 2: CPU Multitasking & Scheduling -->
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;">
+              <h4 style="color:var(--accent);margin-bottom:10px;font-size:1.05rem;" data-i18n-en="2. CPU Scheduling &amp; Multitasking (CPU Scheduling / Time-Slicing):">2. جدولة المعالج وتعدد المهام (CPU Scheduling / Time-Slicing):</h4>
+              <p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:10px;" data-i18n-en="How the CPU gives each app (IDE, Web Browser, Media Player) a time slice (Quantum) so they all run concurrently:">
+                كيف يُعطي المعالج شريحة زمنية (Quantum) لكل تطبيق (IDE, Web Browser, Media Player) ليعملوا في وقت متزامن:
+              </p>
+              <div style="margin-bottom:12px;">
+                <button class="btn btn-primary btn-sm" id="btnStartScheduler" onclick="toggleSchedulerSim()" data-i18n-en="▶️ Start CPU Scheduling Simulation">▶️ تشغيل محاكاة الجدولة الزمنية</button>
+              </div>
+              <div id="schedulerTimeline" style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;">
+                  <span style="width:90px;font-weight:bold;color:var(--primary);">VS Code (IDE):</span>
+                  <div style="flex:1;background:var(--bg-inset);height:14px;border-radius:4px;overflow:hidden;position:relative;">
+                    <div id="barProc1" style="height:100%;width:0%;background:var(--primary);transition:width 0.2s linear;"></div>
+                  </div>
+                  <span id="stateProc1" class="tag easy" style="font-size:0.7rem;" data-i18n-en="Ready">جاهز</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;">
+                  <span style="width:90px;font-weight:bold;color:var(--accent);">Chrome Browser:</span>
+                  <div style="flex:1;background:var(--bg-inset);height:14px;border-radius:4px;overflow:hidden;position:relative;">
+                    <div id="barProc2" style="height:100%;width:0%;background:var(--accent);transition:width 0.2s linear;"></div>
+                  </div>
+                  <span id="stateProc2" class="tag medium" style="font-size:0.7rem;" data-i18n-en="Ready">جاهز</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;">
+                  <span style="width:90px;font-weight:bold;color:var(--warn);">Media Player:</span>
+                  <div style="flex:1;background:var(--bg-inset);height:14px;border-radius:4px;overflow:hidden;position:relative;">
+                    <div id="barProc3" style="height:100%;width:0%;background:var(--warn);transition:width 0.2s linear;"></div>
+                  </div>
+                  <span id="stateProc3" class="tag hard" style="font-size:0.7rem;" data-i18n-en="Ready">جاهز</span>
+                </div>
+              </div>
+              <div id="schedulerLog" data-i18n-en="Status: scheduler stopped. Press start to watch." style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;padding:6px;background:var(--primary-soft);border-radius:6px;">
+                الحالة: الجدولة متوقفة. اضغط زر التشغيل للمشاهدة.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+
+    <!-- View: Lecture 4 (Programming, Translators & Flowcharts) -->
+    <section id="viewLec4" class="hidden" data-view-accent="rose">
+      <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(251, 113, 133, 0.16) 0%, rgba(244, 114, 182, 0.14) 100%); border-color: rgba(251, 113, 133, 0.42);">
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <button class="btn btn-outline btn-sm js-back-lectures" onclick="showView('lectures')" style="border-color:var(--rose);color:var(--rose-fg);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
+        </div>
+        <div class="banner-emblem" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="60" height="60">
+            <rect x="20" y="6" width="24" height="10" rx="5" fill="var(--rose-soft)" stroke="var(--rose)" stroke-width="2"/>
+            <line x1="32" y1="16" x2="32" y2="23" stroke="var(--rose)" stroke-width="2"/>
+            <polygon points="32,23 48,34 32,45 16,34" fill="var(--warn-soft)" stroke="var(--warn)" stroke-width="2"/>
+            <line x1="32" y1="45" x2="32" y2="51" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="20" y="51" width="24" height="9" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="sheet-uni-tag" id="lec4BadgeTag" style="color:var(--rose-fg);background:var(--rose-soft);border-color:rgba(251,113,133,0.4);">⚙️ المحاضرة 4 • أساسيات البرمجة والمترجمات وخرائط التدفق</div>
+        <h2 style="font-size:1.6rem;color:var(--text);margin-bottom:6px;" id="lec4TitleHead">المحاضرة 4: البرمجة والمترجمات والتدفق المنطقي</h2>
+        <div style="font-size:0.95rem;color:var(--rose-fg);font-weight:700;margin-bottom:10px;" id="lec4SubTitleHead">Programming Fundamentals, Translators & Flowcharts (Tutorial 5)</div>
+        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.93rem;line-height:1.6;" id="lec4BannerDesc" data-i18n-en="A complete practical guide to programming basics: how the computer follows logical instructions precisely without guessing (rejecting 10/0), high-level vs low-level languages, the three translators (Compiler, Interpreter, Assembler), algorithms, and the standard flowchart symbols (start/end, input/output, process, decision), with full solutions for the 10 Completion and 10 True/False questions and the 5 flowchart tracing problems with diagrams and trace tables.">
+          دليل تعليمي تطبيقي شامل لأساسيات البرمجة، كيف يفهم الحاسوب الأوامر المنطقية بدقة دون تخمين (عدم قبول 10/0)، اللغات عالية ومنخفضة المستوى (High-Level vs Low-Level)، المترجمات الثلاثة (Compiler, Interpreter, Assembler)، الخوارزميات (Algorithms)، الرموز القياسية لخرائط التدفق (Flowcharts: البداية/النهاية، الإدخال/الإخراج، العمليات، وشروط اتخاذ القرار)، مع حلول الشيت الشاملة لأسئلة Complete (10) و True/False (10) وتتبع خرائط التدفق الـ 5 (Flowchart Tracing) بالرسوم والجداول التوضيحية.
+        </p>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="setLec4SubTab('guide')" data-i18n-en="📖 Interactive Theory &amp; Study">📖 الشرح والدراسة التفاعلية</button>
+          <button class="btn btn-accent" onclick="setLec4SubTab('sheet')" data-i18n-en="📝 Tutorial Sheet (Complete + True/False)">📝 شيت التوتوريال (Complete + True/False)</button>
+          <button class="btn btn-warn" onclick="setLec4SubTab('flow')" data-i18n-en="📊 Flowchart Tracing &amp; Simulation (5 Paths)">📊 تتبع ومحاكاة خرائط التدفق (5 مسارات)</button>
+          <button class="btn btn-outline" onclick="startLecPractice('lec4', 'all')" data-i18n-en="🚀 Start Lecture 4 Practice in the Arena">🚀 بدء اختبار المحاضرة 4 في الآرينا</button>
+        </div>
+      </div>
+
+      <div class="section-divider" data-tone="rose">
+        <span class="divider-line divider-line-start"></span>
+        <span class="divider-pill">
+          <span class="divider-dot"></span>
+          <span class="divider-label" data-i18n-en="📊 Lecture 4 Modules &amp; Flowchart Studio">📊 أقسام دراسة المحاضرة 4 ومعمل خرائط التدفق</span>
+          <span class="divider-dot"></span>
+        </span>
+        <span class="divider-line divider-line-end"></span>
+      </div>
+
+      <!-- Sub Navigation Tabs for Lecture 4 -->
+      <div class="lecture-subnav">
+        <button class="subnav-btn active" id="subnavLec4Guide" onclick="setLec4SubTab('guide')">📖 الشرح والمفاهيم الأساسية</button>
+        <button class="subnav-btn" id="subnavLec4Sheet" onclick="setLec4SubTab('sheet')">📝 أسئلة الإكمال والصواب والخطأ (20 سؤالاً)</button>
+        <button class="subnav-btn" id="subnavLec4Flow" onclick="setLec4SubTab('flow')">📊 مسائل خرائط التدفق وحساب المخرجات (5 مسائل)</button>
+      </div>
+
+      <!-- Tip Badge for Translation -->
+      <div class="glossary-tip-badge" style="margin-bottom:18px;">
+        <span data-i18n-en="💡 Interactive tip: click any word or a full sentence (or select any text with the mouse) to hear its English pronunciation 🔊 and see its instant academic Arabic translation!">💡 تلميح تفاعلي: يمكنك النقر على أي كلمة أو جملة كاملة (أو تظليل أي نص بالماوس) للاستماع لنطقها بالإنجليزية 🔊 وعرض ترجمتها الأكاديمية الفورية بالعربية!</span>
+      </div>
+
+      <!-- Tab 1: Theory Guide Container -->
+      <div id="lec4GuideContent" class="lec-tab-panel"></div>
+
+      <!-- Tab 2: Interactive Sheet Questions (Complete + True/False) -->
+      <div id="lec4SheetContent" class="lec-tab-panel hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec4SheetHeader" data-i18n-en="Lecture 4 Sheet Practice Bank (Tutorial 5: Completion &amp; True/False)">بنك تدريبات شيت المحاضرة 4 (توتوريال 5: أكمل وصواب/خطأ)</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec4SheetSub" data-i18n-en="Practice the core programming and translators concepts with instant marking and points:">تدرّب على تثبيت المفاهيم العلمية للبرمجة والمترجمات مع التصحيح الفوري والنقاط:</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec4', 'all')" data-i18n-en="🚀 Solve in Interactive Challenge Mode (Arena)">🚀 حل في وضع التحدي التفاعلي (Arena)</button>
+            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec4', 'complete')" data-i18n-en="✏️ Completion Questions Only (10)">✏️ أسئلة الإكمال فقط (10)</button>
+            <button class="btn btn-outline btn-sm" onclick="startLecPractice('lec4', 'tf')" data-i18n-en="⚖️ True/False Questions Only (10)">⚖️ أسئلة صح / خطأ فقط (10)</button>
+          </div>
+        </div>
+        <div id="lec4QuestionsList" class="questions-container"></div>
+      </div>
+
+      <!-- Tab 3: Interactive Flowcharts Tracing & Step Simulator -->
+      <div id="lec4FlowContent" class="lec-tab-panel hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:1.15rem;color:var(--text);font-weight:800;" id="lec4FlowHeader" data-i18n-en="Flowchart Tracing &amp; Program Output Problems (Flowchart Tracing Challenges)">مسائل تتبع خرائط التدفق وحساب مخرجات البرامج (Flowchart Tracing Challenges)</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);" id="lec4FlowSub" data-i18n-en="See the diagram of each tutorial problem and the step-by-step variable trace table, then run the trace yourself:">شاهد الرسم البياني لكل مسألة من شيت التوتوريال، جدول تتبع المتغيرات خطوة بخطوة، ونفّذ التتبع بنفسك:</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-accent btn-sm" onclick="startLecPractice('lec4', 'flowcharts')" data-i18n-en="🚀 Solve Flow Problems in the Arena">🚀 حل مسائل التدفق في الآرينا</button>
+          </div>
+        </div>
+        <div id="lec4FlowchartsList" class="flowcharts-container"></div>
+      </div>
+    </section>
+  
+    <!-- View: Smart Step-by-Step Calculator -->
+    <section id="viewCalc" class="hidden">
+      <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(167, 139, 250, 0.16) 0%, rgba(251, 146, 60, 0.12) 100%); border-color: rgba(167, 139, 250, 0.4);">
+        <div class="banner-emblem" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="60" height="60">
+            <rect x="12" y="8" width="40" height="48" rx="9" fill="var(--purple-soft)" stroke="var(--purple)" stroke-width="2.4"/>
+            <rect x="18" y="14" width="28" height="12" rx="3" fill="var(--svg-node)" stroke="var(--accent)" stroke-width="1.8"/>
+            <text x="32" y="23" text-anchor="middle" font-family="Consolas,monospace" font-size="9" font-weight="800" fill="var(--accent)">0xFF→255</text>
+            <circle cx="22" cy="35" r="3" fill="var(--orange)"/>
+            <circle cx="32" cy="35" r="3" fill="var(--warn)"/>
+            <circle cx="42" cy="35" r="3" fill="var(--purple)"/>
+            <circle cx="22" cy="45" r="3" fill="var(--accent)"/>
+            <rect x="29" y="42" width="16" height="6" rx="3" fill="var(--teal)"/>
+          </svg>
+        </div>
+        <h2 style="font-size:1.6rem;margin-bottom:8px;">حاسبة التحويلات الذكية (مع خطوات الحل النموذجية)</h2>
+        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.95rem;">
+          أدخل أي عدد صحيح أو كسري في أي نظام عددي، واختر النظام المطلوب لتحصل على <strong>الناتج النهائي + خطوات الحل النموذجية المفصلة خطوة بخطوة</strong> وفق خطوات الشيت المعتمد خطوة بخطوة.
+        </p>
+        <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;align-items:center;">
+          <span style="font-size:0.82rem;color:var(--text-muted);font-weight:bold;" id="calcSamplesLabel">Quick Sheet Samples:</span>
+          <button type="button" class="btn btn-outline btn-xs" onclick="loadCalcSample('150', 10, 2)">150₁₀ → ثنائي</button>
+          <button type="button" class="btn btn-outline btn-xs" onclick="loadCalcSample('12.25', 10, 2)">12.25₁₀ → ثنائي (كسر)</button>
+          <button type="button" class="btn btn-outline btn-xs" onclick="loadCalcSample('234', 8, 10)">234₈ → عشري</button>
+          <button type="button" class="btn btn-outline btn-xs" onclick="loadCalcSample('91', 10, 8)">91₁₀ → ثماني</button>
+          <button type="button" class="btn btn-outline btn-xs" onclick="loadCalcSample('2AB', 16, 10)">2AB₁₆ → عشري</button>
+          <button type="button" class="btn btn-outline btn-xs" onclick="loadCalcSample('754', 8, 16)">754₈ → سادس عشر (جسر)</button>
+          <button type="button" class="btn btn-outline btn-xs" onclick="loadCalcSample('E16', 16, 8)">E16₁₆ → ثماني (جسر)</button>
+        </div>
+      </div>
+
+      <div class="section-divider" data-tone="purple">
+        <span class="divider-line divider-line-start"></span>
+        <span class="divider-pill">
+          <span class="divider-dot"></span>
+          <span class="divider-label" data-i18n-en="🧮 Interactive Base Converter Workspace">🧮 مساحة العمل الحسابية والتحويل الفوري</span>
+          <span class="divider-dot"></span>
+        </span>
+        <span class="divider-line divider-line-end"></span>
+      </div>
+
+      <div class="arena" style="max-width:780px;margin:0 auto;text-align:right;border-top:4px solid var(--purple);">
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:18px;">
+          <div>
+            <label style="font-size:0.84rem;color:var(--orange-fg);display:block;margin-bottom:6px;font-weight:700;" id="calcFromLabel">Convert from (Source Base):</label>
+            <select id="calcFromBase" class="answer-input" style="padding:8px 12px;font-size:0.95rem;background:var(--card);border:1.5px solid var(--orange);border-radius:var(--radius-sm);color:var(--text);width:100%;">
+              <option value="10">النظام العشري (Decimal - Base 10)</option>
+              <option value="2">النظام الثنائي (Binary - Base 2)</option>
+              <option value="8">النظام الثماني (Octal - Base 8)</option>
+              <option value="16">النظام السادس عشر (Hexadecimal - Base 16)</option>
+            </select>
+          </div>
+
+          <div style="font-size:1.6rem;color:var(--purple);text-align:center;padding-top:20px;">
+            ⇄
+          </div>
+
+          <div>
+            <label style="font-size:0.84rem;color:var(--accent-fg);display:block;margin-bottom:6px;font-weight:700;" id="calcToLabel">Convert to (Target Base):</label>
+            <select id="calcToBase" class="answer-input" style="padding:8px 12px;font-size:0.95rem;background:var(--card);border:1.5px solid var(--accent);border-radius:var(--radius-sm);color:var(--text);width:100%;">
+              <option value="2">النظام الثنائي (Binary - Base 2)</option>
+              <option value="10">النظام العشري (Decimal - Base 10)</option>
+              <option value="8">النظام الثماني (Octal - Base 8)</option>
+              <option value="16">النظام السادس عشر (Hexadecimal - Base 16)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label style="font-size:0.84rem;color:var(--text-muted);display:block;margin-bottom:6px;font-weight:700;" id="calcInputLabelText">Enter Number to Convert:</label>
+          <input type="text" id="calcInputVal" class="answer-input" placeholder="اكتب العدد هنا (مثال: 150 أو 12.25 أو 2AB)..." style="font-size:1.25rem;text-align:center;direction:ltr;unicode-bidi:plaintext;font-family:Consolas,monospace;" />
+          
+          <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px;">
+            <span style="font-size:0.8rem;color:var(--text-muted);align-self:center;" id="calcKeypadLabel">Quick Keypad:</span>
+            <button type="button" class="btn btn-outline btn-xs" onclick="appendCalcKey('A')">A</button>
+            <button type="button" class="btn btn-outline btn-xs" onclick="appendCalcKey('B')">B</button>
+            <button type="button" class="btn btn-outline btn-xs" onclick="appendCalcKey('C')">C</button>
+            <button type="button" class="btn btn-outline btn-xs" onclick="appendCalcKey('D')">D</button>
+            <button type="button" class="btn btn-outline btn-xs" onclick="appendCalcKey('E')">E</button>
+            <button type="button" class="btn btn-outline btn-xs" onclick="appendCalcKey('F')">F</button>
+            <button type="button" class="btn btn-outline btn-xs" id="calcKeyPoint" onclick="appendCalcKey('.')">. (Point)</button>
+            <button type="button" class="btn btn-outline btn-xs" id="calcKeyClear" onclick="clearCalcInput()" style="color:var(--warn-fg);">Clear</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-full" id="btnRunCalc" onclick="runCalculator()" style="font-size:1.05rem;padding:12px;font-weight:800;">
+          ⚡ احسب واعرض خطوات الحل النموذجية
+        </button>
+
+        <div id="calcResultContainer" class="hidden" style="margin-top:24px;">
+          <div style="background:var(--accent-soft);border:1px solid rgba(16,185,129,0.38);border-radius:12px;padding:16px;text-align:center;margin-bottom:18px;">
+            <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:4px;" id="calcFinalOutputLabel">Final Result:</div>
+            <div id="calcFinalOutput" style="font-size:2rem;font-weight:900;color:var(--accent-fg);font-family:Consolas,monospace;direction:ltr;"></div>
+          </div>
+
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;">
+            <h4 style="font-size:1.05rem;font-weight:800;color:var(--warn-fg);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+              <span id="calcStepsHeaderSpan">🎬 Academic Step-by-Step Model Steps:</span>
+            </h4>
+            <div id="calcStepsOutput" style="line-height:1.75;font-size:0.92rem;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="viewStages">
+      <div class="mastery-card">
+        <div class="mastery-top">
+          <div>
+            <strong>تقدمك العام في إتقان الأنظمة العددية</strong>
+            <div style="font-size:0.85rem;color:var(--text-muted);" id="masterySubtitle">أكمل مستويات المراحل الـ 12 (سهل ← متوسط ← صعب) لفتح كل الأوسمة.</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <strong style="color:var(--warn-fg);font-size:1.1rem;" id="masteryPercent">0%</strong>
+            <button class="btn btn-outline btn-sm" id="btnResetProgress" title="إعادة ضبط التقدم">🗑️ تصفير</button>
+          </div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="masteryBar"></div>
+        </div>
+        <div style="margin-top:10px;font-size:0.85rem;font-weight:700;color:var(--text-muted);" id="badgesTitle">الأوسمة والإنجازات:</div>
+        <div class="badges-row" id="badgesRow"></div>
+      </div>
+
+      <div class="section-divider" data-tone="purple">
+        <span class="divider-line divider-line-start"></span>
+        <span class="divider-pill">
+          <span class="divider-dot"></span>
+          <span class="divider-label" data-i18n-en="🗺️ Number Systems Visual Ecosystem Map">🗺️ الخريطة البصرية لعلاقات الأنظمة العددية</span>
+          <span class="divider-dot"></span>
+        </span>
+        <span class="divider-line divider-line-end"></span>
+      </div>
+
+      <!-- Visual Ecosystem Map for the 4 Number Systems & All 12 Conversion Paths -->
+      <div class="systems-map-card" id="systemsMapBox"></div>
+
+      <div class="section-divider" data-tone="teal">
+        <span class="divider-line divider-line-start"></span>
+        <span class="divider-pill">
+          <span class="divider-dot"></span>
+          <span class="divider-label" data-i18n-en="🎛️ Explore &amp; Filter the 12 Conversion Stages">🎛️ تصفية واستكشاف التحويلات الـ 12</span>
+          <span class="divider-dot"></span>
+        </span>
+        <span class="divider-line divider-line-end"></span>
+      </div>
+
+      <!-- Conversion Filters & Search Bar -->
+      <div class="stage-filters" id="stageFiltersBar">
+        <span style="font-size:0.85rem;font-weight:700;color:var(--text-muted);" id="filterLabel">أقسام التحويلات:</span>
+        <button class="stage-filter-btn active" data-cat="all" id="btnFilterAll" onclick="filterStageCards('all')">📌 كل التحويلات (12)</button>
+        <button class="stage-filter-btn" data-cat="dec" id="btnFilterDec" onclick="filterStageCards('dec')">🔟 من وإلى العشري (6)</button>
+        <button class="stage-filter-btn" data-cat="bin" id="btnFilterBin" onclick="filterStageCards('bin')">⚡ الثنائي المباشر (4)</button>
+        <button class="stage-filter-btn" data-cat="bridge" id="btnFilterBridge" onclick="filterStageCards('bridge')">🌉 الجسر الثنائي (2)</button>
+        <div class="stage-search-wrap">
+          <input type="text" class="stage-search-input" id="stageSearchInput" placeholder="🔍 بحث سريع في أسماء وطرق التحويل..." oninput="filterStageCards('current')">
+        </div>
+      </div>
+
+      <div id="stageGrid"></div>
+    </section>
+
+    <!-- View: Tutorial Sheet Dashboard -->
+    <section id="viewSheet" class="hidden">
+      <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.16) 0%, rgba(16, 185, 129, 0.12) 100%); border-color: rgba(245, 158, 11, 0.38);">
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <button class="btn btn-outline btn-sm js-back-lectures" onclick="showView('lectures')" style="border-color:var(--warn);color:var(--warn-fg);">⬅️ العودة لفهرس المحاضرات (Lectures Hub)</button>
+        </div>
+        <div class="banner-emblem" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="60" height="60">
+            <rect x="14" y="8" width="36" height="48" rx="6" fill="var(--warn-soft)" stroke="var(--warn)" stroke-width="2.4"/>
+            <line x1="22" y1="20" x2="42" y2="20" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="22" y1="30" x2="42" y2="30" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="22" y1="40" x2="34" y2="40" stroke="var(--purple)" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="43" cy="43" r="9" fill="var(--accent)" stroke="var(--svg-node)" stroke-width="2"/>
+            <path d="M39 43 L42 46 L48 40" stroke="#ffffff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sheet-uni-tag" style="color:var(--warn-fg);background:var(--warn-soft);border-color:rgba(245,158,11,0.4);">🏛️ المنصة الأكاديمية التكنولوجية • شيت التحويلات الشامل</div>
+        <h2 style="font-size:1.45rem;color:var(--text);margin-bottom:6px;">شيت الكلية: توتوريال 3</h2>
+        <p style="color:var(--text-muted);max-width:680px;margin:0 auto 16px;font-size:0.92rem;">
+          بنك أسئلة شيت الكلية الكامل (70 مسألة تحويل رقمي + مسائل المفاهيم ومجالات القيم). تدرّب على حل كل مسألة بنفسك، وإذا لم تعرف الحل أو استسلمت، اضغط على زر كشف الحل لمشاهدة خطوات الحل خطوة بخطوة (التنوير، الضرب المتتالي، والجسر الثنائي).
+        </p>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-accent" id="btnStartFullSheet">🚀 بدء حل الشيت كاملاً (70 مسألة)</button>
+          <button class="btn btn-outline" id="btnStartRandomSheet">🎲 اختبار سريع (10 مسائل عشوائية)</button>
+        </div>
+      </div>
+
+      <div class="section-divider" data-tone="amber">
+        <span class="divider-line divider-line-start"></span>
+        <span class="divider-pill">
+          <span class="divider-dot"></span>
+          <span class="divider-label" data-i18n-en="📑 Tutorial 3 Question Bank Sections">📑 أقسام وبنك أسئلة توتوريال 3 الملونة</span>
+          <span class="divider-dot"></span>
+        </span>
+        <span class="divider-line divider-line-end"></span>
+      </div>
+
+      <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+        <h3 style="font-size:1.1rem;color:var(--warn-fg);" id="sheetGridHeader">📑 Sheet Sections (12 Conversion Topics + Theory Concepts)</h3>
+        <span style="font-size:0.84rem;color:var(--text-muted);" id="sheetGridSubtitle">Select any section to drill independently:</span>
+      </div>
+
+      <div class="sheet-grid" id="sheetGrid"></div>
+    </section>
+
+    <!-- View 2: Mistake Review Hub -->
+    <section id="viewMistakes" class="hidden"></section>
+
+    <!-- View 3: Final Exam Intro -->
+    <section id="viewExam" class="hidden">
+      <div class="sheet-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(245, 158, 11, 0.12) 100%); border-color: rgba(16, 185, 129, 0.38);">
+        <div class="banner-emblem" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="60" height="60">
+            <path d="M18 14 H46 V26 C46 35 39 42 32 42 C25 42 18 35 18 26 Z" fill="var(--warn-soft)" stroke="var(--warn)" stroke-width="2.4"/>
+            <path d="M18 18 H10 C10 26 14 30 18 30 M46 18 H54 C54 26 50 30 46 30" stroke="var(--warn)" stroke-width="2.2" fill="none"/>
+            <line x1="32" y1="42" x2="32" y2="52" stroke="var(--warn)" stroke-width="2.6"/>
+            <rect x="20" y="52" width="24" height="6" rx="3" fill="var(--warn)"/>
+            <polygon points="32,20 34.5,25 40,25.8 36,29.5 37,35 32,32.2 27,35 28,29.5 24,25.8 29.5,25" fill="var(--warn)"/>
+          </svg>
+        </div>
+        <h2 style="font-size:1.6rem;margin-bottom:8px;">مركز الاختبارات والتقييم الأكاديمي</h2>
+        <p style="color:var(--text-muted);max-width:760px;margin:0 auto 16px;font-size:0.95rem;">
+          مجموعة اختبارات معيارية مصممة خصيصاً وفق <strong>منهج شيت مقرر تكنولوجيا المعلومات والحاسب (المنصة الأكاديمية المعتمدة)</strong> لقياس استيعابك لكافة موضوعات المقرر والتحويلات والكسور والجسر الثنائي مع التقييم بالتقدير الجامعي.
+        </p>
+        <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+          <button class="btn btn-outline" id="btnOpenQuickRef">📖 Review Rules & Weights Tables</button>
+        </div>
+      </div>
+
+      <div class="section-divider" data-tone="orange">
+        <span class="divider-line divider-line-start"></span>
+        <span class="divider-pill">
+          <span class="divider-dot"></span>
+          <span class="divider-label" data-i18n-en="📚 Individual Lecture Exams (1, 2 &amp; 4)">📚 اختبارات المحاضرات الفردية (1، 2، 4)</span>
+          <span class="divider-dot"></span>
+        </span>
+        <span class="divider-line divider-line-end"></span>
+      </div>
+
+      <div class="exam-grid">
+        <!-- Exam: Lecture 1 -->
+        <div class="exam-card" style="--card-accent:var(--orange);--card-soft:var(--orange-soft);">
+          <div>
+            <span class="exam-card-badge" style="background:var(--orange-soft);color:var(--orange-fg);">💻 المحاضرة 1</span>
+            <h3 style="font-size:1.2rem;margin-bottom:8px;">امتحان المحاضرة 1: مدخل IT ومكونات الحاسوب</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">
+              <strong>25 سؤالاً</strong> مختارة من شيت المحاضرة 1 تغطي: دورة IPOS، معمارية المعالج (CPU & GHz)، كروت الشاشة والذكاء الاصطناعي (GPU)، ذاكرة الرام وحسابات السعات، ومقارنة SSD و HDD.
+            </p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+              <span class="tag easy">📝 25 سؤالاً MCQ</span>
+              <span class="tag medium">⚡ تقييم بالتقدير الجامعي</span>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="startCustomExam('lec1_exam')" style="width:100%;">🚀 ابدأ امتحان المحاضرة 1</button>
+        </div>
+
+        <!-- Exam: Lecture 2 -->
+        <div class="exam-card" style="--card-accent:var(--accent);--card-soft:var(--accent-soft);">
+          <div>
+            <span class="exam-card-badge" style="background:var(--accent-soft);color:var(--accent-fg);">🖥️ المحاضرة 2</span>
+            <h3 style="font-size:1.2rem;margin-bottom:8px;">امتحان المحاضرة 2: أنظمة التشغيل والبرمجيات</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">
+              <strong>25 سؤالاً</strong> تغطي وظائف نظام التشغيل السبع، جدولة المعالج وتعدد المهام، الذاكرة الافتراضية، التعريفات، الإقلاع، والمترجمات الثلاثة (Compiler, Interpreter, Assembler).
+            </p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+              <span class="tag easy">📝 25 سؤالاً MCQ</span>
+              <span class="tag medium">⚡ تقييم فوري شامل</span>
+            </div>
+          </div>
+          <button class="btn btn-accent" onclick="startCustomExam('lec2_exam')" style="width:100%;">🚀 ابدأ امتحان المحاضرة 2</button>
+        </div>
+
+        <!-- Exam: Lecture 4 -->
+        <div class="exam-card" style="--card-accent:var(--rose);--card-soft:var(--rose-soft);">
+          <div>
+            <span class="exam-card-badge" style="background:var(--rose-soft);color:var(--rose-fg);">⚙️ المحاضرة 4</span>
+            <h3 style="font-size:1.2rem;margin-bottom:8px;">امتحان المحاضرة 4: البرمجة وخرائط التدفق</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">
+              <strong>25 سؤالاً</strong> تغطي مفاهيم البرمجة، اللغات عالية ومنخفضة المستوى، أسئلة الإكمال والصواب والخطأ، وتتبع مخرجات خرائط التدفق وحساب قيم المتغيرات.
+            </p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+              <span class="tag hard">📊 تتبع خرائط تدفق</span>
+              <span class="tag medium">📝 أسئلة إكمال ومفاهيم</span>
+            </div>
+          </div>
+          <button class="btn btn-warn" onclick="startCustomExam('lec4_exam')" style="width:100%;">🚀 ابدأ امتحان المحاضرة 4</button>
+        </div>
+
+        <div class="section-divider compact" data-tone="purple" style="grid-column: 1 / -1;">
+          <span class="divider-line divider-line-start"></span>
+          <span class="divider-pill">
+            <span class="divider-dot"></span>
+            <span class="divider-label" data-i18n-en="🎓 Unified Grand Final Exam">🎓 الامتحان الجامعي النهائي الشامل</span>
+            <span class="divider-dot"></span>
+          </span>
+          <span class="divider-line divider-line-end"></span>
+        </div>
+
+        <!-- Grand Comprehensive IT Exam -->
+        <div class="exam-card featured" style="grid-column: 1 / -1; --card-accent:var(--purple); --card-soft:var(--purple-soft); background: linear-gradient(135deg, var(--purple-soft) 0%, var(--orange-soft) 100%); border-color: rgba(167, 139, 250, 0.48);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+            <div>
+              <span class="exam-card-badge" style="background:var(--purple-soft);color:var(--purple-fg);">🎓 الاختبار الشامل للمقرر كاملاً</span>
+              <h3 style="font-size:1.35rem;margin-bottom:6px;">الامتحان الجامعي النهائي الموحد</h3>
+              <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:12px;line-height:1.6;max-width:760px;">
+                اختبار محاكاة نهائي شامل مكوّن من <strong>50 سؤالاً</strong> يجمع بين كافة موضوعات المنهج: عتاد الحاسوب (المحاضرة 1)، أنظمة التشغيل (المحاضرة 2)، الأنظمة العددية والتحويلات الـ 12 (المحاضرة 3)، والبرمجة وخرائط التدفق (المحاضرة 4) مع شهادة تقدير نهائية وتقدير جامعي رسمي (A+ إلى F).
+              </p>
+            </div>
+            <button class="btn btn-primary" onclick="startCustomExam('grand_final')" style="padding:12px 24px;font-size:1rem;font-weight:bold;">🏆 ابدأ الاختبار النهائي الشامل (50 سؤالاً)</button>
+          </div>
+        </div>
+
+        <div class="section-divider compact" data-tone="amber" style="grid-column: 1 / -1;">
+          <span class="divider-line divider-line-start"></span>
+          <span class="divider-pill">
+            <span class="divider-dot"></span>
+            <span class="divider-label" data-i18n-en="🔢 Number Systems &amp; Tutorial 3 Exams">🔢 اختبارات الأنظمة العددية والشيت والميدتيرم</span>
+            <span class="divider-dot"></span>
+          </span>
+          <span class="divider-line divider-line-end"></span>
+        </div>
+
+        <!-- Exam 1: Comprehensive Sheet Exam -->
+        <div class="exam-card featured" style="--card-accent:var(--teal);--card-soft:var(--teal-soft);">
+          <div>
+            <span class="exam-card-badge" style="background:var(--teal-soft);color:var(--teal-fg);">🏛️ معتمد من شيت الكلية</span>
+            <h3 style="font-size:1.2rem;margin-bottom:8px;">امتحان شيت الكلية الشامل (توتوريال 3)</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">
+              امتحان شامل يتكون من <strong>25 سؤالاً</strong> مختارة بعناية تغطي الـ 12 قسماً من شيت الكلية (الأعداد الصحيحة، الكسور، القسمة المتتالية، والجسر الثنائي، والمفاهيم).
+            </p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+              <span class="tag easy">📝 25 سؤالاً</span>
+              <span class="tag medium">🎓 تقدير جامعي (A+ إلى F)</span>
+              <span class="tag hard">🏆 وسام خبير الشيت</span>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="startCustomExam('sheet_full')" style="width:100%;">🚀 ابدأ امتحان الشيت الشامل</button>
+        </div>
+
+        <!-- Exam 2: Midterm Simulation -->
+        <div class="exam-card" style="--card-accent:var(--warn);--card-soft:var(--warn-soft);">
+          <div>
+            <span class="exam-card-badge" style="background:var(--warn-soft);color:var(--warn-fg);">🎯 محاكاة الميدتيرم</span>
+            <h3 style="font-size:1.2rem;margin-bottom:8px;">اختبار الميدتيرم التجريبي (Midterm Exam)</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">
+              <strong>15 سؤالاً</strong> نموذجياً يركز على الأسئلة الأكثر وروداً في الامتحانات الفصلية: الكسور الثنائية والعشرية، وتحويلات السداسي عشر، وحساب عدد البتات.
+            </p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+              <span class="tag medium">📝 15 سؤالاً</span>
+              <span class="tag easy">⚡ تركيز عالي</span>
+              <span class="tag hard">🎯 وسام متفوق الميدتيرم</span>
+            </div>
+          </div>
+          <button class="btn btn-accent" onclick="startCustomExam('midterm')" style="width:100%;">🎯 ابدأ اختبار الميدتيرم</button>
+        </div>
+
+        <!-- Exam 3: Speed Conversion Blitz -->
+        <div class="exam-card" style="--card-accent:var(--pink);--card-soft:var(--pink-soft);">
+          <div>
+            <span class="exam-card-badge" style="background:var(--pink-soft);color:var(--pink-fg);">⚡ تحدي السرعة</span>
+            <h3 style="font-size:1.2rem;margin-bottom:8px;">كويز السرعة للتحويلات (Speed Quiz)</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">
+              <strong>10 أسئلة سريعة</strong> تركز على سرعة البديهة وإتقان أوزان الخانات (8 4 2 1 و 4 2 1) والتحويل الفوري بين الأنظمة.
+            </p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+              <span class="tag easy">📝 10 أسئلة</span>
+              <span class="tag easy">⏱️ إجابة سريعة</span>
+              <span class="tag medium">🔥 تدريب ذهني</span>
+            </div>
+          </div>
+          <button class="btn btn-warn" onclick="startCustomExam('speed')" style="width:100%;">⚡ ابدأ كويز السرعة</button>
+        </div>
+
+        <!-- Exam 4: Comprehensive Master Exam -->
+        <div class="exam-card" style="--card-accent:var(--accent);--card-soft:var(--accent-soft);">
+          <div>
+            <span class="exam-card-badge" style="background:var(--accent-soft);color:var(--accent-fg);">🏆 الاختبار الماستر التراكمي</span>
+            <h3 style="font-size:1.2rem;margin-bottom:8px;">الاختبار التراكمي الشامل (Master Exam)</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">
+              <strong>18 تحدياً متدرجاً</strong> يغطي جميع المراحل من الأسهل للأصعب، مع تقرير تشخيصي متكامل للأداء في كل مرحلة بمفردها وتحديد نقاط الضعف.
+            </p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+              <span class="tag hard">📝 18 تحدياً</span>
+              <span class="tag medium">📊 تقرير تشخيصي شامل</span>
+              <span class="tag easy">🧠 تكيّفي</span>
+            </div>
+          </div>
+          <button class="btn btn-outline" id="btnStartExam" onclick="startCustomExam('final')" style="width:100%;">🏆 ابدأ الاختبار التراكمي</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- View 4: Active Game Arena -->
+    <section id="viewArena" class="hidden">
+      <div class="arena">
+        <div class="arena-topbar">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-outline btn-sm" id="btnExitArena">← Exit</button>
+            <strong id="arenaTitle" style="font-size:1rem;"></strong>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-warn btn-sm" id="btnArenaGuide">📖 Method Guide</button>
+            <button class="btn btn-outline btn-sm" id="btnArenaRestart">🔄 Restart</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.84rem;color:var(--text-muted);margin-bottom:6px;">
+            <span id="qCounterText">التحدي 1 من 5</span>
+            <span id="sessionScoreText">الصحيح: 0</span>
+          </div>
+          <div class="progress-track" style="height:8px;">
+            <div class="progress-fill" id="arenaProgressBar"></div>
+          </div>
+        </div>
+
+        <div class="q-meta" id="qMetaRow" style="margin-bottom:12px;"></div>
+
+        <div class="question-box">
+          <div class="question-prompt" id="qPrompt"></div>
+          <div id="qDisplayArea"></div>
+        </div>
+
+        <!-- Dynamic Interactive Area -->
+        <div id="interactiveArea"></div>
+
+        <!-- Action Bar -->
+        <div id="submitBar" style="display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap;">
+          <button class="btn btn-primary" id="btnCheckAnswer" style="min-width:180px;">✓ Check Answer</button>
+          <button class="btn btn-warn btn-sm" id="btnGiveUpShowSol">💡 Give Up / Show Steps</button>
+          <button class="btn btn-outline btn-sm" id="btnToggleScratch">📝 Scratchpad</button>
+        </div>
+
+        <!-- Scratchpad -->
+        <div id="scratchpadBox" class="scratchpad hidden"></div>
+
+        <!-- Feedback Area -->
+        <div id="feedbackArea" class="hidden"></div>
+      </div>
+    </section>
+
+    <!-- View 5: Session Summary -->
+    <section id="viewSummary" class="hidden">
+      <div class="arena summary-card" id="summaryContent"></div>
+    </section>
+  </main>
+
+  <!-- Method Guide Modal -->
+  <div class="modal-backdrop" id="guideModal">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="guideModalTitle" style="font-size:1.15rem;color:var(--primary);">شرح الطريقة</h3>
+        <button class="btn btn-outline btn-sm" id="btnCloseGuide">✕ Close</button>
+      </div>
+      <div id="guideModalBody"></div>
+    </div>
+  </div>
+
+
+  <!-- Floating Interactive Word & Full Sentence Translation Popover -->
+  <div id="glossaryPopover" class="glossary-popover" role="dialog" aria-modal="true">
+    <div class="glossary-popover-header">
+      <div class="glossary-popover-term">
+        <span id="popoverEn">Binary</span>
+        <button type="button" class="glossary-speak-btn" id="popoverSpeakBtn" title="Listen Pronunciation / استمع للنطق" onclick="speakGlossaryTerm()">🔊</button>
+      </div>
+      <button type="button" class="glossary-popover-close" onclick="hideGlossaryPopover()" title="Close / إغلاق">✕</button>
+    </div>
+    <div class="glossary-popover-ar" id="popoverAr">النظام الثنائي</div>
+    <div><span class="glossary-popover-type" id="popoverType">نظام عددي (Base 2)</span></div>
+    <p class="glossary-popover-def" id="popoverDef">نظام عددي يعتمد على رقمين فقط هما 0 و 1، وهو لغة الآلة الأساسية لجميع الحواسيب الرقمية.</p>
+    <div class="glossary-popover-example" id="popoverExample">(1010)₂ = (10)₁₀</div>
+
+    <!-- Full Sentence Context Translation Box -->
+    <div id="popoverSentenceBox" style="display:none;margin-top:12px;padding:10px 14px;background:var(--primary-soft);border:1px solid rgba(20,184,166,0.3);border-radius:12px;">
+      <div style="font-size:0.8rem;font-weight:700;color:var(--primary);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;">
+        <span>📄 ترجمة الجملة بالكامل:</span>
+        <button type="button" class="btn btn-outline btn-xs" onclick="speakGlossarySentence()" style="padding:2px 8px;font-size:0.75rem;">🔊 استمع للجملة</button>
+      </div>
+      <div id="popoverSentenceEn" style="font-size:0.82rem;color:var(--text-muted);direction:ltr;text-align:left;font-family:Consolas,monospace;margin-bottom:6px;"></div>
+      <div id="popoverSentenceAr" style="font-size:0.92rem;font-weight:700;color:var(--text);line-height:1.5;"></div>
+    </div>
+
+    <!-- Key Terms Chips in Sentence -->
+    <div id="popoverKeyTermsBox" style="display:none;margin-top:10px;padding-top:8px;border-top:1px solid var(--border);">
+      <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:6px;">🔑 مصطلحات هامة في الجملة (انقر للعرض):</div>
+      <div id="popoverKeyTermsChips" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+    </div>
+
+    <!-- Search Input -->
+    <div class="glossary-popover-search">
+      <input type="text" id="glossarySearchInput" placeholder="اكتب أو الصق أي كلمة أو جملة كاملة للترجمة..." onkeydown="if(event.key==='Enter')searchGlossaryFromInput()">
+      <button type="button" class="btn btn-primary btn-xs" onclick="searchGlossaryFromInput()">🔍 ترجمة</button>
+    </div>
+  </div>
+
+  <script src="IT.js"></script>
+</body>
+</html>
